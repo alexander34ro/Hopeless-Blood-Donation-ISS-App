@@ -8,7 +8,7 @@ public class CentruTransfuzii implements IHasId, IHasLocation {
 	private Integer id;
 	private String nume;
 	private Regiune regiune;
-	private Oras oras;
+	private Oras    oras;
 
 	@Override
 	public Integer getId() {
