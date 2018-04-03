@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="25.0" layoutY="14.0" text="Conditii de donare" textFill="#b50c0c">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="71.0" prefHeight="31.0" prefWidth="65.0" text="Greutate">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="261.0" layoutY="74.0" promptText="kg" />
+      <Label layoutX="25.0" layoutY="109.0" text="Puls">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="261.0" layoutY="107.0" promptText="bătăi/minut" />
+      <Label layoutX="24.0" layoutY="139.0" text="Tensiune arterială sistolică">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="261.0" layoutY="137.0" promptText="mmHg " />
+      <Label layoutX="24.0" layoutY="231.0" text="• Au existat intervenţii chirurgicale in ultimele 6 luni?">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="32.0" layoutY="247.0" mnemonicParsing="false" text="Da">
+         <toggleGroup>
+            <ToggleGroup fx:id="interventii" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="84.0" layoutY="247.0" mnemonicParsing="false" text="Nu" toggleGroup="$interventii" />
+      <Label layoutX="25.0" layoutY="277.0" text="• Aţi consumat de grăsimi sau băuturi alcoolice cu cel putin 48 h înaintea donării?">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="24.0" layoutY="357.0" mnemonicParsing="false" text="Da">
+         <toggleGroup>
+            <ToggleGroup fx:id="tratament" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="78.0" layoutY="357.0" mnemonicParsing="false" text="Nu" toggleGroup="$tratament" />
+      <Label layoutX="25.0" layoutY="325.0" prefWidth="737.0" text="• Primiţi tratament pentru diferite afecţiuni: hipertensiune,boli ">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="341.0" text="de inimă,boli renale,boli psihice,boli hepatice,boli endocrine?">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="32.0" layoutY="295.0" mnemonicParsing="false" text="Da">
+         <toggleGroup>
+            <ToggleGroup fx:id="consum" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="84.0" layoutY="295.0" mnemonicParsing="false" text="Nu" toggleGroup="$consum" />
+      <Label layoutX="29.0" layoutY="387.0" text="• Ati suferit de una dintre următoarele boli: hepatită (de orice tip), TBC, sifilis, malarie,  ">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="403.0" text="epilepsie si alte boli neurologice, boli psihice, boli psihice,bruceloza, ulcer,">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="419.0" text="boli de inimă, boli de piele: psoriazis, vitiligo, miopie forte peste (-) 6 dioptrii, cancer?">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="24.0" layoutY="435.0" mnemonicParsing="false" text="Da">
+         <toggleGroup>
+            <ToggleGroup fx:id="boli" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="78.0" layoutY="435.0" mnemonicParsing="false" text="Nu" toggleGroup="$boli" />
+      <Label layoutX="24.0" layoutY="465.0" text="• Sunteţi însărcinată, în perioada de lăuzie, în perioada menstruală?">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="24.0" layoutY="481.0" mnemonicParsing="false" text="Da">
+         <toggleGroup>
+            <ToggleGroup fx:id="femei" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="78.0" layoutY="481.0" mnemonicParsing="false" text="Nu" toggleGroup="$femei" />
+      <Label layoutX="24.0" layoutY="170.0" text="Grupa de sânge">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="261.0" layoutY="165.0" promptText="grupa de sânge" />
+      <Label layoutX="29.0" layoutY="199.0" text="Rh">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="261.0" layoutY="194.0" promptText="Rh" />
+   </children>
+</Pane>
