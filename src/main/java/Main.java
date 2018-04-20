@@ -5,13 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.util.concurrent.TimeUnit;
-
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Hopeless");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/login.fxml"));
         Pane pane = (Pane) loader.load();
         LoginController ctrl = loader.getController();
         Scene scene = new Scene(pane);
