@@ -1,15 +1,15 @@
 package Controllers;
 
-import Models.Medic;
+import Persistence.MedicEntity;
 import Servers.IServer;
 
-public class MedicController implements IUserController<Medic>{
+public class MedicController implements IUserController<MedicEntity>{
 
-    private Medic user;
+    private MedicEntity user;
     private IServer server;
 
-    public void setUser(Medic user){
-        this.user=user;
+    public void setUser(MedicEntity user){
+        this.user = user;
 
     }
 

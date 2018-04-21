@@ -1,9 +1,8 @@
 package Controllers;
 
-import Models.Asistent;
-import Models.Donator;
-import Models.IUser;
-import Models.Medic;
+import Persistence.AsistentEntity;
+import Persistence.DonatorEntity;
+import Persistence.MedicEntity;
 import Servers.IServer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,45 +23,40 @@ public class LoginController {
     @FXML
 
     public void handleLogin(ActionEvent actionEvent) {
-        String nume=userText.getText();
-        String password=passwordField.getText();
-        IUser user=new Asistent(); //hardcodat
-        user.setUsername(nume);
-        user.setParola(password);
+        String nume = userText.getText();
+        String password = passwordField.getText();
+        // apel catre proxy
+        // primim raspuns un donator, un asistent sau un medic
+        Object response = new AsistentEntity(); //hardcodat
 
         try {
-                FXMLLoader aloader=null;
-                if(user instanceof Donator)
-                    aloader=new FXMLLoader(getClass().getClassLoader().getResource("./Views/fereastraDonator.fxml"));
-                else if(user instanceof Asistent)
-                    aloader=new FXMLLoader(getClass().getClassLoader().getResource("./Views/Asistent.fxml"));
-                else if (user instanceof Medic)
-                    aloader=new FXMLLoader(getClass().getClassLoader().getResource("./Views/medic1.fxml"));
-                Parent aroot=aloader.load();
+            FXMLLoader aloader = null;
+            if (response instanceof DonatorEntity)
+                aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Donator.fxml"));
+            else if (response instanceof AsistentEntity)
+                aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Asistent.fxml"));
+            else if (response instanceof MedicEntity)
+                aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Medic.fxml"));
+            Parent aroot = aloader.load();
 
-                IUserController controller=aloader.getController();
-                controller.setServer(server);
-                controller.setUser(user);
-                //server.login(user, controller); nu e implementat
-                Stage stage=new Stage();
-                stage.setTitle("Donation Status");
-                stage.setScene(new Scene(aroot));
-                stage.show();
-            }
-        //catch(LogException e){ exceptie de la Server
-            //MessageAllert.showErrorMessage(null,e.getMessage());
-      //  }
-            catch(IOException e){
-                e.printStackTrace();
-            }
-
+            IUserController controller = aloader.getController();
+            controller.setServer(server);
+            //controller.setUser(response);
+            Stage stage = new Stage();
+            stage.setTitle("Donation Status");
+            stage.setScene(new Scene(aroot));
+            stage.show();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void handleCreareCont(){
         try{
 
-            FXMLLoader aloader=new FXMLLoader(getClass().getClassLoader().getResource("./Views/fereastra.fxml"));
+            FXMLLoader aloader=new FXMLLoader(getClass().getClassLoader().getResource("./Views/Signup.fxml"));
             Parent aroot=aloader.load();
             Stage stage=new Stage();
             stage.setTitle("Creare Cont");

@@ -1,15 +1,14 @@
 package Controllers;
 
-import Models.Donator;
+import Persistence.DonatorEntity;
 import Servers.IServer;
 
-public class DonatorController implements IUserController<Donator> {
-    private Donator user;
+public class DonatorController implements IUserController<DonatorEntity> {
+    private DonatorEntity user;
     private IServer server;
     public DonatorController(){}
-    public void setUser(Donator user){
-        this.user=user;
-
+    public void setUser(DonatorEntity user){
+        this.user = user;
     }
 
     public void setServer(IServer server){
