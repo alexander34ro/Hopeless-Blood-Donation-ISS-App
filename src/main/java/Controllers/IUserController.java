@@ -1,11 +1,9 @@
 package Controllers;
 
-import Servers.IServer;
+import Networking.Interfaces.ClientInterface;
 
 public interface IUserController<E> {
-
-
      void setUser(E user);
 
-     void setServer(IServer server);
+     void setClient(ClientInterface client);
 }

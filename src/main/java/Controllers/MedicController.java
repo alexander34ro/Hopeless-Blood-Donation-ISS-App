@@ -1,19 +1,19 @@
 package Controllers;
 
+import Networking.Interfaces.ClientInterface;
 import Persistence.MedicEntity;
-import Servers.IServer;
 
 public class MedicController implements IUserController<MedicEntity>{
 
     private MedicEntity user;
-    private IServer server;
+    private ClientInterface client;
 
     public void setUser(MedicEntity user){
         this.user = user;
 
     }
 
-    public void setServer(IServer server){
-        this.server=server;
+    public void setClient(ClientInterface client){
+        this.client = client;
     }
 }

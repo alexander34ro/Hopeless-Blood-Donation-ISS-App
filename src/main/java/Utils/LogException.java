@@ -1,6 +1,6 @@
 package Utils;
 
-public class LogException extends  Exception{
+public class LogException extends Exception {
     public LogException() {
     }
 

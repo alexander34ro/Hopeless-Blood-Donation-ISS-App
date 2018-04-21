@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Asistent", schema = "main", catalog = "")
-public class AsistentEntity {
+public class AsistentEntity implements java.io.Serializable {
     private short id;
     private String username;
     private String parola;

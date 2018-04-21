@@ -1,9 +1,11 @@
 package Controllers;
 
+import Networking.Interfaces.ClientInterface;
 import Persistence.AsistentEntity;
 import Persistence.DonatorEntity;
 import Persistence.MedicEntity;
-import Servers.IServer;
+import Utils.LogException;
+import Utils.MessageAllert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,18 +20,26 @@ import java.io.IOException;
 public class LoginController {
     @FXML private TextField userText;
     @FXML private PasswordField passwordField;
-    private IServer server;
+
+    private ClientInterface client;
+
+    public void setClient(ClientInterface client){
+        this.client = client;
+    }
 
     @FXML
-
     public void handleLogin(ActionEvent actionEvent) {
         String nume = userText.getText();
         String password = passwordField.getText();
         // apel catre proxy
         // primim raspuns un donator, un asistent sau un medic
-        Object response = new AsistentEntity(); //hardcodat
+
+        // Object response = new AsistentEntity(); //hardcodat
 
         try {
+
+            Object response = this.client.login(nume, password);
+
             FXMLLoader aloader = null;
             if (response instanceof DonatorEntity)
                 aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Donator.fxml"));
@@ -40,7 +50,7 @@ public class LoginController {
             Parent aroot = aloader.load();
 
             IUserController controller = aloader.getController();
-            controller.setServer(server);
+            controller.setClient(client);
             //controller.setUser(response);
             Stage stage = new Stage();
             stage.setTitle("Donation Status");
@@ -49,6 +59,9 @@ public class LoginController {
         }
         catch(IOException e){
             e.printStackTrace();
+        }
+        catch(LogException e) {
+            MessageAllert.showErrorMessage(null, e.getMessage());
         }
     }
 
