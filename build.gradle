@@ -19,5 +19,8 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'
     compile 'com.google.guava:guava:20.0'
     runtime group: 'org.xerial', name: 'sqlite-jdbc', version: '3.16.1'
+    compile 'com.enigmabridge:hibernate4-sqlite-dialect:0.1.2'
     compile 'org.hibernate:hibernate-core:5.2.16.Final'
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.0.0.RELEASE'
 }
