@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AsistentController">
+   <bottom>
+      <HBox prefHeight="160.0" prefWidth="1100.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange O">
+                     <opaqueInsets>
+                        <Insets left="10.0" />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Globule Rosii:" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </GridPane>
+            <GridPane>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma:" GridPane.rowIndex="1" />
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange A" />
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3" />
+                  <Label text="Globule Rosii:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma:" GridPane.rowIndex="1" />
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange B" />
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3" />
+                  <Label text="Globule Rosii" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma:" GridPane.rowIndex="1" />
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange AB" />
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3" />
+                  <Label text="Globule Rosii:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="634.0" prefWidth="546.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Donatii:">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TableView prefHeight="542.0" prefWidth="526.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="Id" />
+                  <TableColumn prefWidth="75.0" text="Donator" />
+                  <TableColumn prefWidth="75.0" text="Tip sange" />
+                  <TableColumn prefWidth="75.0" text="Pacient" />
+                  <TableColumn prefWidth="75.0" text="Stadiu" />
+                  <TableColumn prefWidth="75.0" text="Respins" />
+                  <TableColumn prefWidth="75.0" text="Data" />
+               </columns>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox prefHeight="636.0" prefWidth="523.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Cereri:">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TableView prefHeight="537.0" prefWidth="505.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Nume" />
+                  <TableColumn prefWidth="75.0" text="Spital" />
+                  <TableColumn prefWidth="78.0" text="Tip Sange" />
+                  <TableColumn text="Plasma" />
+                  <TableColumn prefWidth="103.0" text="Globule Rosii" />
+                  <TableColumn prefWidth="91.0" text="Trombocite" />
+              </columns>
+               <VBox.margin>
+                  <Insets right="20.0" />
+               </VBox.margin>
+            </TableView>
+            <GridPane prefHeight="51.0" prefWidth="461.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" text="Trimite Sange">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Cerere Urgenta" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
