@@ -24,9 +24,9 @@ public class ServerImplementation implements ServerInterface {
         // user / password ok
         AsistentEntity user = new AsistentEntity(); // result
 
-        if( this.loggedInClients.containsKey( user.getId() ) ) {
+        /*if( this.loggedInClients.containsKey( user.getId() ) ) {
             throw new LogException("User deja autentificat");
-        }
+        }*/
 
         this.loggedInClients.put(user.getId(), client);
 
