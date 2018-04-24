@@ -28,7 +28,7 @@ public class ServerImplementation implements ServerInterface {
             throw new LogException("User deja autentificat");
         }*/
 
-        this.loggedInClients.put(user.getId(), client);
+        // this.loggedInClients.put(user.getId(), client);
 
         return user;
 
