@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="536.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
-   <children>
+
       <PasswordField fx:id="passwordField" layoutX="91.0" layoutY="87.0" promptText="Parola" />
       <TextField fx:id="userText" layoutX="91.0" layoutY="48.0" promptText="User" />
       <Label layoutX="22.0" layoutY="53.0" text="User" />
@@ -17,5 +17,5 @@
             <Image url="@../Images/download.jpg" />
          </image>
       </ImageView>
-   </children>
+
 </Pane>
