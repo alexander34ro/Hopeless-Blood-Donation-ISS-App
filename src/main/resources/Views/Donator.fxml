@@ -3,19 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DonatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DonatorController">
    <center>
-      <TabPane prefHeight="400.0" prefWidth="613.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane prefHeight="753.0" prefWidth="777.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Pagina principală">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Situaţia donărilor efectuate" />
-                        <TableView layoutX="14.0" layoutY="38.0" prefHeight="439.0" prefWidth="492.0">
+                        <TableView layoutX="14.0" layoutY="38.0" prefHeight="654.0" prefWidth="628.0">
                           <columns>
-                            <TableColumn prefWidth="112.00006103515625" text="Data recoltării" />
-                            <TableColumn prefWidth="143.20001220703125" text="C2" />
+                            <TableColumn prefWidth="140.0" text="Data recoltării" />
+                            <TableColumn prefWidth="185.0" text="Stare" />
+                              <TableColumn prefWidth="166.0" text="Spital" />
+                              <TableColumn prefWidth="138.0" text="Data expirării" />
                           </columns>
                         </TableView>
                      </children>
@@ -24,11 +26,11 @@
           </Tab>
           <Tab text="Vreau să donez">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="683.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="633.0" prefWidth="705.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="654.0">
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="711.0">
                            <children>
-                              <Label layoutX="25.0" layoutY="14.0" text="Conditii de donare" textFill="#b50c0c">
+                              <Label layoutX="25.0" layoutY="14.0" text="Condiții de donare" textFill="#b50c0c">
                                  <font>
                                     <Font name="System Bold" size="27.0" />
                                  </font>
@@ -133,10 +135,12 @@
                                  </font>
                               </Label>
                               <TextField layoutX="261.0" layoutY="194.0" promptText="Rh" />
-                              <Button layoutX="280.0" layoutY="551.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
+                              <Button layoutX="276.0" layoutY="666.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
                               <CheckBox layoutX="24.0" layoutY="515.0" mnemonicParsing="false" />
                               <Hyperlink layoutX="48.0" layoutY="512.0" text="Sunt de acord" />
-                              <Label layoutX="514.0" layoutY="515.0" text="Data curentă: 22.03.2018" />
+                              <Label layoutX="483.0" layoutY="645.0" text="Data curentă: 22.03.2018" />
+                              <TextField layoutX="24.0" layoutY="581.0" promptText="Nume si prenume" />
+                              <Label layoutX="24.0" layoutY="549.0" prefHeight="21.0" prefWidth="488.0" text="Vreți să donați pentru o anumită persoană? Dacă da completați numele" />
                            </children>
                         </Pane>
                      </children>

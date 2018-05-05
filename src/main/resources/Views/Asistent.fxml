@@ -3,9 +3,10 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AsistentController">
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="855.0" prefWidth="1173.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AsistentController">
    <bottom>
-      <HBox prefHeight="160.0" prefWidth="1100.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="209.0" prefWidth="1099.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
             <GridPane>
               <columnConstraints>
@@ -14,36 +15,42 @@
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma" GridPane.rowIndex="1">
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasmă:" GridPane.rowIndex="2">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange O">
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange O" textFill="#fc0c0c">
                      <opaqueInsets>
                         <Insets left="10.0" />
                      </opaqueInsets>
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3">
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Globule Rosii:" GridPane.rowIndex="2">
+                  <Label text="Globule Rosii:" GridPane.rowIndex="3">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="71.0" text="  Cantitate" GridPane.rowIndex="1" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <opaqueInsets>
@@ -52,12 +59,17 @@
             </GridPane>
             <GridPane>
                <children>
-                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma:" GridPane.rowIndex="1" />
-                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange A" />
-                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3" />
-                  <Label text="Globule Rosii:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasmă:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange A" textFill="#ff0202">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font></Label>
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4" />
+                  <Label text="Globule Rosii:" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Cantitate" GridPane.rowIndex="1" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
@@ -65,6 +77,7 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
                </columnConstraints>
                <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -73,12 +86,17 @@
             </GridPane>
             <GridPane>
                <children>
-                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma:" GridPane.rowIndex="1" />
-                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange B" />
-                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3" />
-                  <Label text="Globule Rosii" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasmă:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange B" textFill="#ff0606">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font></Label>
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4" />
+                  <Label text="Globule Rosii" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Cantitate" GridPane.rowIndex="1" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
@@ -86,6 +104,7 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
                </columnConstraints>
                <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -94,12 +113,17 @@
             </GridPane>
             <GridPane>
                <children>
-                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasma:" GridPane.rowIndex="1" />
-                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange AB" />
-                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="3" />
-                  <Label text="Globule Rosii:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Plasmă:" GridPane.rowIndex="2" />
+                  <Label prefHeight="21.0" prefWidth="118.0" text="Grupa Sange AB" textFill="#ff0505">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font></Label>
+                  <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4" />
+                  <Label text="Globule Rosii:" GridPane.rowIndex="3" />
+                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Cantitate" GridPane.rowIndex="1" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
@@ -107,6 +131,7 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="88.0" />
                </columnConstraints>
                <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -117,18 +142,21 @@
       </HBox>
    </bottom>
    <left>
-      <VBox prefHeight="634.0" prefWidth="546.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="646.0" prefWidth="544.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Donatii:">
+            <Label text="Donații:" textFill="#b21818">
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
             </Label>
-            <TableView prefHeight="542.0" prefWidth="526.0">
+            <TableView prefHeight="521.0" prefWidth="566.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="Id" />
                   <TableColumn prefWidth="75.0" text="Donator" />
-                  <TableColumn prefWidth="75.0" text="Tip sange" />
+                  <TableColumn prefWidth="75.0" text="Tip sânge" />
                   <TableColumn prefWidth="75.0" text="Pacient" />
                   <TableColumn prefWidth="75.0" text="Stadiu" />
                   <TableColumn prefWidth="75.0" text="Respins" />
@@ -142,21 +170,25 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="636.0" prefWidth="523.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="646.0" prefWidth="587.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Cereri:">
+            <Label text="Cereri:" textFill="#a82121">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
             </Label>
-            <TableView prefHeight="537.0" prefWidth="505.0">
+            <TableView prefHeight="522.0" prefWidth="512.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Nume" />
-                  <TableColumn prefWidth="75.0" text="Spital" />
-                  <TableColumn prefWidth="78.0" text="Tip Sange" />
-                  <TableColumn text="Plasma" />
-                  <TableColumn prefWidth="103.0" text="Globule Rosii" />
-                  <TableColumn prefWidth="91.0" text="Trombocite" />
+                <TableColumn prefWidth="57.0" text="Id" />
+                  <TableColumn text="Spital" />
+                  <TableColumn prefWidth="84.0" text="Tip Sânge" />
+                  <TableColumn prefWidth="63.0" text="Sânge" />
+                  <TableColumn prefWidth="65.0" text="Plasmă" />
+                  <TableColumn prefWidth="116.0" text="Globule Rosii" />
+                  <TableColumn prefWidth="101.0" text="Trombocite" />
               </columns>
                <VBox.margin>
                   <Insets right="20.0" />

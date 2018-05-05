@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" >
-   <children>
+
       <Label layoutX="34.0" layoutY="89.0" text="Date de identitate">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -54,5 +54,5 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-   </children>
+
 </Pane>
