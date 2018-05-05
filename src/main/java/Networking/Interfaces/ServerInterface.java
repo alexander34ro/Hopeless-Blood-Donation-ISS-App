@@ -1,6 +1,6 @@
 package Networking.Interfaces;
 
-import Models.IUser;
+import ModelsDONOTUSETHIS.IUser;
 import Utils.LogException;
 
 public interface ServerInterface {

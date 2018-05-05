@@ -1,14 +1,14 @@
-package Models;
+package ModelsDONOTUSETHIS;
 
-public class Spital implements IHasLocation, IHasId {
+public class CentruTransfuzii implements IHasId, IHasLocation {
 
-	public Spital() {
+	public CentruTransfuzii() {
 	}
 
 	private Integer id;
 	private String nume;
 	private Regiune regiune;
-	private Oras oras;
+	private Oras    oras;
 
 	@Override
 	public Integer getId() {

@@ -1,7 +1,7 @@
 package Servers;
 
 import Controllers.IUserController;
-import Models.IUser;
+import ModelsDONOTUSETHIS.IUser;
 import Utils.LogException;
 
 public interface IServer {

@@ -1,4 +1,4 @@
-package Models;
+package ModelsDONOTUSETHIS;
 
 public class Donator implements IHasId, IHasName, IHasContactDetails, IHasLocation, IUser {
 

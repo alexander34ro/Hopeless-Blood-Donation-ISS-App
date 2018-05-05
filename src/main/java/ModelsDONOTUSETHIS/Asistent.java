@@ -1,4 +1,4 @@
-package Models;
+package ModelsDONOTUSETHIS;
 
 public class Asistent implements IHasId, IUser, IHasName {
 

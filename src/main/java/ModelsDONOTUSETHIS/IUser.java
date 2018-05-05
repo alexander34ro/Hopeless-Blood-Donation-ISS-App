@@ -1,4 +1,4 @@
-package Models;
+package ModelsDONOTUSETHIS;
 
 public interface IUser extends IHasId, java.io.Serializable {
 	String getParola();

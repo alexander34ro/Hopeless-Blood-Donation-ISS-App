@@ -1,7 +1,7 @@
 package Networking;
 
 
-import Models.IUser;
+import ModelsDONOTUSETHIS.IUser;
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
 import Persistence.AsistentEntity;

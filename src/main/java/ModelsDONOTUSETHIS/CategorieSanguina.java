@@ -1,4 +1,4 @@
-package Models;
+package ModelsDONOTUSETHIS;
 
 public enum CategorieSanguina {
 	Trombocite,
