@@ -10,6 +10,8 @@ public class PacientEntity {
     private String prenume;
     private short prioritate;
     private MedicEntity medicByMedic;
+    private short medic;
+    private short cantitate;
 
     @Id
     @Column(name = "id")
@@ -83,5 +85,25 @@ public class PacientEntity {
 
     public void setMedicByMedic(MedicEntity medicByMedic) {
         this.medicByMedic = medicByMedic;
+    }
+
+    @Basic
+    @Column(name = "medic")
+    public short getMedic() {
+        return medic;
+    }
+
+    public void setMedic(short medic) {
+        this.medic = medic;
+    }
+
+    @Basic
+    @Column(name = "cantitate")
+    public short getCantitate() {
+        return cantitate;
+    }
+
+    public void setCantitate(short cantitate) {
+        this.cantitate = cantitate;
     }
 }

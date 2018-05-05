@@ -7,11 +7,12 @@ import javax.persistence.*;
 public class DetaliiCerereEntity {
     private short id;
     private short cerere;
-    private String componentaSanguina;
     private String tipSange;
     private String prioritate;
     private short completata;
     private String dataCompletare;
+    private String produsSange;
+    private short cantitate;
 
     @Id
     @Column(name = "id")
@@ -31,16 +32,6 @@ public class DetaliiCerereEntity {
 
     public void setCerere(short cerere) {
         this.cerere = cerere;
-    }
-
-    @Basic
-    @Column(name = "componentaSanguina")
-    public String getComponentaSanguina() {
-        return componentaSanguina;
-    }
-
-    public void setComponentaSanguina(String componentaSanguina) {
-        this.componentaSanguina = componentaSanguina;
     }
 
     @Basic
@@ -93,8 +84,6 @@ public class DetaliiCerereEntity {
         if (id != that.id) return false;
         if (cerere != that.cerere) return false;
         if (completata != that.completata) return false;
-        if (componentaSanguina != null ? !componentaSanguina.equals(that.componentaSanguina) : that.componentaSanguina != null)
-            return false;
         if (tipSange != null ? !tipSange.equals(that.tipSange) : that.tipSange != null) return false;
         if (prioritate != null ? !prioritate.equals(that.prioritate) : that.prioritate != null) return false;
         if (dataCompletare != null ? !dataCompletare.equals(that.dataCompletare) : that.dataCompletare != null)
@@ -107,11 +96,30 @@ public class DetaliiCerereEntity {
     public int hashCode() {
         int result = (int) id;
         result = 31 * result + (int) cerere;
-        result = 31 * result + (componentaSanguina != null ? componentaSanguina.hashCode() : 0);
         result = 31 * result + (tipSange != null ? tipSange.hashCode() : 0);
         result = 31 * result + (prioritate != null ? prioritate.hashCode() : 0);
         result = 31 * result + (int) completata;
         result = 31 * result + (dataCompletare != null ? dataCompletare.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "produsSange")
+    public String getProdusSange() {
+        return produsSange;
+    }
+
+    public void setProdusSange(String produsSange) {
+        this.produsSange = produsSange;
+    }
+
+    @Basic
+    @Column(name = "cantitate")
+    public short getCantitate() {
+        return cantitate;
+    }
+
+    public void setCantitate(short cantitate) {
+        this.cantitate = cantitate;
     }
 }
