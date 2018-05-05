@@ -6,10 +6,9 @@ import javax.persistence.*;
 @Table(name = "Cerere", schema = "main", catalog = "")
 public class CerereEntity {
     private short id;
-    private short trombociteNecesare;
-    private short globuleRosiiNecesare;
-    private short plasmaNecesara;
-    private CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii;
+    private short centruTransfuzii;
+    private short medic;
+    private String data;
 
     @Id
     @Column(name = "id")
@@ -21,36 +20,6 @@ public class CerereEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "trombociteNecesare")
-    public short getTrombociteNecesare() {
-        return trombociteNecesare;
-    }
-
-    public void setTrombociteNecesare(short trombociteNecesare) {
-        this.trombociteNecesare = trombociteNecesare;
-    }
-
-    @Basic
-    @Column(name = "globuleRosiiNecesare")
-    public short getGlobuleRosiiNecesare() {
-        return globuleRosiiNecesare;
-    }
-
-    public void setGlobuleRosiiNecesare(short globuleRosiiNecesare) {
-        this.globuleRosiiNecesare = globuleRosiiNecesare;
-    }
-
-    @Basic
-    @Column(name = "plasmaNecesara")
-    public short getPlasmaNecesara() {
-        return plasmaNecesara;
-    }
-
-    public void setPlasmaNecesara(short plasmaNecesara) {
-        this.plasmaNecesara = plasmaNecesara;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,9 +28,6 @@ public class CerereEntity {
         CerereEntity that = (CerereEntity) o;
 
         if (id != that.id) return false;
-        if (trombociteNecesare != that.trombociteNecesare) return false;
-        if (globuleRosiiNecesare != that.globuleRosiiNecesare) return false;
-        if (plasmaNecesara != that.plasmaNecesara) return false;
 
         return true;
     }
@@ -69,19 +35,36 @@ public class CerereEntity {
     @Override
     public int hashCode() {
         int result = (int) id;
-        result = 31 * result + (int) trombociteNecesare;
-        result = 31 * result + (int) globuleRosiiNecesare;
-        result = 31 * result + (int) plasmaNecesara;
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "centruTransfuzii", referencedColumnName = "id", nullable = false)
-    public CentruTransfuziiEntity getCentruTransfuziiByCentruTransfuzii() {
-        return centruTransfuziiByCentruTransfuzii;
+    @Basic
+    @Column(name = "centruTransfuzii")
+    public short getCentruTransfuzii() {
+        return centruTransfuzii;
     }
 
-    public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
-        this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
+    public void setCentruTransfuzii(short centruTransfuzii) {
+        this.centruTransfuzii = centruTransfuzii;
+    }
+
+    @Basic
+    @Column(name = "medic")
+    public short getMedic() {
+        return medic;
+    }
+
+    public void setMedic(short medic) {
+        this.medic = medic;
+    }
+
+    @Basic
+    @Column(name = "data")
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }
