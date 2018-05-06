@@ -1,15 +1,15 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Donatie", schema = "main", catalog = "")
-public class DonatieEntity implements java.io.Serializable {
+public class DonatieEntity implements Serializable {
     private short id;
     private short greutate;
     private short puls;
     private short tensiune;
-    private short aSuferitintegererventii;
     private short insarcinataLauzieMenstruatie;
     private short aConsumatAlcool;
     private String numePacient;
@@ -20,7 +20,9 @@ public class DonatieEntity implements java.io.Serializable {
     private short donator;
     private short centruTransfuzii;
     private DonatorEntity donatorByDonator;
+    private short aSuferitInterventii;
     private short aSuferitBoli;
+    private short subTratament;
 
     @Id
     @Column(name = "id")
@@ -60,16 +62,6 @@ public class DonatieEntity implements java.io.Serializable {
 
     public void setTensiune(short tensiune) {
         this.tensiune = tensiune;
-    }
-
-    @Basic
-    @Column(name = "aSuferitintegererventii")
-    public short getaSuferitintegererventii() {
-        return aSuferitintegererventii;
-    }
-
-    public void setaSuferitintegererventii(short aSuferitintegererventii) {
-        this.aSuferitintegererventii = aSuferitintegererventii;
     }
 
     @Basic
@@ -143,7 +135,6 @@ public class DonatieEntity implements java.io.Serializable {
         if (greutate != that.greutate) return false;
         if (puls != that.puls) return false;
         if (tensiune != that.tensiune) return false;
-        if (aSuferitintegererventii != that.aSuferitintegererventii) return false;
         if (insarcinataLauzieMenstruatie != that.insarcinataLauzieMenstruatie) return false;
         if (aConsumatAlcool != that.aConsumatAlcool) return false;
         if (respins != that.respins) return false;
@@ -160,7 +151,6 @@ public class DonatieEntity implements java.io.Serializable {
         result = 31 * result + (int) greutate;
         result = 31 * result + (int) puls;
         result = 31 * result + (int) tensiune;
-        result = 31 * result + (int) aSuferitintegererventii;
         result = 31 * result + (int) insarcinataLauzieMenstruatie;
         result = 31 * result + (int) aConsumatAlcool;
         result = 31 * result + (numePacient != null ? numePacient.hashCode() : 0);
@@ -209,14 +199,34 @@ public class DonatieEntity implements java.io.Serializable {
     public void setDonatorByDonator(DonatorEntity donatorByDonator) {
         this.donatorByDonator = donatorByDonator;
     }
+
+    @Basic
+    @Column(name = "aSuferitInterventii")
+    public short getaSuferitInterventii() {
+        return aSuferitInterventii;
+    }
+
+    public void setaSuferitInterventii(short aSuferitInterventii) {
+        this.aSuferitInterventii = aSuferitInterventii;
+    }
+
     @Basic
     @Column(name = "aSuferitBoli")
     public short getaSuferitBoli() {
         return aSuferitBoli;
     }
 
-    public void setaSuferitBoli(short s) {
-        this.aSuferitBoli=s;
+    public void setaSuferitBoli(short aSuferitBoli) {
+        this.aSuferitBoli = aSuferitBoli;
     }
 
+    @Basic
+    @Column(name = "subTratament")
+    public short getSubTratament() {
+        return subTratament;
+    }
+
+    public void setSubTratament(short subTratament) {
+        this.subTratament = subTratament;
+    }
 }

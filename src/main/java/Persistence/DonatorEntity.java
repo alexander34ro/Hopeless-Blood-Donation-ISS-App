@@ -1,11 +1,12 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @Table(name = "Donator", schema = "main", catalog = "")
-public class DonatorEntity implements java.io.Serializable {
+public class DonatorEntity implements Serializable {
     private short id;
     private String username;
     private String parola;
