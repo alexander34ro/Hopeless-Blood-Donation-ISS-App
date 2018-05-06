@@ -55,6 +55,8 @@ public class DonatorController implements IUserController<DonatorEntity> {
         donatieEntity.setData("22.03.2018");
         donatieEntity.setaSuferitBoli(Short.parseShort(boli.getSelectedToggle().getUserData().toString()));
         donatieEntity.setSubTratament(Short.parseShort(tratament.getSelectedToggle().getUserData().toString()));
+        donatieEntity.setNumePacient(user.getNume());
+        donatieEntity.setDonator(user.getId());
         service.saveOrUpdate(donatieEntity);
 
 

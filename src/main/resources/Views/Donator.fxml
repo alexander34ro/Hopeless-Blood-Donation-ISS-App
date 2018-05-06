@@ -138,7 +138,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="textFieldRh" layoutX="261.0" layoutY="194.0" promptText="Rh" />
-                              <Button layoutX="276.0" layoutY="666.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
+                              <Button onAction="#handleTrimitere" layoutX="276.0" layoutY="666.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
                               <CheckBox fx:id="checkBox" layoutX="24.0" layoutY="515.0" mnemonicParsing="false" />
                               <Hyperlink layoutX="48.0" layoutY="512.0" text="Sunt de acord" />
                               <Label layoutX="483.0" layoutY="645.0" text="Data curentă: 22.03.2018" />
