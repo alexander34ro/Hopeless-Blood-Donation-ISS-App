@@ -1,10 +1,11 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Pacient", schema = "main", catalog = "")
-public class PacientEntity {
+public class PacientEntity implements java.io.Serializable {
     private short id;
     private String nume;
     private String prenume;
@@ -12,6 +13,7 @@ public class PacientEntity {
     private MedicEntity medicByMedic;
     private short medic;
     private short cantitate;
+    private Collection<CerereEntity> cereresById;
 
     @Id
     @Column(name = "id")
@@ -105,5 +107,14 @@ public class PacientEntity {
 
     public void setCantitate(short cantitate) {
         this.cantitate = cantitate;
+    }
+
+    @OneToMany(mappedBy = "pacientByMedic")
+    public Collection<CerereEntity> getCereresById() {
+        return cereresById;
+    }
+
+    public void setCereresById(Collection<CerereEntity> cereresById) {
+        this.cereresById = cereresById;
     }
 }

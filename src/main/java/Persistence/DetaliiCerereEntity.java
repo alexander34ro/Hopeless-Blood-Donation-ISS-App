@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "DetaliiCerere", schema = "main", catalog = "")
-public class DetaliiCerereEntity {
+public class DetaliiCerereEntity implements java.io.Serializable {
     private short id;
     private short cerere;
     private String tipSange;
@@ -13,6 +13,7 @@ public class DetaliiCerereEntity {
     private String dataCompletare;
     private String produsSange;
     private short cantitate;
+    private CerereEntity cerereByCerere;
 
     @Id
     @Column(name = "id")
@@ -121,5 +122,15 @@ public class DetaliiCerereEntity {
 
     public void setCantitate(short cantitate) {
         this.cantitate = cantitate;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "cerere", referencedColumnName = "id", nullable = false)
+    public CerereEntity getCerereByCerere() {
+        return cerereByCerere;
+    }
+
+    public void setCerereByCerere(CerereEntity cerereByCerere) {
+        this.cerereByCerere = cerereByCerere;
     }
 }

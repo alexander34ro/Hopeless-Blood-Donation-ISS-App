@@ -1,10 +1,11 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Donator", schema = "main", catalog = "")
-public class DonatorEntity {
+public class DonatorEntity implements java.io.Serializable {
     private short id;
     private String username;
     private String parola;
@@ -20,6 +21,8 @@ public class DonatorEntity {
     private String regiuneResedintegera;
     private String adresaResedintegera;
     private String tipSange;
+    private Collection<DonatieEntity> donatiesById;
+    private Collection<NotificareEntity> notificaresById;
 
     @Id
     @Column(name = "id")
@@ -218,5 +221,23 @@ public class DonatorEntity {
         result = 31 * result + (adresaResedintegera != null ? adresaResedintegera.hashCode() : 0);
         result = 31 * result + (tipSange != null ? tipSange.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "donatorByDonator")
+    public Collection<DonatieEntity> getDonatiesById() {
+        return donatiesById;
+    }
+
+    public void setDonatiesById(Collection<DonatieEntity> donatiesById) {
+        this.donatiesById = donatiesById;
+    }
+
+    @OneToMany(mappedBy = "donatorByDonator")
+    public Collection<NotificareEntity> getNotificaresById() {
+        return notificaresById;
+    }
+
+    public void setNotificaresById(Collection<NotificareEntity> notificaresById) {
+        this.notificaresById = notificaresById;
     }
 }

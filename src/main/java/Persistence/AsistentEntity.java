@@ -1,15 +1,20 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Asistent", schema = "main", catalog = "")
-public class AsistentEntity implements java.io.Serializable {
+public class AsistentEntity implements Serializable {
     private short id;
     private String username;
     private String parola;
     private String nume;
     private String prenume;
+    private short centruTransfuzii;
+    private CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii;
+    private Collection<NotificareEntity> notificaresById;
 
     @Id
     @Column(name = "id")
@@ -85,5 +90,34 @@ public class AsistentEntity implements java.io.Serializable {
         result = 31 * result + (nume != null ? nume.hashCode() : 0);
         result = 31 * result + (prenume != null ? prenume.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "centruTransfuzii")
+    public short getCentruTransfuzii() {
+        return centruTransfuzii;
+    }
+
+    public void setCentruTransfuzii(short centruTransfuzii) {
+        this.centruTransfuzii = centruTransfuzii;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "centruTransfuzii", referencedColumnName = "id", nullable = false)
+    public CentruTransfuziiEntity getCentruTransfuziiByCentruTransfuzii() {
+        return centruTransfuziiByCentruTransfuzii;
+    }
+
+    public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
+        this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
+    }
+
+    @OneToMany(mappedBy = "asistentByAsistent")
+    public Collection<NotificareEntity> getNotificaresById() {
+        return notificaresById;
+    }
+
+    public void setNotificaresById(Collection<NotificareEntity> notificaresById) {
+        this.notificaresById = notificaresById;
     }
 }

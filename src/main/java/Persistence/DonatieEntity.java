@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Donatie", schema = "main", catalog = "")
-public class DonatieEntity {
+public class DonatieEntity implements java.io.Serializable {
     private short id;
     private short greutate;
     private short puls;
@@ -17,6 +17,9 @@ public class DonatieEntity {
     private short respins;
     private String data;
     private CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii;
+    private short donator;
+    private short centruTransfuzii;
+    private DonatorEntity donatorByDonator;
 
     @Id
     @Column(name = "id")
@@ -174,5 +177,35 @@ public class DonatieEntity {
 
     public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
         this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
+    }
+
+    @Basic
+    @Column(name = "donator")
+    public short getDonator() {
+        return donator;
+    }
+
+    public void setDonator(short donator) {
+        this.donator = donator;
+    }
+
+    @Basic
+    @Column(name = "centruTransfuzii")
+    public short getCentruTransfuzii() {
+        return centruTransfuzii;
+    }
+
+    public void setCentruTransfuzii(short centruTransfuzii) {
+        this.centruTransfuzii = centruTransfuzii;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "donator", referencedColumnName = "id", nullable = false)
+    public DonatorEntity getDonatorByDonator() {
+        return donatorByDonator;
+    }
+
+    public void setDonatorByDonator(DonatorEntity donatorByDonator) {
+        this.donatorByDonator = donatorByDonator;
     }
 }

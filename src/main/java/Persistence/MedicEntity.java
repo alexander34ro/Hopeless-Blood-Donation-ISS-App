@@ -1,16 +1,20 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Medic", schema = "main", catalog = "")
-public class MedicEntity {
+public class MedicEntity implements java.io.Serializable {
     private short id;
     private String username;
     private String parola;
     private String nume;
     private String prenume;
-    private String numeSpital;
+    private short spital;
+    private Collection<CerereEntity> cereresById;
+    private SpitalEntity spitalBySpital;
+    private Collection<PacientEntity> pacientsById;
 
     @Id
     @Column(name = "id")
@@ -53,16 +57,6 @@ public class MedicEntity {
     }
 
     @Basic
-    @Column(name = "numeSpital")
-    public String getNumeSpital() {
-        return numeSpital;
-    }
-
-    public void setNumeSpital(String numeSpital) {
-        this.numeSpital=numeSpital;
-    }
-
-    @Basic
     @Column(name = "prenume")
     public String getPrenume() {
         return prenume;
@@ -71,7 +65,6 @@ public class MedicEntity {
     public void setPrenume(String prenume) {
         this.prenume = prenume;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -97,5 +90,43 @@ public class MedicEntity {
         result = 31 * result + (nume != null ? nume.hashCode() : 0);
         result = 31 * result + (prenume != null ? prenume.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "spital")
+    public short getSpital() {
+        return spital;
+    }
+
+    public void setSpital(short spital) {
+        this.spital = spital;
+    }
+
+    @OneToMany(mappedBy = "medicByMedic")
+    public Collection<CerereEntity> getCereresById() {
+        return cereresById;
+    }
+
+    public void setCereresById(Collection<CerereEntity> cereresById) {
+        this.cereresById = cereresById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "spital", referencedColumnName = "id", nullable = false)
+    public SpitalEntity getSpitalBySpital() {
+        return spitalBySpital;
+    }
+
+    public void setSpitalBySpital(SpitalEntity spitalBySpital) {
+        this.spitalBySpital = spitalBySpital;
+    }
+
+    @OneToMany(mappedBy = "medicByMedic")
+    public Collection<PacientEntity> getPacientsById() {
+        return pacientsById;
+    }
+
+    public void setPacientsById(Collection<PacientEntity> pacientsById) {
+        this.pacientsById = pacientsById;
     }
 }
