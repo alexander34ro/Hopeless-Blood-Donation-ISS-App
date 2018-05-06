@@ -22,7 +22,7 @@
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Cantitate" />
           </columns>
         </TableView>
-        <Button layoutX="451.0" layoutY="344.0" mnemonicParsing="false" text="Trimite cerere" />
+        <Button onAction="#handleTrimitere" layoutX="451.0" layoutY="344.0" mnemonicParsing="false" text="Trimite cerere" />
         <Label layoutX="38.0" layoutY="84.0" text="Date pacienți:">
           <font>
             <Font name="Arial" size="14.0" />

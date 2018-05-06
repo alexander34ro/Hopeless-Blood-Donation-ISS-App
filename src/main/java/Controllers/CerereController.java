@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 public class CerereController {
     DumbService service;
-    public CerereController(DumbService service) {
+    public void setService(DumbService service) {
         this.service=service;
     }
 

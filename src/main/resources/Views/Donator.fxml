@@ -43,41 +43,41 @@
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="261.0" layoutY="74.0" promptText="kg" />
+                              <TextField fx:id="textFieldGreutate" layoutX="261.0" layoutY="74.0" promptText="kg" />
                               <Label layoutX="25.0" layoutY="109.0" text="Puls">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="261.0" layoutY="107.0" promptText="bătăi/minut" />
+                              <TextField fx:id="textFieldPuls" layoutX="261.0" layoutY="107.0" promptText="bătăi/minut" />
                               <Label layoutX="24.0" layoutY="139.0" text="Tensiune arterială sistolică">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="261.0" layoutY="137.0" promptText="mmHg " />
+                              <TextField fx:id="textFieldTensiune" layoutX="261.0" layoutY="137.0" promptText="mmHg " />
                               <Label layoutX="24.0" layoutY="231.0" text="• Au existat intervenţii chirurgicale in ultimele 6 luni?">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="32.0" layoutY="247.0" mnemonicParsing="false" text="Da">
+                              <RadioButton fx:id="radioBtnInterventiiDa" layoutX="32.0" layoutY="247.0" mnemonicParsing="false" text="Da">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="interventii" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton layoutX="84.0" layoutY="247.0" mnemonicParsing="false" text="Nu" toggleGroup="$interventii" />
+                              <RadioButton fx:id="radioBtnInterventiiNu" layoutX="84.0" layoutY="247.0" mnemonicParsing="false" text="Nu" toggleGroup="$interventii" />
                               <Label layoutX="25.0" layoutY="277.0" text="• Aţi consumat de grăsimi sau băuturi alcoolice cu cel putin 48 h înaintea donării?">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="24.0" layoutY="357.0" mnemonicParsing="false" text="Da">
+                              <RadioButton fx:id="radioBtnTratamentDa" layoutX="24.0" layoutY="357.0" mnemonicParsing="false" text="Da">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="tratament" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton layoutX="78.0" layoutY="357.0" mnemonicParsing="false" text="Nu" toggleGroup="$tratament" />
+                              <RadioButton fx:id="radioBtnTratamentNu" layoutX="78.0" layoutY="357.0" mnemonicParsing="false" text="Nu" toggleGroup="$tratament" />
                               <Label layoutX="25.0" layoutY="325.0" prefWidth="737.0" text="• Primiţi tratament pentru diferite afecţiuni: hipertensiune,boli ">
                                  <font>
                                     <Font name="Arial" size="14.0" />
@@ -88,12 +88,12 @@
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="32.0" layoutY="295.0" mnemonicParsing="false" text="Da">
+                              <RadioButton fx:id="radioBtnConsumDa" layoutX="32.0" layoutY="295.0" mnemonicParsing="false" text="Da">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="consum" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton layoutX="84.0" layoutY="295.0" mnemonicParsing="false" text="Nu" toggleGroup="$consum" />
+                              <RadioButton fx:id="radioBtnConsumNu" layoutX="84.0" layoutY="295.0" mnemonicParsing="false" text="Nu" toggleGroup="$consum" />
                               <Label layoutX="29.0" layoutY="387.0" text="• Ati suferit de una dintre următoarele boli: hepatită (de orice tip), TBC, sifilis, malarie,  ">
                                  <font>
                                     <Font name="Arial" size="14.0" />
@@ -109,40 +109,40 @@
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="24.0" layoutY="435.0" mnemonicParsing="false" text="Da">
+                              <RadioButton fx:id="radioBtnBoliDa" layoutX="24.0" layoutY="435.0" mnemonicParsing="false" text="Da">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="boli" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton layoutX="78.0" layoutY="435.0" mnemonicParsing="false" text="Nu" toggleGroup="$boli" />
+                              <RadioButton fx:id="radioBtnBoliNu" layoutX="78.0" layoutY="435.0" mnemonicParsing="false" text="Nu" toggleGroup="$boli" />
                               <Label layoutX="24.0" layoutY="465.0" text="• Sunteţi însărcinată, în perioada de lăuzie, în perioada menstruală?">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="24.0" layoutY="481.0" mnemonicParsing="false" text="Da">
+                              <RadioButton fx:id="radioBtnFemeiDa" layoutX="24.0" layoutY="481.0" mnemonicParsing="false" text="Da">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="femei" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton layoutX="78.0" layoutY="481.0" mnemonicParsing="false" text="Nu" toggleGroup="$femei" />
+                              <RadioButton fx:id="radioBtnFemeiNu" layoutX="78.0" layoutY="481.0" mnemonicParsing="false" text="Nu" toggleGroup="$femei" />
                               <Label layoutX="24.0" layoutY="170.0" text="Grupa de sânge">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="261.0" layoutY="165.0" promptText="grupa de sânge" />
+                              <TextField fx:id="textFieldGrS" layoutX="261.0" layoutY="165.0" promptText="grupa de sânge" />
                               <Label layoutX="29.0" layoutY="199.0" text="Rh">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="261.0" layoutY="194.0" promptText="Rh" />
+                              <TextField fx:id="textFieldRh" layoutX="261.0" layoutY="194.0" promptText="Rh" />
                               <Button layoutX="276.0" layoutY="666.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
-                              <CheckBox layoutX="24.0" layoutY="515.0" mnemonicParsing="false" />
+                              <CheckBox fx:id="checkBox" layoutX="24.0" layoutY="515.0" mnemonicParsing="false" />
                               <Hyperlink layoutX="48.0" layoutY="512.0" text="Sunt de acord" />
                               <Label layoutX="483.0" layoutY="645.0" text="Data curentă: 22.03.2018" />
-                              <TextField layoutX="24.0" layoutY="581.0" promptText="Nume si prenume" />
+                              <TextField fx:id="textFieldNumeSiPrenume" layoutX="24.0" layoutY="581.0" promptText="Nume si prenume" />
                               <Label layoutX="24.0" layoutY="549.0" prefHeight="21.0" prefWidth="488.0" text="Vreți să donați pentru o anumită persoană? Dacă da completați numele" />
                            </children>
                         </Pane>
