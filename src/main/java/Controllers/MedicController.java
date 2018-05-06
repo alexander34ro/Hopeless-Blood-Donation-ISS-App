@@ -1,8 +1,11 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
+import Persistence.CerereEntity;
 import Persistence.MedicEntity;
 import Services.DumbService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +22,8 @@ public class MedicController implements IUserController<MedicEntity>{
         this.service=service;
     }
 
+
+    ObservableList<CerereEntity> modelM = FXCollections.observableArrayList();
 
     private MedicEntity user;
     private ClientInterface client;
@@ -39,6 +44,7 @@ public class MedicController implements IUserController<MedicEntity>{
 
         labelNume.setText(user.getNume());
         labelSpital.setText(user.getSpitalBySpital().getNume());
+        service.getAll();
 
     }
 
