@@ -38,7 +38,7 @@ public class MedicController implements IUserController<MedicEntity>{
     public void initialize() {
 
         labelNume.setText(user.getNume());
-        labelSpital.setText(user.getNumeSpital());
+        labelSpital.setText(user.getSpitalBySpital().getNume());
 
     }
 

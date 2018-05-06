@@ -6,7 +6,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/CerereController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/CerereController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/DonatorController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/DonatorController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Donator.fxml" afterPath="$PROJECT_DIR$/src/main/resources/Views/Donator.fxml" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" afterPath="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -50,24 +49,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MedicController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MedicController.java">
+      <file leaf-file-name="DonatorController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/DonatorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="59" column="33" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+            <state relative-caret-position="366">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DonatieEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatieEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DonatorController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/DonatorController.java">
+      <file leaf-file-name="DonatorEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatorEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1547">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,42 +94,47 @@
       <file leaf-file-name="MedicEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/MedicEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="11" column="27" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="11" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DonatorEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatorEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Donator.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Donator.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="141" column="55" lean-forward="false" selection-start-line="141" selection-start-column="55" selection-end-line="141" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DonatieEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatieEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="-1530">
+              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#560#561#0" expanded="true" />
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#725#726#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#844#845#0" expanded="true" />
+                <element signature="e#917#918#0" expanded="true" />
+                <element signature="e#946#947#0" expanded="true" />
+                <element signature="e#990#991#0" expanded="true" />
+                <element signature="e#1026#1027#0" expanded="true" />
+                <element signature="e#1095#1096#0" expanded="true" />
+                <element signature="e#1122#1123#0" expanded="true" />
+                <element signature="e#1162#1163#0" expanded="true" />
+                <element signature="e#1194#1195#0" expanded="true" />
+                <element signature="e#1269#1270#0" expanded="true" />
+                <element signature="e#1299#1300#0" expanded="true" />
+                <element signature="e#1345#1346#0" expanded="true" />
+                <element signature="e#1383#1384#0" expanded="true" />
+                <element signature="e#2503#2504#0" expanded="true" />
+                <element signature="e#2532#2533#0" expanded="true" />
+                <element signature="e#2575#2576#0" expanded="true" />
+                <element signature="e#2611#2612#0" expanded="true" />
+                <element signature="e#2709#2710#0" expanded="true" />
+                <element signature="e#2743#2744#0" expanded="true" />
+                <element signature="e#2815#2816#0" expanded="true" />
+                <element signature="e#2861#2862#0" expanded="true" />
+                <element signature="e#3003#3004#0" expanded="true" />
+                <element signature="e#3040#3041#0" expanded="true" />
+                <element signature="e#3106#3107#0" expanded="true" />
+                <element signature="e#3158#3159#0" expanded="true" />
+                <element signature="e#3258#3259#0" expanded="true" />
+                <element signature="e#3293#3294#0" expanded="true" />
+                <element signature="e#3368#3369#0" expanded="true" />
+                <element signature="e#3416#3417#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,8 +142,43 @@
       <file leaf-file-name="CerereController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+            <state relative-caret-position="391">
+              <caret line="37" column="95" lean-forward="false" selection-start-line="37" selection-start-column="95" selection-end-line="37" selection-end-column="95" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Medic.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Medic.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="18" column="94" lean-forward="false" selection-start-line="18" selection-start-column="94" selection-end-line="18" selection-end-column="94" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MedicController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MedicController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="43">
+              <caret line="40" column="64" lean-forward="false" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -140,16 +189,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
               <caret line="17" column="1" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="17" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="31" column="28" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="31" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -598,10 +637,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Persistence/DetaliiCerereEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/Persistence/MedicEntity.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Views/Cerere.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/Views/Donator.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/Controllers/CerereController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/Views/Donator.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/Controllers/DonatorController.java" />
       </list>
     </option>
@@ -802,13 +841,18 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Diagrame/ISSExpanded.mdj</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/database/ISSBloodDonation.db</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Networking/Interfaces/ServerInterface.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Networking/ServerImplementation.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/AsistentEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/CentruTransfuziiEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/CerereEntity.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/DetaliiCerereEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/DonatieEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/DonatorEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/MedicEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/NotificareEntity.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/PacientEntity.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Servers/IServer.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/SpitalEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Persistence/UnitateSanguinaEntity.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/resources/persistence.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -816,27 +860,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Asistent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/CategorieSanguina.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/CentruTransfuzii.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Cerere.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Donatie.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Donator.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/IHasContactDetails.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/IHasId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/IHasLocation.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/IHasName.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/IUser.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Medic.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Notificare.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Oras.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Pacient.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Regiune.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Spital.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Stadiu.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/TipSange.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/UnitateSanguina.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/ModelsDONOTUSETHIS/Utilizator.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -844,27 +867,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Asistent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/CategorieSanguina.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/CentruTransfuzii.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Cerere.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Donatie.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Donator.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/IHasContactDetails.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/IHasId.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/IHasLocation.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/IHasName.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/IUser.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Medic.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Notificare.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Oras.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Pacient.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Regiune.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Spital.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Stadiu.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/TipSange.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/UnitateSanguina.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/Models/Utilizator.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1186,7 +1188,7 @@
       <workItem from="1525527986544" duration="37000" />
       <workItem from="1525529537560" duration="246000" />
       <workItem from="1525529989251" duration="8000" />
-      <workItem from="1525593429003" duration="4164000" />
+      <workItem from="1525593429003" duration="6456000" />
     </task>
     <task id="LOCAL-00001" summary="alex is here">
       <created>1522756875092</created>
@@ -1293,11 +1295,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525595936276</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary=".">
+      <created>1525597666906</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1525597666906</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19233000" />
+    <option name="totallyTimeSpent" value="21525000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1641,14 +1650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-544">
-          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/UnitateSanguinaEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1677,17 +1678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Cerere.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="14" column="46" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1732,13 +1722,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Medic.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="31" column="28" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="31" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Cerere.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="24" column="42" lean-forward="false" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        <state relative-caret-position="440">
+          <caret line="33" column="7" lean-forward="false" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Donator.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1105">
+          <caret line="57" column="48" lean-forward="false" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="65" />
           <folding />
         </state>
       </provider>
@@ -1751,54 +1760,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" column="28" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="31" selection-end-column="28" />
+        <state relative-caret-position="17">
+          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/MedicEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MedicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="59" column="33" lean-forward="false" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatieEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Donator.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="141" column="55" lean-forward="false" selection-start-line="141" selection-start-column="55" selection-end-line="141" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatorEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-1530">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+            <element signature="e#844#845#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#946#947#0" expanded="true" />
+            <element signature="e#990#991#0" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1122#1123#0" expanded="true" />
+            <element signature="e#1162#1163#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
+            <element signature="e#1269#1270#0" expanded="true" />
+            <element signature="e#1299#1300#0" expanded="true" />
+            <element signature="e#1345#1346#0" expanded="true" />
+            <element signature="e#1383#1384#0" expanded="true" />
+            <element signature="e#2503#2504#0" expanded="true" />
+            <element signature="e#2532#2533#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
+            <element signature="e#2611#2612#0" expanded="true" />
+            <element signature="e#2709#2710#0" expanded="true" />
+            <element signature="e#2743#2744#0" expanded="true" />
+            <element signature="e#2815#2816#0" expanded="true" />
+            <element signature="e#2861#2862#0" expanded="true" />
+            <element signature="e#3003#3004#0" expanded="true" />
+            <element signature="e#3040#3041#0" expanded="true" />
+            <element signature="e#3106#3107#0" expanded="true" />
+            <element signature="e#3158#3159#0" expanded="true" />
+            <element signature="e#3258#3259#0" expanded="true" />
+            <element signature="e#3293#3294#0" expanded="true" />
+            <element signature="e#3368#3369#0" expanded="true" />
+            <element signature="e#3416#3417#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1810,18 +1822,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/MedicEntity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MedicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="43">
+          <caret line="40" column="64" lean-forward="false" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Views/Medic.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="18" column="94" lean-forward="false" selection-start-line="18" selection-start-column="94" selection-end-line="18" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="37" column="95" lean-forward="false" selection-start-line="37" selection-start-column="95" selection-end-line="37" selection-end-column="95" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatorEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1547">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Persistence/DonatieEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/DonatorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="366">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
