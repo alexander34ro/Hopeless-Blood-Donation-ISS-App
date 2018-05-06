@@ -4,11 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Notificare", schema = "main", catalog = "")
-public class NotificareEntity {
+public class NotificareEntity implements java.io.Serializable {
     private short id;
     private String mesaj;
     private AsistentEntity asistentByAsistent;
     private DonatorEntity donatorByDonator;
+    private short asistent;
+    private short donator;
 
     @Id
     @Column(name = "id")
@@ -68,5 +70,25 @@ public class NotificareEntity {
 
     public void setDonatorByDonator(DonatorEntity donatorByDonator) {
         this.donatorByDonator = donatorByDonator;
+    }
+
+    @Basic
+    @Column(name = "asistent")
+    public short getAsistent() {
+        return asistent;
+    }
+
+    public void setAsistent(short asistent) {
+        this.asistent = asistent;
+    }
+
+    @Basic
+    @Column(name = "donator")
+    public short getDonator() {
+        return donator;
+    }
+
+    public void setDonator(short donator) {
+        this.donator = donator;
     }
 }

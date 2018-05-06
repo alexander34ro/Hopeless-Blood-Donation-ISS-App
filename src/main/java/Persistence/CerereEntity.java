@@ -1,14 +1,19 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "Cerere", schema = "main", catalog = "")
-public class CerereEntity {
+public class CerereEntity implements java.io.Serializable {
     private short id;
     private short centruTransfuzii;
     private short medic;
     private String data;
+    private CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii;
+    private MedicEntity medicByMedic;
+    private PacientEntity pacientByMedic;
+    private Collection<DetaliiCerereEntity> detaliiCereresById;
 
     @Id
     @Column(name = "id")
@@ -66,5 +71,44 @@ public class CerereEntity {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "centruTransfuzii", referencedColumnName = "id", nullable = false)
+    public CentruTransfuziiEntity getCentruTransfuziiByCentruTransfuzii() {
+        return centruTransfuziiByCentruTransfuzii;
+    }
+
+    public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
+        this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "medic", referencedColumnName = "id", nullable = false)
+    public MedicEntity getMedicByMedic() {
+        return medicByMedic;
+    }
+
+    public void setMedicByMedic(MedicEntity medicByMedic) {
+        this.medicByMedic = medicByMedic;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "medic", referencedColumnName = "id", nullable = false)
+    public PacientEntity getPacientByMedic() {
+        return pacientByMedic;
+    }
+
+    public void setPacientByMedic(PacientEntity pacientByMedic) {
+        this.pacientByMedic = pacientByMedic;
+    }
+
+    @OneToMany(mappedBy = "cerereByCerere")
+    public Collection<DetaliiCerereEntity> getDetaliiCereresById() {
+        return detaliiCereresById;
+    }
+
+    public void setDetaliiCereresById(Collection<DetaliiCerereEntity> detaliiCereresById) {
+        this.detaliiCereresById = detaliiCereresById;
     }
 }

@@ -4,12 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "UnitateSanguina", schema = "main", catalog = "")
-public class UnitateSanguinaEntity {
+public class UnitateSanguinaEntity implements java.io.Serializable {
     private short id;
     private String categorie;
     private String tipSange;
     private String expiraLa;
     private CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii;
+    private short centruTransfuzii;
 
     @Id
     @Column(name = "id")
@@ -83,5 +84,15 @@ public class UnitateSanguinaEntity {
 
     public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
         this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
+    }
+
+    @Basic
+    @Column(name = "centruTransfuzii")
+    public short getCentruTransfuzii() {
+        return centruTransfuzii;
+    }
+
+    public void setCentruTransfuzii(short centruTransfuzii) {
+        this.centruTransfuzii = centruTransfuzii;
     }
 }
