@@ -20,6 +20,7 @@ public class DonatieEntity implements java.io.Serializable {
     private short donator;
     private short centruTransfuzii;
     private DonatorEntity donatorByDonator;
+    private short aSuferitBoli;
 
     @Id
     @Column(name = "id")
@@ -208,4 +209,14 @@ public class DonatieEntity implements java.io.Serializable {
     public void setDonatorByDonator(DonatorEntity donatorByDonator) {
         this.donatorByDonator = donatorByDonator;
     }
+    @Basic
+    @Column(name = "aSuferitBoli")
+    public short getaSuferitBoli() {
+        return aSuferitBoli;
+    }
+
+    public void setaSuferitBoli(short s) {
+        this.aSuferitBoli=s;
+    }
+
 }

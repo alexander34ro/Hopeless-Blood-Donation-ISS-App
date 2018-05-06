@@ -49,7 +49,8 @@ public class DonatorController implements IUserController<DonatorEntity> {
         donatieEntity.setaSuferitintegererventii(Short.parseShort(interventii.getSelectedToggle().getUserData().toString()));
         donatieEntity.setaConsumatAlcool(Short.parseShort(consum.getSelectedToggle().getUserData().toString()));
         donatieEntity.setInsarcinataLauzieMenstruatie(Short.parseShort(femei.getSelectedToggle().getUserData().toString()));
-
+        donatieEntity.setData("22.03.2018");
+        donatieEntity.setaSuferitBoli(Short.parseShort(boli.getSelectedToggle().getUserData().toString()));
 
 
     }
