@@ -10,6 +10,7 @@ public class MedicEntity {
     private String parola;
     private String nume;
     private String prenume;
+    private String numeSpital;
 
     @Id
     @Column(name = "id")
@@ -52,6 +53,16 @@ public class MedicEntity {
     }
 
     @Basic
+    @Column(name = "numeSpital")
+    public String getNumeSpital() {
+        return numeSpital;
+    }
+
+    public void setNumeSpital(String numeSpital) {
+        this.numeSpital=numeSpital;
+    }
+
+    @Basic
     @Column(name = "prenume")
     public String getPrenume() {
         return prenume;
@@ -60,6 +71,7 @@ public class MedicEntity {
     public void setPrenume(String prenume) {
         this.prenume = prenume;
     }
+
 
     @Override
     public boolean equals(Object o) {
