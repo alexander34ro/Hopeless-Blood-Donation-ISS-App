@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cfbe46-bc11-4214-beef-a2a7024e3b7b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" afterPath="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -1031,7 +1029,7 @@
       <workItem from="1525529537560" duration="246000" />
       <workItem from="1525529989251" duration="8000" />
       <workItem from="1525593429003" duration="9186000" />
-      <workItem from="1525603695302" duration="637000" />
+      <workItem from="1525603695302" duration="662000" />
     </task>
     <task id="LOCAL-00001" summary="alex is here">
       <created>1522756875092</created>
@@ -1187,11 +1185,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525602985103</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary=".">
+      <created>1525604350675</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1525604350675</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24892000" />
+    <option name="totallyTimeSpent" value="24917000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
