@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -13,12 +14,29 @@
             <Font name="System Bold" size="24.0" />
           </font>
         </Label>
-        <TableView layoutX="38.0" layoutY="110.0" prefHeight="206.9609375" prefWidth="525.0">
+        <TableView fx:id="tableView" layoutX="38.0" layoutY="110.0" prefHeight="206.9609375" prefWidth="525.0">
           <columns>
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Nume" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Prenume" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Prioritate" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Cantitate" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Nume" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="nume" />
+              </cellValueFactory>
+            </TableColumn>
+
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Prenume" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="prenume" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Prioritate" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="cantitate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Cantitate" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="prioritate" />
+                </cellValueFactory>
+            </TableColumn>
           </columns>
         </TableView>
         <Button onAction="#handleTrimitere" layoutX="451.0" layoutY="344.0" mnemonicParsing="false" text="Trimite cerere" />

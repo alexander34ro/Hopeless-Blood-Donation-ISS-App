@@ -1,8 +1,8 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
-import Persistence.CerereEntity;
 import Persistence.MedicEntity;
+import Persistence.PacientEntity;
 import Services.DumbService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -23,7 +24,7 @@ public class MedicController implements IUserController<MedicEntity>{
     }
 
 
-    ObservableList<CerereEntity> modelM = FXCollections.observableArrayList();
+    ObservableList<PacientEntity> modelM = FXCollections.observableArrayList();
 
     private MedicEntity user;
     private ClientInterface client;
@@ -36,7 +37,8 @@ public class MedicController implements IUserController<MedicEntity>{
     private Label labelNume;
     @FXML
     private Label labelSpital;
-
+    @FXML
+    private TableView tableView;
 
 
     @FXML
@@ -44,7 +46,8 @@ public class MedicController implements IUserController<MedicEntity>{
 
         labelNume.setText(user.getNume());
         labelSpital.setText(user.getSpitalBySpital().getNume());
-        service.getAll();
+        modelM.setAll(service.getAll(PacientEntity.class));
+        tableView.setItems(modelM);
 
     }
 
@@ -68,5 +71,8 @@ public class MedicController implements IUserController<MedicEntity>{
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();
+
+        modelM.setAll(service.getAll(PacientEntity.class));
+        tableView.setItems(modelM);
     }
 }
