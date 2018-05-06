@@ -3,11 +3,13 @@ package Controllers;
 import Networking.Interfaces.ClientInterface;
 import Persistence.DonatieEntity;
 import Persistence.DonatorEntity;
+import Services.DumbService;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 public class DonatorController implements IUserController<DonatorEntity> {
+    DumbService service;
     private DonatorEntity user;
     private ClientInterface client;
     public DonatorController(){}
@@ -15,6 +17,7 @@ public class DonatorController implements IUserController<DonatorEntity> {
         this.user = user;
     }
 
+    public void setService(DumbService service){this.service=service;}
     public void setClient(ClientInterface client){
         this.client = client;
     }
@@ -46,11 +49,13 @@ public class DonatorController implements IUserController<DonatorEntity> {
         donatieEntity.setPuls(Short.parseShort(textFieldPuls.getText()));
         donatieEntity.setGreutate(Short.parseShort(textFieldGreutate.getText()));
         donatieEntity.setTensiune(Short.parseShort(textFieldTensiune.getText()));
-        donatieEntity.setaSuferitintegererventii(Short.parseShort(interventii.getSelectedToggle().getUserData().toString()));
+        donatieEntity.setaSuferitInterventii(Short.parseShort(interventii.getSelectedToggle().getUserData().toString()));
         donatieEntity.setaConsumatAlcool(Short.parseShort(consum.getSelectedToggle().getUserData().toString()));
         donatieEntity.setInsarcinataLauzieMenstruatie(Short.parseShort(femei.getSelectedToggle().getUserData().toString()));
         donatieEntity.setData("22.03.2018");
         donatieEntity.setaSuferitBoli(Short.parseShort(boli.getSelectedToggle().getUserData().toString()));
+        donatieEntity.setSubTratament(Short.parseShort(tratament.getSelectedToggle().getUserData().toString()));
+        service.saveOrUpdate(donatieEntity);
 
 
     }

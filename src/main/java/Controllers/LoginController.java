@@ -4,6 +4,7 @@ import Networking.Interfaces.ClientInterface;
 import Persistence.AsistentEntity;
 import Persistence.DonatorEntity;
 import Persistence.MedicEntity;
+import Services.DumbService;
 import Utils.LogException;
 import Utils.MessageAllert;
 import javafx.event.ActionEvent;
@@ -21,8 +22,10 @@ public class LoginController {
     @FXML private TextField userText;
     @FXML private PasswordField passwordField;
 
+    DumbService service;
     private ClientInterface client;
 
+    public void  setService(DumbService service){this.service=service;}
     public void setClient(ClientInterface client){
         this.client = client;
     }
@@ -50,7 +53,9 @@ public class LoginController {
             Parent aroot = aloader.load();
 
             IUserController controller = aloader.getController();
+            controller.setService(service);
             controller.setClient(client);
+
             //controller.setUser(response);
             Stage stage = new Stage();
             stage.setTitle("Donation Status");

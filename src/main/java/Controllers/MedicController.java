@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MedicController implements IUserController<MedicEntity>{
 
     DumbService service;
-    public MedicController(DumbService service) {
+    public void setService(DumbService service) {
         this.service=service;
     }
 

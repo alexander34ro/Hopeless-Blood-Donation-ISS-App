@@ -13,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main extends Application {
 
     private static ClientController clientController;
+    private DumbService service;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,7 +26,9 @@ public class Main extends Application {
         Pane pane = (Pane) loader.load();
         LoginController ctrl = loader.getController();
 
+
         ctrl.setClient(clientController);
+        ctrl.setService(service);
 
         Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
