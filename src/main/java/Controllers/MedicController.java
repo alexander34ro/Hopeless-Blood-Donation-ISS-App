@@ -51,7 +51,7 @@ public class MedicController implements IUserController<MedicEntity>{
 
     }
 
-    public void setClient(ClientInterface client){
+    public void setClient(ClientInterface client) {
         this.client = client;
     }
 
