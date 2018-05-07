@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DonatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DonatorController">
    <center>
       <TabPane prefHeight="753.0" prefWidth="777.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -12,16 +13,27 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Situaţia donărilor efectuate" />
-                        <TableView layoutX="14.0" layoutY="60.0" prefHeight="522.0" prefWidth="595.0">
+                        <TableView fx:id="tableView" layoutX="14.0" layoutY="60.0" prefHeight="522.0" prefWidth="595.0">
                           <columns>
-                            <TableColumn prefWidth="140.0" text="Data recoltării" />
-                            <TableColumn prefWidth="128.0" text="Stare" />
-                              <TableColumn prefWidth="143.0" text="Spital" />
-                              <TableColumn prefWidth="183.0" text="Data expirării" />
+                            <TableColumn fx:id="dataColumn" prefWidth="219.0" text="Data recoltării">
+                             <cellValueFactory>
+                                <PropertyValueFactory property="data" />
+                            </cellValueFactory>
+                          </TableColumn>
+                            <TableColumn fx:id="stareColumn" prefWidth="174.0" text="Stare">
+                               <cellValueFactory>
+                                  <PropertyValueFactory property="stadiu" />
+                               </cellValueFactory>
+                            </TableColumn>
+                              <TableColumn fx:id="centruColumn" prefWidth="201.0" text="Centru de transfuzii">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="centruTransfuzii" />
+                                 </cellValueFactory>
+                              </TableColumn>
                           </columns>
                         </TableView>
                         <Label layoutX="23.0" layoutY="664.0" text="Data la care se poate dona: " />
-                        <Label layoutX="221.0" layoutY="664.0" text="Data" />
+                        <Label fx:id="dataLabel" layoutX="221.0" layoutY="664.0" text="Data" />
                         <Label layoutX="23.0" layoutY="615.0" text="Avem nevoie de tine" />
                      </children>
                   </AnchorPane>
@@ -138,7 +150,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="textFieldRh" layoutX="261.0" layoutY="194.0" promptText="Rh" />
-                              <Button onAction="#handleTrimitere" layoutX="276.0" layoutY="666.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
+                              <Button layoutX="276.0" layoutY="666.0" mnemonicParsing="false" onAction="#handleTrimitere" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
                               <CheckBox fx:id="checkBox" layoutX="24.0" layoutY="515.0" mnemonicParsing="false" />
                               <Hyperlink layoutX="48.0" layoutY="512.0" text="Sunt de acord" />
                               <Label layoutX="483.0" layoutY="645.0" text="Data curentă: 22.03.2018" />

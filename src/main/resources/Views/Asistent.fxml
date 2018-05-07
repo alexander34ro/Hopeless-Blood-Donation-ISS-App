@@ -2,9 +2,10 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="855.0" prefWidth="1173.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AsistentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="855.0" prefWidth="1173.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AsistentController">
    <bottom>
       <HBox prefHeight="209.0" prefWidth="1099.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +52,6 @@
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="21.0" prefWidth="71.0" text="  Cantitate" GridPane.rowIndex="1" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -70,7 +70,6 @@
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Cantitate" GridPane.rowIndex="1" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
@@ -97,7 +96,6 @@
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Cantitate" GridPane.rowIndex="1" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
@@ -124,7 +122,6 @@
                   <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Cantitate" GridPane.rowIndex="1" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
@@ -152,15 +149,44 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TableView prefHeight="521.0" prefWidth="566.0">
+            <TableView fx:id="tableViewDonatie" prefHeight="521.0" prefWidth="566.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Id" />
-                  <TableColumn prefWidth="75.0" text="Donator" />
-                  <TableColumn prefWidth="75.0" text="Tip sânge" />
-                  <TableColumn prefWidth="75.0" text="Pacient" />
-                  <TableColumn prefWidth="75.0" text="Stadiu" />
-                  <TableColumn prefWidth="75.0" text="Respins" />
-                  <TableColumn prefWidth="75.0" text="Data" />
+                  <TableColumn prefWidth="75.0" text="Id" >
+                     <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Donator" >
+                  <cellValueFactory>
+                     <PropertyValueFactory property="donator" />
+                  </cellValueFactory>
+               </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Tip sânge" >
+                  <cellValueFactory>
+                     <PropertyValueFactory property="getTipSange" />
+                  </cellValueFactory>
+               </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Pacient" >
+                  <cellValueFactory>
+                     <PropertyValueFactory property="numePacient" />
+                  </cellValueFactory>
+               </TableColumn>
+
+                  <TableColumn prefWidth="75.0" text="Stadiu" >
+                  <cellValueFactory>
+                     <PropertyValueFactory property="stadiu" />
+                  </cellValueFactory>
+               </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Respins" >
+                  <cellValueFactory>
+                     <PropertyValueFactory property="respins" />
+                  </cellValueFactory>
+               </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Data" >
+                  <cellValueFactory>
+                     <PropertyValueFactory property="data" />
+                  </cellValueFactory>
+               </TableColumn>
                </columns>
                <VBox.margin>
                   <Insets left="20.0" />
@@ -180,7 +206,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TableView prefHeight="522.0" prefWidth="512.0">
+            <TableView fx:id="tableViewCerere" prefHeight="522.0" prefWidth="512.0">
               <columns>
                 <TableColumn prefWidth="57.0" text="Id" />
                   <TableColumn text="Spital" />

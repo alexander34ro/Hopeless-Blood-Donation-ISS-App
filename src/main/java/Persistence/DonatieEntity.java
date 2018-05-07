@@ -229,4 +229,6 @@ public class DonatieEntity implements Serializable {
     public void setSubTratament(short subTratament) {
         this.subTratament = subTratament;
     }
+
+    public String getTipSange(){return this.donatorByDonator.getTipSange();}
 }
