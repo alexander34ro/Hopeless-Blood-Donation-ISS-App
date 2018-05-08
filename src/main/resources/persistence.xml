@@ -15,7 +15,17 @@
         <class>Persistence.SpitalEntity</class>
         <class>Persistence.UnitateSanguinaEntity</class>
         <class>Persistence.DetaliiCerereEntity</class>
-        <class>Persistence.SqliteMasterEntity</class>
+        <class>Persistence.AsistentE</class>
+        <class>Persistence.CentruTransfuziiE</class>
+        <class>Persistence.CerereE</class>
+        <class>Persistence.DetaliiCerereE</class>
+        <class>Persistence.DonatieE</class>
+        <class>Persistence.DonatorE</class>
+        <class>Persistence.MedicE</class>
+        <class>Persistence.NotificareE</class>
+        <class>Persistence.PacientE</class>
+        <class>Persistence.SpitalE</class>
+        <class>Persistence.UnitateSanguinaE</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class" />

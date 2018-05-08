@@ -96,8 +96,22 @@ public class DumbService {
     }
 
     public <T> List<T> getAll(final Class<T> type) {
-        final Session session = sessionFactory.openSession();
-        final Criteria crit = session.createCriteria(type);
-        return crit.list();
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            final Criteria crit = session.createCriteria(type);
+            return crit.list();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
     }
 }

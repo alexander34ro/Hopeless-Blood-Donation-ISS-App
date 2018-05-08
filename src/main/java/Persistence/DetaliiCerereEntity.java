@@ -1,18 +1,16 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "DetaliiCerere", schema = "main", catalog = "")
-public class DetaliiCerereEntity implements Serializable {
+public class DetaliiCerereEntity {
     private short id;
-    private short cerere;
+    private String produsSange;
     private String tipSange;
     private String prioritate;
     private short completata;
     private String dataCompletare;
-    private String produsSange;
     private short cantitate;
     private CerereEntity cerereByCerere;
 
@@ -27,13 +25,13 @@ public class DetaliiCerereEntity implements Serializable {
     }
 
     @Basic
-    @Column(name = "cerere")
-    public short getCerere() {
-        return cerere;
+    @Column(name = "produsSange")
+    public String getProdusSange() {
+        return produsSange;
     }
 
-    public void setCerere(short cerere) {
-        this.cerere = cerere;
+    public void setProdusSange(String produsSange) {
+        this.produsSange = produsSange;
     }
 
     @Basic
@@ -76,6 +74,16 @@ public class DetaliiCerereEntity implements Serializable {
         this.dataCompletare = dataCompletare;
     }
 
+    @Basic
+    @Column(name = "cantitate")
+    public short getCantitate() {
+        return cantitate;
+    }
+
+    public void setCantitate(short cantitate) {
+        this.cantitate = cantitate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,8 +92,9 @@ public class DetaliiCerereEntity implements Serializable {
         DetaliiCerereEntity that = (DetaliiCerereEntity) o;
 
         if (id != that.id) return false;
-        if (cerere != that.cerere) return false;
         if (completata != that.completata) return false;
+        if (cantitate != that.cantitate) return false;
+        if (produsSange != null ? !produsSange.equals(that.produsSange) : that.produsSange != null) return false;
         if (tipSange != null ? !tipSange.equals(that.tipSange) : that.tipSange != null) return false;
         if (prioritate != null ? !prioritate.equals(that.prioritate) : that.prioritate != null) return false;
         if (dataCompletare != null ? !dataCompletare.equals(that.dataCompletare) : that.dataCompletare != null)
@@ -97,32 +106,13 @@ public class DetaliiCerereEntity implements Serializable {
     @Override
     public int hashCode() {
         int result = (int) id;
-        result = 31 * result + (int) cerere;
+        result = 31 * result + (produsSange != null ? produsSange.hashCode() : 0);
         result = 31 * result + (tipSange != null ? tipSange.hashCode() : 0);
         result = 31 * result + (prioritate != null ? prioritate.hashCode() : 0);
         result = 31 * result + (int) completata;
         result = 31 * result + (dataCompletare != null ? dataCompletare.hashCode() : 0);
+        result = 31 * result + (int) cantitate;
         return result;
-    }
-
-    @Basic
-    @Column(name = "produsSange")
-    public String getProdusSange() {
-        return produsSange;
-    }
-
-    public void setProdusSange(String produsSange) {
-        this.produsSange = produsSange;
-    }
-
-    @Basic
-    @Column(name = "cantitate")
-    public short getCantitate() {
-        return cantitate;
-    }
-
-    public void setCantitate(short cantitate) {
-        this.cantitate = cantitate;
     }
 
     @ManyToOne

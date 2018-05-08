@@ -1,17 +1,15 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "UnitateSanguina", schema = "main", catalog = "")
-public class UnitateSanguinaEntity implements Serializable {
+public class UnitateSanguinaEntity {
     private short id;
     private String categorie;
     private String tipSange;
     private String expiraLa;
     private CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii;
-    private short centruTransfuzii;
 
     @Id
     @Column(name = "id")
@@ -85,15 +83,5 @@ public class UnitateSanguinaEntity implements Serializable {
 
     public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
         this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
-    }
-
-    @Basic
-    @Column(name = "centruTransfuzii")
-    public short getCentruTransfuzii() {
-        return centruTransfuzii;
-    }
-
-    public void setCentruTransfuzii(short centruTransfuzii) {
-        this.centruTransfuzii = centruTransfuzii;
     }
 }

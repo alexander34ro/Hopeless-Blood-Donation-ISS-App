@@ -1,6 +1,6 @@
 package Repositories;
 
-import Persistence.SpitalEntity;
+import Persistence.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -36,13 +36,25 @@ public class HibernateUtil {
                 registry = registryBuilder.build();
 
                 MetadataSources sources = new MetadataSources(registry)
-                        .addAnnotatedClass(SpitalEntity.class);
+                        .addAnnotatedClass(AsistentEntity.class)
+                        .addAnnotatedClass(CentruTransfuziiEntity.class)
+                        .addAnnotatedClass(CerereEntity.class)
+                        .addAnnotatedClass(DetaliiCerereEntity.class)
+                        .addAnnotatedClass(DonatieEntity.class)
+                        .addAnnotatedClass(DonatorEntity.class)
+                        .addAnnotatedClass(MedicEntity.class)
+                        .addAnnotatedClass(NotificareEntity.class)
+                        .addAnnotatedClass(PacientEntity.class)
+                        .addAnnotatedClass(SpitalEntity.class)
+                        .addAnnotatedClass(UnitateSanguinaEntity.class);
 
                 Metadata metadata = sources.getMetadataBuilder().build();
 
                 sessionFactory = metadata.getSessionFactoryBuilder().build();
             } catch (Exception e) {
                 System.out.println("SessionFactory creation failed");
+                System.out.println(e.getMessage());
+                System.out.println(e.getStackTrace());
                 if (registry != null) {
                     StandardServiceRegistryBuilder.destroy(registry);
                 }

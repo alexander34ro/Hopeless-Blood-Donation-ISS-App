@@ -1,21 +1,16 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Medic", schema = "main", catalog = "")
-public class MedicEntity implements Serializable {
+public class MedicEntity {
     private short id;
     private String username;
     private String parola;
     private String nume;
     private String prenume;
-    private short spital;
-    private Collection<CerereEntity> cereresById;
     private SpitalEntity spitalBySpital;
-    private Collection<PacientEntity> pacientsById;
 
     @Id
     @Column(name = "id")
@@ -93,25 +88,6 @@ public class MedicEntity implements Serializable {
         return result;
     }
 
-    @Basic
-    @Column(name = "spital")
-    public short getSpital() {
-        return spital;
-    }
-
-    public void setSpital(short spital) {
-        this.spital = spital;
-    }
-
-    @OneToMany(mappedBy = "medicByMedic")
-    public Collection<CerereEntity> getCereresById() {
-        return cereresById;
-    }
-
-    public void setCereresById(Collection<CerereEntity> cereresById) {
-        this.cereresById = cereresById;
-    }
-
     @ManyToOne
     @JoinColumn(name = "spital", referencedColumnName = "id", nullable = false)
     public SpitalEntity getSpitalBySpital() {
@@ -120,14 +96,5 @@ public class MedicEntity implements Serializable {
 
     public void setSpitalBySpital(SpitalEntity spitalBySpital) {
         this.spitalBySpital = spitalBySpital;
-    }
-
-    @OneToMany(mappedBy = "medicByMedic")
-    public Collection<PacientEntity> getPacientsById() {
-        return pacientsById;
-    }
-
-    public void setPacientsById(Collection<PacientEntity> pacientsById) {
-        this.pacientsById = pacientsById;
     }
 }
