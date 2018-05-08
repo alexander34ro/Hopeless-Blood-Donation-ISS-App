@@ -106,7 +106,7 @@ public class LoginController {
             Stage stage=new Stage();
             stage.setTitle("Creare Cont");
             stage.setScene(new Scene(aroot));
-            stage.show();
+            stage.showAndWait();
         }
 
         catch(IOException e){

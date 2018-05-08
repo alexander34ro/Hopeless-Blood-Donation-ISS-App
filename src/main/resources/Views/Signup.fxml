@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" >
+<Pane fx:controller="Controllers.SignupController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
       <Label layoutX="34.0" layoutY="89.0" text="Date de identitate">
          <font>
@@ -14,9 +14,6 @@
       <Label layoutX="356.0" layoutY="155.0" text="Prenume:" />
       <TextField layoutX="432.0" layoutY="150.0" />
       <Label layoutX="54.0" layoutY="201.0" text="Data naşterii:" />
-      <ChoiceBox layoutX="148.0" layoutY="196.0" prefHeight="25.0" prefWidth="50.0" />
-      <ChoiceBox layoutX="214.0" layoutY="196.0" prefHeight="25.0" prefWidth="95.0" />
-      <ChoiceBox layoutX="331.0" layoutY="196.0" prefHeight="25.0" prefWidth="95.0" />
       <Label layoutX="52.0" layoutY="314.0" text="Domiciliu:" />
       <TextArea layoutX="147.0" layoutY="300.0" prefHeight="49.0" prefWidth="394.0" />
       <Label layoutX="56.0" layoutY="256.0" text="Judeţ:" />
@@ -54,5 +51,6 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
+   <DatePicker layoutX="145.0" layoutY="197.0" />
 
 </Pane>

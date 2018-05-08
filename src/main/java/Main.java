@@ -31,6 +31,9 @@ public class Main extends Application {
         ctrl.setService(service);
 
         Scene scene = new Scene(pane);
+
+        scene.getStylesheets().add(getClass().getResource("Views/styles.css").toExternalForm());
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
