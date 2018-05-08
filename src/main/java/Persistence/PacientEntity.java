@@ -1,20 +1,16 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Pacient", schema = "main", catalog = "")
-public class PacientEntity implements Serializable {
+public class PacientEntity {
     private short id;
     private String nume;
     private String prenume;
     private short prioritate;
-    private MedicEntity medicByMedic;
-    private short medic;
     private short cantitate;
-    private Collection<CerereEntity> cereresById;
+    private MedicEntity medicByMedic;
 
     @Id
     @Column(name = "id")
@@ -56,6 +52,16 @@ public class PacientEntity implements Serializable {
         this.prioritate = prioritate;
     }
 
+    @Basic
+    @Column(name = "cantitate")
+    public short getCantitate() {
+        return cantitate;
+    }
+
+    public void setCantitate(short cantitate) {
+        this.cantitate = cantitate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,6 +71,7 @@ public class PacientEntity implements Serializable {
 
         if (id != that.id) return false;
         if (prioritate != that.prioritate) return false;
+        if (cantitate != that.cantitate) return false;
         if (nume != null ? !nume.equals(that.nume) : that.nume != null) return false;
         if (prenume != null ? !prenume.equals(that.prenume) : that.prenume != null) return false;
 
@@ -77,6 +84,7 @@ public class PacientEntity implements Serializable {
         result = 31 * result + (nume != null ? nume.hashCode() : 0);
         result = 31 * result + (prenume != null ? prenume.hashCode() : 0);
         result = 31 * result + (int) prioritate;
+        result = 31 * result + (int) cantitate;
         return result;
     }
 
@@ -88,34 +96,5 @@ public class PacientEntity implements Serializable {
 
     public void setMedicByMedic(MedicEntity medicByMedic) {
         this.medicByMedic = medicByMedic;
-    }
-
-    @Basic
-    @Column(name = "medic")
-    public short getMedic() {
-        return medic;
-    }
-
-    public void setMedic(short medic) {
-        this.medic = medic;
-    }
-
-    @Basic
-    @Column(name = "cantitate")
-    public short getCantitate() {
-        return cantitate;
-    }
-
-    public void setCantitate(short cantitate) {
-        this.cantitate = cantitate;
-    }
-
-    @OneToMany(mappedBy = "pacientByMedic")
-    public Collection<CerereEntity> getCereresById() {
-        return cereresById;
-    }
-
-    public void setCereresById(Collection<CerereEntity> cereresById) {
-        this.cereresById = cereresById;
     }
 }

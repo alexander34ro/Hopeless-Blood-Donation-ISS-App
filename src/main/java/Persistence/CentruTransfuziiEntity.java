@@ -1,20 +1,14 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "CentruTransfuzii", schema = "main", catalog = "")
-public class CentruTransfuziiEntity implements Serializable {
+public class CentruTransfuziiEntity {
     private short id;
     private String nume;
     private String regiune;
     private String oras;
-    private Collection<AsistentEntity> asistentsById;
-    private Collection<CerereEntity> cereresById;
-    private Collection<DonatieEntity> donatiesById;
-    private Collection<UnitateSanguinaEntity> unitateSanguinasById;
 
     @Id
     @Column(name = "id")
@@ -78,41 +72,5 @@ public class CentruTransfuziiEntity implements Serializable {
         result = 31 * result + (regiune != null ? regiune.hashCode() : 0);
         result = 31 * result + (oras != null ? oras.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "centruTransfuziiByCentruTransfuzii")
-    public Collection<AsistentEntity> getAsistentsById() {
-        return asistentsById;
-    }
-
-    public void setAsistentsById(Collection<AsistentEntity> asistentsById) {
-        this.asistentsById = asistentsById;
-    }
-
-    @OneToMany(mappedBy = "centruTransfuziiByCentruTransfuzii")
-    public Collection<CerereEntity> getCereresById() {
-        return cereresById;
-    }
-
-    public void setCereresById(Collection<CerereEntity> cereresById) {
-        this.cereresById = cereresById;
-    }
-
-    @OneToMany(mappedBy = "centruTransfuziiByCentruTransfuzii")
-    public Collection<DonatieEntity> getDonatiesById() {
-        return donatiesById;
-    }
-
-    public void setDonatiesById(Collection<DonatieEntity> donatiesById) {
-        this.donatiesById = donatiesById;
-    }
-
-    @OneToMany(mappedBy = "centruTransfuziiByCentruTransfuzii")
-    public Collection<UnitateSanguinaEntity> getUnitateSanguinasById() {
-        return unitateSanguinasById;
-    }
-
-    public void setUnitateSanguinasById(Collection<UnitateSanguinaEntity> unitateSanguinasById) {
-        this.unitateSanguinasById = unitateSanguinasById;
     }
 }

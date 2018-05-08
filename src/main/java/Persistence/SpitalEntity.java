@@ -1,17 +1,14 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Spital", schema = "main", catalog = "")
-public class SpitalEntity implements Serializable {
+public class SpitalEntity {
     private short id;
     private String nume;
     private String regiune;
     private String oras;
-    private Collection<MedicEntity> medicsById;
 
     @Id
     @Column(name = "id")
@@ -75,14 +72,5 @@ public class SpitalEntity implements Serializable {
         result = 31 * result + (regiune != null ? regiune.hashCode() : 0);
         result = 31 * result + (oras != null ? oras.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "spitalBySpital")
-    public Collection<MedicEntity> getMedicsById() {
-        return medicsById;
-    }
-
-    public void setMedicsById(Collection<MedicEntity> medicsById) {
-        this.medicsById = medicsById;
     }
 }
