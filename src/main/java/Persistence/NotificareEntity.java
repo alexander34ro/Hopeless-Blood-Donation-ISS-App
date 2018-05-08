@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Notificare", schema = "main", catalog = "")
-public class NotificareEntity {
+public class NotificareEntity implements java.io.Serializable {
     private short id;
     private String mesaj;
     private AsistentEntity asistentByAsistent;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Spital", schema = "main", catalog = "")
-public class SpitalEntity {
+public class SpitalEntity implements java.io.Serializable {
     private short id;
     private String nume;
     private String regiune;

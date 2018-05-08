@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Donator", schema = "main", catalog = "")
-public class DonatorEntity {
+public class DonatorEntity implements java.io.Serializable {
     private short id;
     private String username;
     private String parola;
