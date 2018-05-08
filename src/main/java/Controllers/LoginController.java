@@ -1,21 +1,24 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
+import Networking.NetworkException;
 import Persistence.AsistentEntity;
 import Persistence.DonatorEntity;
 import Persistence.IUser;
 import Persistence.MedicEntity;
 import Services.DumbService;
-import Utils.LogException;
 import Utils.MessageAllert;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -66,13 +69,31 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setTitle("Donation Status");
             stage.setScene(new Scene(aroot));
+
+            stage.setOnCloseRequest((WindowEvent we) -> {
+                try {
+                    this.client.logout();
+                    Platform.exit();
+                    System.exit(0);
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
             stage.show();
+
+            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+
         }
         catch(IOException e){
             e.printStackTrace();
         }
-        catch(LogException e) {
+        catch(NetworkException e) {
             MessageAllert.showErrorMessage(null, e.getMessage());
+        }
+        catch(Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -55,11 +55,12 @@ public class DonatorController implements IUserController<DonatorEntity> {
     @FXML
     private TableView<DonatieEntity> tableView;
     ObservableList<DonatieEntity> model = FXCollections.observableArrayList();
+
     @FXML
     public void initialize() {
-        model.setAll(service.getAll(DonatieEntity.class));
+        /*model.setAll(service.getAll(DonatieEntity.class));
         tableView.setItems(model);
-        setDataLabel();
+        setDataLabel();*/
     }
     public void setDataLabel(){
         LocalDate date=LocalDate.parse(model.get(0).getData());

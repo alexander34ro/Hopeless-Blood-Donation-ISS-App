@@ -58,6 +58,11 @@ public class ServerImplementation implements ServerInterface {
         return null;
     }
 
+    @Override
+    public void logout(ClientInterface client) throws LogException {
+        this.loggedInClients.values().remove( client );
+    }
+
     /*
     @Override
     public void logout(IUser user) throws LogException {
