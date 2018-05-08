@@ -1,10 +1,11 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Asistent", schema = "main", catalog = "")
-public class AsistentEntity {
+public class AsistentEntity implements Serializable {
     private short id;
     private String username;
     private String parola;

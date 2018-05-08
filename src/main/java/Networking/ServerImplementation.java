@@ -1,7 +1,5 @@
 package Networking;
 
-
-import ModelsDONOTUSETHIS.IUser;
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
 import Persistence.AsistentEntity;
@@ -34,6 +32,7 @@ public class ServerImplementation implements ServerInterface {
 
     }
 
+    /*
     @Override
     public void logout(IUser user) throws LogException {
 
@@ -44,4 +43,5 @@ public class ServerImplementation implements ServerInterface {
         this.loggedInClients.remove(user.getId());
 
     }
+    */
 }
