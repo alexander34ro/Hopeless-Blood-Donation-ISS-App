@@ -30,7 +30,7 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class" />
             <property name="hibernate.connection.driver_class" value="org.sqlite.JDBC"/>
-            <property name="hibernate.connection.url" value="jdbc:sqlite:C:/Users/Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db"/>
+            <property name="hibernate.connection.url" value="jdbc:sqlite:database/ISSBloodDonation.db"/>
             <property name="hibernate.connection.autocommit" value="true"/>
             <property name="hibernate.dialect" value="com.enigmabridge.hibernate.dialect.SQLiteDialect"/>
             <property name="hibernate.connection.CharSet" value="utf8"/>

@@ -42,19 +42,19 @@ public class Main extends Application {
     static DumbService dumbService = new DumbService();
 
     public static void main(String[] args) {
-        SpitalEntity spitalEntity = new SpitalEntity();
+        /*SpitalEntity spitalEntity = new SpitalEntity();
         spitalEntity.setId((short)9);
         spitalEntity.setNume("Yo6");
         spitalEntity.setOras("Yo6");
         spitalEntity.setRegiune("Yo6");
 
-        dumbService.save(spitalEntity);
+        dumbService.save(spitalEntity);*/
         List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
         System.out.println(spitalEntities.size());
 
         //List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
         //System.out.println(spitalEntities.size());
 
-        launch(args);
+        //launch(args);
     }
 }

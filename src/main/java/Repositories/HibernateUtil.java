@@ -22,7 +22,10 @@ public class HibernateUtil {
 
                 Map<String, String> settings = new HashMap<>();
                 settings.put("hibernate.connection.driver_class", "org.sqlite.JDBC");
-                settings.put("hibernate.connection.url", "jdbc:sqlite:C:/Users/Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db");
+
+                //settings.put("hibernate.connection.url", "jdbc:sqlite:C:/Users/Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db");
+                settings.put("hibernate.connection.url", "jdbc:sqlite:database/ISSBloodDonation.db");
+
                 settings.put("hibernate.dialect", "com.enigmabridge.hibernate.dialect.SQLiteDialect");
                 settings.put("hibernate.connection.CharSet", "utf8");
                 settings.put("hibernate.connection.characterEncoding", "utf8");
