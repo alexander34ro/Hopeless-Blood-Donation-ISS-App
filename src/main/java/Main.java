@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,7 +33,11 @@ public class Main extends Application {
 
         Scene scene = new Scene(pane);
 
-        scene.getStylesheets().add(getClass().getResource("Views/styles.css").toExternalForm());
+        primaryStage.setOnCloseRequest((WindowEvent e) -> {
+            System.exit(0);
+        });
+
+        //scene.getStylesheets().add(getClass().getResource("Views/styles.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.show();

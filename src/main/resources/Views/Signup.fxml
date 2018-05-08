@@ -1,56 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
-<Pane fx:controller="Controllers.SignupController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="672.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignupController">
 
-      <Label layoutX="34.0" layoutY="89.0" text="Date de identitate">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Label>
-      <Label layoutX="54.0" layoutY="155.0" text="Nume:" />
-      <TextField layoutX="152.0" layoutY="150.0" />
-      <Label layoutX="356.0" layoutY="155.0" text="Prenume:" />
-      <TextField layoutX="432.0" layoutY="150.0" />
-      <Label layoutX="54.0" layoutY="201.0" text="Data naşterii:" />
-      <Label layoutX="52.0" layoutY="314.0" text="Domiciliu:" />
-      <TextArea layoutX="147.0" layoutY="300.0" prefHeight="49.0" prefWidth="394.0" />
-      <Label layoutX="56.0" layoutY="256.0" text="Judeţ:" />
-      <ChoiceBox layoutX="145.0" layoutY="251.0" prefHeight="25.0" prefWidth="106.0" />
-      <Label layoutX="279.0" layoutY="256.0" text="Localitate:" />
-      <TextField layoutX="361.0" layoutY="251.0" prefHeight="31.0" prefWidth="178.0" />
-      <Label layoutX="63.0" layoutY="499.0" text="Reşedinţă:" />
-      <TextArea layoutX="147.0" layoutY="485.0" prefHeight="49.0" prefWidth="394.0" />
-      <Text layoutX="29.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dacă locuieşti în altă parte decât la adresa pe care o ai în cartea de identitate:" wrappingWidth="545.602783203125">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font></Text>
-      <Label layoutX="66.0" layoutY="440.0" text="Judeţ:" />
-      <ChoiceBox layoutX="145.0" layoutY="435.0" prefHeight="25.0" prefWidth="106.0" />
-      <Label layoutX="279.0" layoutY="440.0" text="Localitate:" />
-      <TextField layoutX="361.0" layoutY="435.0" prefHeight="31.0" prefWidth="178.0" />
-      <Text layoutX="33.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de contact">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Text>
-      <Label layoutX="56.0" layoutY="627.0" text="Adresa de e-mail:" />
-      <TextField layoutX="181.0" layoutY="622.0" />
-      <Label layoutX="412.0" layoutY="627.0" text="Telefon:" />
-      <TextField layoutX="477.0" layoutY="622.0" prefHeight="31.0" prefWidth="186.0" />
-      <Separator layoutX="-1.0" layoutY="119.0" prefHeight="7.0" prefWidth="724.0" />
-      <Separator layoutX="-11.0" layoutY="393.0" prefHeight="21.0" prefWidth="734.0" />
-      <Separator layoutX="-1.0" layoutY="591.0" prefHeight="7.0" prefWidth="724.0" />
-      <Button layoutX="336.0" layoutY="706.0" mnemonicParsing="false" text="Inregistrare">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+      <Button layoutX="290.0" layoutY="704.0" mnemonicParsing="false" text="Înregistrare">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="228.0" layoutY="31.0" text="Formular de inregistrare" textFill="#c90707">
-         <font>
-            <Font name="System Bold" size="27.0" />
-         </font>
-      </Label>
-   <DatePicker layoutX="145.0" layoutY="197.0" />
+   <Pane layoutX="-8.0" prefHeight="72.0" prefWidth="680.0" styleClass="gradientHeader">
+      <children>
+            <Label layoutX="29.0" layoutY="21.0" styleClass="openSansLightFont" text="Formular de înregistrare" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+      </children>
+   </Pane>
+   <GridPane hgap="20.0" layoutX="121.0" layoutY="96.0" prefHeight="575.0" prefWidth="431.0" vgap="5.0">
+     <columnConstraints>
+       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="92.0" />
+       <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="277.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+     </rowConstraints>
+      <children>
+         <Label text="Nume" />
+         <TextField fx:id="numeTextField" GridPane.columnIndex="1" />
+         <TextField fx:id="prenumeTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Label text="Prenume" GridPane.rowIndex="1" />
+         <Label text="Data naşterii" GridPane.rowIndex="2" />
+         <DatePicker fx:id="birthDate" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label text="Judeţ domiciliu" GridPane.rowIndex="3" />
+         <ChoiceBox fx:id="judetChoiceBox" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Label text="Localitate domiciliu" GridPane.rowIndex="4" />
+         <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <CheckBox fx:id="changedAddressCheckBox" mnemonicParsing="false" onAction="#handleSwitchedAddressCheckBox" text="Locuiesc la altă adresă faţă de cea menţionată" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <Label text="Adresă" GridPane.rowIndex="5" />
+         <TextArea fx:id="addressTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         <Label text="Judeţ" GridPane.rowIndex="7" />
+         <ChoiceBox fx:id="changedJudetChoiceBox" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         <Label text="Localitate" GridPane.rowIndex="8" />
+         <TextField fx:id="changedCityTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+         <Label text="Adresă" GridPane.rowIndex="9" />
+         <TextArea fx:id="changedAddressTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+         <Label text="Adresa email" GridPane.rowIndex="10" />
+         <TextField fx:id="emailAddressTextField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+         <Label text="Număr telefon" GridPane.rowIndex="11" />
+         <TextField fx:id="telephoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      </children>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <padding>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+   </GridPane>
 
 </Pane>
