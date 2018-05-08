@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Asistent", schema = "main", catalog = "")
-public class AsistentEntity implements Serializable {
+public class AsistentEntity implements Serializable, IUser {
     private short id;
     private String username;
     private String parola;

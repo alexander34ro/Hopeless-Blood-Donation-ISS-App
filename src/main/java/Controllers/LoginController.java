@@ -3,6 +3,7 @@ package Controllers;
 import Networking.Interfaces.ClientInterface;
 import Persistence.AsistentEntity;
 import Persistence.DonatorEntity;
+import Persistence.IUser;
 import Persistence.MedicEntity;
 import Services.DumbService;
 import Utils.LogException;
@@ -41,7 +42,12 @@ public class LoginController {
 
         try {
 
-            Object response = this.client.login(nume, password);
+            IUser response = this.client.login(nume, password);
+
+            if(response == null) {
+                MessageAllert.showErrorMessage(null, "Eroare la autentificare");
+                return;
+            }
 
             FXMLLoader aloader = null;
             if (response instanceof DonatorEntity)

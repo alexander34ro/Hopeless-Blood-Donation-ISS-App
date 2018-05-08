@@ -2,6 +2,7 @@ package Networking;
 
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
+import Persistence.IUser;
 import Utils.LogException;
 
 import java.rmi.RemoteException;
@@ -18,7 +19,7 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
 
 
     @Override
-    public Object login(String username, String password) throws LogException, RemoteException {
+    public IUser login(String username, String password) throws LogException, RemoteException {
         return this.server.login(username, password, this);
     }
 }

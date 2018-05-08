@@ -1,7 +1,6 @@
 import Controllers.LoginController;
 import Networking.ClientController;
 import Networking.Interfaces.ServerInterface;
-import Persistence.SpitalEntity;
 import Services.DumbService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
 
 public class Main extends Application {
 
@@ -49,12 +46,12 @@ public class Main extends Application {
         spitalEntity.setRegiune("Yo6");
 
         dumbService.save(spitalEntity);*/
-        List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
-        System.out.println(spitalEntities.size());
+        ///List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
+        //System.out.println(spitalEntities.size());
 
         //List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
         //System.out.println(spitalEntities.size());
 
-        //launch(args);
+        launch(args);
     }
 }

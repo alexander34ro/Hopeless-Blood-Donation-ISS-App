@@ -1,10 +1,11 @@
 package Networking.Interfaces;
 
+import Persistence.IUser;
 import Utils.LogException;
 
 public interface ServerInterface {
 
-    Object login(String username, String password,  ClientInterface client) throws LogException;
+    IUser login(String username, String password, ClientInterface client) throws LogException;
     //void logout(IUser user) throws LogException;
 
 }
