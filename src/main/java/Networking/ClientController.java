@@ -35,4 +35,8 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
             e.printStackTrace();
         }
     }
+
+    public void signUp(IUser user) throws NetworkException, RemoteException {
+        this.server.signuUp(user);
+    }
 }

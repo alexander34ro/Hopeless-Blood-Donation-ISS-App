@@ -2,19 +2,23 @@ package Controllers;
 
 import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
+import Networking.NetworkException;
 import Persistence.DonatorEntity;
 import Services.DumbService;
 import Utils.GenericStuff;
+import Utils.MessageAllert;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 public class SignupController {
@@ -143,65 +147,91 @@ public class SignupController {
 
 
         if(fieldsCompleted) {
-            // store input
-            String firstName = this.numeTextField.getText();
-            String lastName = this.prenumeTextField.getText();
-            String birthDate = this.birthDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
-            String county = judetChoiceBox.getSelectionModel().getSelectedItem();
-            String city = cityTextField.getText();
-            String address = addressTextArea.getText();
+            try {
+                // store input
+                String firstName = this.numeTextField.getText();
+                String lastName = this.prenumeTextField.getText();
+                String birthDate = this.birthDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
+                String county = judetChoiceBox.getSelectionModel().getSelectedItem();
+                String city = cityTextField.getText();
+                String address = addressTextArea.getText();
 
-            String changedCounty = "";
-            String changedCity = "";
-            String changedAddress = "";
+                String changedCounty = "";
+                String changedCity = "";
+                String changedAddress = "";
 
-            boolean changedLocation = changedAddressCheckBox.isSelected();
-            if(changedLocation) {
-                changedCounty = changedJudetChoiceBox.getSelectionModel().getSelectedItem();
-                changedCity = changedCityTextField.getText();
-                changedAddress = changedAddressTextArea.getText();
-            }
-
-            String email = emailAddressTextField.getText();
-            String username = usernameTextField.getText();
-            String password = passwordTextField.getText();
-            String phone = telephoneNumberTextField.getText();
-            String bloodType = bloodTypeChoiceBox.getSelectionModel().getSelectedItem();
-
-
-            DonatorEntity donator = new DonatorEntity();
-            donator.setNume(firstName);
-            donator.setPrenume(lastName);
-            donator.setDataNastere(birthDate);
-            donator.setAdresa(address);
-            donator.setOras(city);
-            donator.setRegiune(county);
-            donator.setOrasResedintegera(changedCity);
-            donator.setRegiuneResedintegera(changedCounty);
-            donator.setAdresaResedintegera(changedAddress);
-            donator.setEmail(email);
-            donator.setUsername(username);
-            donator.setParola(password);
-            donator.setTelefon(phone);
-
-            short id;
-
-            synchronized (service) {
-
-                id = 1;
-
-                Optional<DonatorEntity> result = service.getAll(DonatorEntity.class)
-                        .stream()
-                        .reduce((A, B) -> A.getId() > B.getId() ? A : B);
-                if (result.isPresent()) {
-                    id = (short) (result.get().getId() + 1);
+                boolean changedLocation = changedAddressCheckBox.isSelected();
+                if(changedLocation) {
+                    changedCounty = changedJudetChoiceBox.getSelectionModel().getSelectedItem();
+                    changedCity = changedCityTextField.getText();
+                    changedAddress = changedAddressTextArea.getText();
                 }
+
+                String email = emailAddressTextField.getText();
+                String username = usernameTextField.getText();
+                String password = passwordTextField.getText();
+                String phone = telephoneNumberTextField.getText();
+                String bloodType = bloodTypeChoiceBox.getSelectionModel().getSelectedItem();
+
+
+                DonatorEntity donator = new DonatorEntity();
+                donator.setNume(firstName);
+                donator.setPrenume(lastName);
+                donator.setDataNastere(birthDate);
+                donator.setAdresa(address);
+                donator.setOras(city);
+                donator.setRegiune(county);
+                donator.setOrasResedintegera(changedCity);
+                donator.setRegiuneResedintegera(changedCounty);
+                donator.setAdresaResedintegera(changedAddress);
+                donator.setEmail(email);
+                donator.setUsername(username);
+                donator.setParola(password);
+                donator.setTelefon(phone);
+
+                short id;
+
+                synchronized (service) {
+                    List<DonatorEntity> donatorsList = service.getAll(DonatorEntity.class);
+
+                    // check if username, email unique
+                    if(donatorsList.stream().anyMatch(_donator -> _donator.getEmail().equals(email))) {
+                        throw new Exception("Adresa email este deja folosita");
+                    }
+
+                    if(donatorsList.stream().anyMatch(_donator -> _donator.getUsername().equals(username))) {
+                        throw new Exception("Username-ul este deja folosit");
+                    }
+
+                    id = 1;
+
+                    Optional<DonatorEntity> result = donatorsList.stream()
+                            .reduce((A, B) -> A.getId() > B.getId() ? A : B);
+                    if (result.isPresent()) {
+                        id = (short) (result.get().getId() + 1);
+                    }
+                }
+
+                donator.setId(id);
+                donator.setTipSange(bloodType);
+
+                this.client.signUp(donator);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Contul a fost creat cu succes", ButtonType.CLOSE);
+                alert.setOnCloseRequest((DialogEvent de) -> {
+                    final Node source = (Node) actionEvent.getSource();
+                    final Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                });
+                alert.showAndWait();
+
             }
-
-            donator.setId(id);
-            donator.setTipSange(bloodType);
-
-            this.service.save(donator);
+            catch(NetworkException exception) {
+                MessageAllert.showErrorMessage(null, exception.getMessage());
+            }
+            catch(Exception e) {
+                MessageAllert.showErrorMessage(null, e.getMessage());
+            }
         }
     }
 }

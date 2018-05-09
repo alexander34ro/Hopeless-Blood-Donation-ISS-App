@@ -1,6 +1,7 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
+import Networking.NetworkException;
 import Persistence.DonatieEntity;
 import Persistence.DonatorEntity;
 import Services.DumbService;
@@ -72,7 +73,7 @@ public class DonatorController implements IUserController<DonatorEntity> {
 
     }
 
-    public void handleTrimitere(){
+    public void handleTrimitere() throws NetworkException {
         try{
         DonatieEntity donatieEntity=new DonatieEntity();
         donatieEntity.setPuls(Short.parseShort(textFieldPuls.getText()));

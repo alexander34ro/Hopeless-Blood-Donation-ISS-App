@@ -1,5 +1,6 @@
 package Services;
 
+import Networking.NetworkException;
 import Repositories.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -72,7 +73,7 @@ public class DumbService {
         return (T) sessionFactory.openSession().merge(o);
     }
 
-    public <T> void saveOrUpdate(final T o) {
+    public <T> void saveOrUpdate(final T o) throws NetworkException {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -87,7 +88,7 @@ public class DumbService {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
+            throw new NetworkException(e.getMessage());
         } finally {
             if (session != null) {
                 session.close();

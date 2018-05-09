@@ -12,4 +12,6 @@ public interface ClientInterface extends Remote {
 
     void logout() throws NetworkException, RemoteException;
 
+    void signUp(IUser user) throws NetworkException, RemoteException;
+
 }

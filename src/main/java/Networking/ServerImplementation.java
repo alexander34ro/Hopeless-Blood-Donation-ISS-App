@@ -7,7 +7,6 @@ import Persistence.DonatorEntity;
 import Persistence.IUser;
 import Persistence.MedicEntity;
 import Services.DumbService;
-import Utils.LogException;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,7 +22,7 @@ public class ServerImplementation implements ServerInterface {
 
 
     @Override
-    public IUser login(String username, String password, ClientInterface client) throws LogException {
+    public IUser login(String username, String password, ClientInterface client) {
 
         // user / password ok
         //AsistentEntity user = new AsistentEntity(); // result
@@ -58,9 +57,27 @@ public class ServerImplementation implements ServerInterface {
         return null;
     }
 
+
+
     @Override
-    public void logout(ClientInterface client) throws LogException {
+    public void logout(ClientInterface client) {
         this.loggedInClients.values().remove( client );
+    }
+
+    @Override
+    public void signuUp(IUser user) throws NetworkException {
+        Class cl = null;
+
+        if(user instanceof DonatorEntity)
+            cl = DonatorEntity.class;
+        else if(user instanceof AsistentEntity)
+            cl = AsistentEntity.class;
+        else if(user instanceof MedicEntity)
+            cl = MedicEntity.class;
+
+        if(cl != null) {
+            dumbService.saveOrUpdate(user);
+        }
     }
 
     /*
