@@ -146,7 +146,7 @@ public class SignupController {
             // store input
             String firstName = this.numeTextField.getText();
             String lastName = this.prenumeTextField.getText();
-            LocalDate birthDate = this.birthDate.getValue();
+            String birthDate = this.birthDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
             String county = judetChoiceBox.getSelectionModel().getSelectedItem();
             String city = cityTextField.getText();
             String address = addressTextArea.getText();
@@ -172,7 +172,7 @@ public class SignupController {
             DonatorEntity donator = new DonatorEntity();
             donator.setNume(firstName);
             donator.setPrenume(lastName);
-            donator.setDataNastere(birthDate.toString());
+            donator.setDataNastere(birthDate);
             donator.setAdresa(address);
             donator.setOras(city);
             donator.setRegiune(county);
@@ -184,13 +184,18 @@ public class SignupController {
             donator.setParola(password);
             donator.setTelefon(phone);
 
-            short id = 1;
+            short id;
 
-            Optional<DonatorEntity> result = service.getAll(DonatorEntity.class)
-                    .stream()
-                    .reduce((A, B) -> A.getId() > B.getId() ? A : B);
-            if(result.isPresent()) {
-                id = (short) (result.get().getId() + 1);
+            synchronized (service) {
+
+                id = 1;
+
+                Optional<DonatorEntity> result = service.getAll(DonatorEntity.class)
+                        .stream()
+                        .reduce((A, B) -> A.getId() > B.getId() ? A : B);
+                if (result.isPresent()) {
+                    id = (short) (result.get().getId() + 1);
+                }
             }
 
             donator.setId(id);
