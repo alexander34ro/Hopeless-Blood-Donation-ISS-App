@@ -103,6 +103,9 @@ public class LoginController {
 
             FXMLLoader aloader=new FXMLLoader(getClass().getClassLoader().getResource("./Views/Signup.fxml"));
             Parent aroot=aloader.load();
+            SignupController controller = aloader.getController();
+            controller.setClient(client);
+            controller.setService(service);
             Stage stage=new Stage();
             stage.setTitle("Creare Cont");
             stage.setScene(new Scene(aroot));

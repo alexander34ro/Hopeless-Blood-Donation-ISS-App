@@ -10,7 +10,7 @@
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-      <Button layoutX="290.0" layoutY="704.0" mnemonicParsing="false" text="Înregistrare">
+      <Button layoutX="290.0" layoutY="704.0" mnemonicParsing="false" onAction="#handleRegistration" text="Înregistrare">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -24,7 +24,7 @@
             </Label>
       </children>
    </Pane>
-   <GridPane hgap="20.0" layoutX="121.0" layoutY="96.0" prefHeight="575.0" prefWidth="431.0" vgap="5.0">
+   <GridPane fx:id="contentPane" hgap="20.0" layoutX="121.0" layoutY="96.0" prefHeight="575.0" prefWidth="431.0" vgap="5.0">
      <columnConstraints>
        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="92.0" />
        <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="277.0" />
@@ -32,8 +32,9 @@
      <rowConstraints>
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,25 +49,32 @@
          <TextField fx:id="numeTextField" GridPane.columnIndex="1" />
          <TextField fx:id="prenumeTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          <Label text="Prenume" GridPane.rowIndex="1" />
-         <Label text="Data naşterii" GridPane.rowIndex="2" />
-         <DatePicker fx:id="birthDate" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label text="Judeţ domiciliu" GridPane.rowIndex="3" />
-         <ChoiceBox fx:id="judetChoiceBox" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <Label text="Localitate domiciliu" GridPane.rowIndex="4" />
-         <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <CheckBox fx:id="changedAddressCheckBox" mnemonicParsing="false" onAction="#handleSwitchedAddressCheckBox" text="Locuiesc la altă adresă faţă de cea menţionată" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-         <Label text="Adresă" GridPane.rowIndex="5" />
-         <TextArea fx:id="addressTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         <Label text="Judeţ" GridPane.rowIndex="7" />
-         <ChoiceBox fx:id="changedJudetChoiceBox" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-         <Label text="Localitate" GridPane.rowIndex="8" />
-         <TextField fx:id="changedCityTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-         <Label text="Adresă" GridPane.rowIndex="9" />
-         <TextArea fx:id="changedAddressTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-         <Label text="Adresa email" GridPane.rowIndex="10" />
-         <TextField fx:id="emailAddressTextField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-         <Label text="Număr telefon" GridPane.rowIndex="11" />
-         <TextField fx:id="telephoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+          <Label text="Adresa email" GridPane.rowIndex="2" />
+          <TextField fx:id="emailAddressTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+          <Label text="Username" GridPane.rowIndex="3" />
+          <TextField fx:id="usernameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+          <Label text="Parola" GridPane.rowIndex="4" />
+          <TextField fx:id="passwordTextField" accessibleRole="PASSWORD_FIELD" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+          <Label text="Data naşterii" GridPane.rowIndex="5" />
+         <DatePicker fx:id="birthDate" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         <Label text="Judeţ domiciliu" GridPane.rowIndex="6" />
+         <ChoiceBox fx:id="judetChoiceBox" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <Label text="Localitate domiciliu" GridPane.rowIndex="7" />
+         <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         <CheckBox fx:id="changedAddressCheckBox" mnemonicParsing="false" onAction="#handleSwitchedAddressCheckBox" text="Locuiesc la altă adresă faţă de cea menţionată" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+         <Label text="Adresă" GridPane.rowIndex="8" />
+         <TextArea fx:id="addressTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+         <Label text="Judeţ" GridPane.rowIndex="10" />
+         <ChoiceBox fx:id="changedJudetChoiceBox" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+         <Label text="Localitate" GridPane.rowIndex="11" />
+         <TextField fx:id="changedCityTextField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+         <Label text="Adresă" GridPane.rowIndex="12" />
+         <TextArea fx:id="changedAddressTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+         <Label text="Număr telefon" GridPane.rowIndex="13" />
+         <TextField fx:id="telephoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       </children>
       <opaqueInsets>
          <Insets />

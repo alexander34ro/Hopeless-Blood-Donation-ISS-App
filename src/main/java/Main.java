@@ -14,7 +14,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main extends Application {
 
     private static ClientController clientController;
-    private DumbService service;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -29,7 +28,7 @@ public class Main extends Application {
 
 
         ctrl.setClient(clientController);
-        ctrl.setService(service);
+        ctrl.setService(dumbService);
 
         Scene scene = new Scene(pane);
 
