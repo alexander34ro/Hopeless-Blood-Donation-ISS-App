@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Persistence.DonatorEntity;
 import Services.DumbService;
@@ -14,6 +15,7 @@ import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class SignupController {
     DumbService service;
@@ -42,6 +44,7 @@ public class SignupController {
     @FXML private TextArea changedAddressTextArea;
     @FXML private TextField emailAddressTextField;
     @FXML private TextField telephoneNumberTextField;
+    @FXML private ChoiceBox<String> bloodTypeChoiceBox;
 
     @FXML
     private void initialize() {
@@ -84,6 +87,15 @@ public class SignupController {
 
         this.judetChoiceBox.getSelectionModel().select(0);
         this.changedJudetChoiceBox.getSelectionModel().select(0);
+
+        /*
+        * Blood group
+        */
+        this.bloodTypeChoiceBox.getItems().add("Necunoscută");
+        for(TipSange tipSange : TipSange.values()) {
+            this.bloodTypeChoiceBox.getItems().add(tipSange.toString());
+        }
+        this.bloodTypeChoiceBox.getSelectionModel().select(0);
     }
 
 
@@ -154,6 +166,7 @@ public class SignupController {
             String username = usernameTextField.getText();
             String password = passwordTextField.getText();
             String phone = telephoneNumberTextField.getText();
+            String bloodType = bloodTypeChoiceBox.getSelectionModel().getSelectedItem();
 
 
             DonatorEntity donator = new DonatorEntity();
@@ -170,7 +183,18 @@ public class SignupController {
             donator.setUsername(username);
             donator.setParola(password);
             donator.setTelefon(phone);
-            donator.setId((short) 987);
+
+            short id = 1;
+
+            Optional<DonatorEntity> result = service.getAll(DonatorEntity.class)
+                    .stream()
+                    .reduce((A, B) -> A.getId() > B.getId() ? A : B);
+            if(result.isPresent()) {
+                id = (short) (result.get().getId() + 1);
+            }
+
+            donator.setId(id);
+            donator.setTipSange(bloodType);
 
             this.service.save(donator);
         }
