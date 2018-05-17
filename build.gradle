@@ -25,4 +25,10 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.0.0.RELEASE'
 
+    //compile 'se.walkercrou:google-places-api-java:2.1.7'
+    //compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
+
+
+    compile 'com.google.maps:google-maps-services:0.2.7'
+    compile 'org.slf4j:slf4j-nop:1.7.25'
 }
