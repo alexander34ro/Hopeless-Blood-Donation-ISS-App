@@ -48,9 +48,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelTrombociteO" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelGlobuleO" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="labelPlasmaO" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="21.0" prefWidth="71.0" text="  Cantitate" GridPane.rowIndex="1" />
                </children>
                <opaqueInsets>
@@ -66,9 +66,9 @@
                      </font></Label>
                   <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4" />
                   <Label text="Globule Rosii:" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelTrombociteA" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelGlobuleA" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="labelPlasmaA" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Cantitate" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
@@ -92,9 +92,9 @@
                      </font></Label>
                   <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4" />
                   <Label text="Globule Rosii" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelTrombociteB" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelGlobuleB" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="labelPlasmaB" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Cantitate" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
@@ -118,9 +118,9 @@
                      </font></Label>
                   <Label prefHeight="21.0" prefWidth="97.0" text="Trombocite:" GridPane.rowIndex="4" />
                   <Label text="Globule Rosii:" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelTrombociteAB" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="labelGlobuleAB" prefHeight="21.0" prefWidth="46.0" text="0 " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="labelPlasmaAB" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Cantitate" GridPane.rowIndex="1" />
                </children>
                <columnConstraints>
@@ -151,38 +151,38 @@
             </Label>
             <TableView fx:id="tableViewDonatie" prefHeight="521.0" prefWidth="566.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Id" >
+                  <TableColumn prefWidth="75.0" text="Id">
                      <cellValueFactory>
                         <PropertyValueFactory property="id" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Donator" >
+                  <TableColumn prefWidth="75.0" text="Donator">
                   <cellValueFactory>
                      <PropertyValueFactory property="donator" />
                   </cellValueFactory>
                </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Tip sânge" >
+                  <TableColumn prefWidth="75.0" text="Tip sânge">
                   <cellValueFactory>
                      <PropertyValueFactory property="getTipSange" />
                   </cellValueFactory>
                </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Pacient" >
+                  <TableColumn prefWidth="75.0" text="Pacient">
                   <cellValueFactory>
                      <PropertyValueFactory property="numePacient" />
                   </cellValueFactory>
                </TableColumn>
 
-                  <TableColumn prefWidth="75.0" text="Stadiu" >
+                  <TableColumn prefWidth="75.0" text="Stadiu">
                   <cellValueFactory>
                      <PropertyValueFactory property="stadiu" />
                   </cellValueFactory>
                </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Respins" >
+                  <TableColumn prefWidth="75.0" text="Respins">
                   <cellValueFactory>
                      <PropertyValueFactory property="respins" />
                   </cellValueFactory>
                </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Data" >
+                  <TableColumn prefWidth="75.0" text="Data">
                   <cellValueFactory>
                      <PropertyValueFactory property="data" />
                   </cellValueFactory>
@@ -208,13 +208,37 @@
             </Label>
             <TableView fx:id="tableViewCerere" prefHeight="522.0" prefWidth="512.0">
               <columns>
-                <TableColumn prefWidth="57.0" text="Id" />
-                  <TableColumn text="Spital" />
-                  <TableColumn prefWidth="84.0" text="Tip Sânge" />
-                  <TableColumn prefWidth="63.0" text="Sânge" />
-                  <TableColumn prefWidth="65.0" text="Plasmă" />
-                  <TableColumn prefWidth="116.0" text="Globule Rosii" />
-                  <TableColumn prefWidth="101.0" text="Trombocite" />
+                <TableColumn prefWidth="57.0" text="Id">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                  <TableColumn prefWidth="109.0" text="Produs Sange">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="produsSange" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="83.0" text="Tip Sânge">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="tipSange" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="105.0" text="Prioritate">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="prioritate" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="105.0" text="Cantitate">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="cantitate" />
+                      </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="107.0" text="Spital">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="getNumeSpital" />
+                      </cellValueFactory>
+                  </TableColumn>
               </columns>
                <VBox.margin>
                   <Insets right="20.0" />
