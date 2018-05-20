@@ -84,11 +84,10 @@ public class DetaliiCerereEntity implements java.io.Serializable {
         this.cantitate = cantitate;
     }
 
-    /*
-    public String getNumeSpital(){
+    public String numeSpital(){
         return cerereByCerere.getMedicByMedic().getSpitalBySpital().getNume();
     }
-    */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -8,6 +8,7 @@ import Persistence.IUser;
 import Persistence.MedicEntity;
 import Services.DumbService;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,6 +39,8 @@ public class ServerImplementation implements ServerInterface {
         Class[] classes = new Class[]{DonatorEntity.class, AsistentEntity.class, MedicEntity.class};
 
         System.out.println(dumbService.getAll(DonatorEntity.class).size());
+        System.out.println(dumbService.getAll(AsistentEntity.class).size());
+        System.out.println(dumbService.getAll(MedicEntity.class).size());
 
         for(Class c : classes) {
             for(Object obj : dumbService.getAll(c)) {
@@ -45,6 +48,7 @@ public class ServerImplementation implements ServerInterface {
                     IUser user = (IUser) obj;
                     System.out.println("~~" + user.getUsername() + " - " + user.getParola());
                     if(username.equals(user.getUsername()) && password.equals(user.getParola())) {
+                        System.out.println("Logged in");
                         if( ! this.loggedInClients.containsKey(user.getId())) {
                             this.loggedInClients.put(user.getId(), client);
                             return user;
@@ -78,6 +82,10 @@ public class ServerImplementation implements ServerInterface {
         if(cl != null) {
             dumbService.saveOrUpdate(user);
         }
+    }
+
+    public <T> List<T> getAll(Class className) throws NetworkException {
+        return dumbService.getAll(className);
     }
 
     /*

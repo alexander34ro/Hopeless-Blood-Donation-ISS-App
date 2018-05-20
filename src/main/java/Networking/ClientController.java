@@ -6,6 +6,7 @@ import Persistence.IUser;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 public class ClientController extends UnicastRemoteObject implements ClientInterface, java.io.Serializable {
 
@@ -38,5 +39,9 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
 
     public void signUp(IUser user) throws NetworkException, RemoteException {
         this.server.signuUp(user);
+    }
+
+    public <T> List<T> getAll(Class className) throws NetworkException, RemoteException {
+        return server.getAll(className);
     }
 }

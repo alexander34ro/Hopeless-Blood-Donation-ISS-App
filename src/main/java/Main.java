@@ -28,7 +28,6 @@ public class Main extends Application {
 
 
         ctrl.setClient(clientController);
-        ctrl.setService(dumbService);
 
         Scene scene = new Scene(pane);
 

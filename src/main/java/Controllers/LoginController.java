@@ -6,7 +6,6 @@ import Persistence.AsistentEntity;
 import Persistence.DonatorEntity;
 import Persistence.IUser;
 import Persistence.MedicEntity;
-import Services.DumbService;
 import Utils.MessageAllert;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -26,10 +25,8 @@ public class LoginController {
     @FXML private TextField userText;
     @FXML private PasswordField passwordField;
 
-    DumbService service;
     private ClientInterface client;
 
-    public void  setService(DumbService service){this.service=service;}
     public void setClient(ClientInterface client){
         this.client = client;
     }
@@ -53,16 +50,21 @@ public class LoginController {
             }
 
             FXMLLoader aloader = null;
-            if (response instanceof DonatorEntity)
+            if (response instanceof DonatorEntity) {
+                System.out.println("Log in donator");
                 aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Donator.fxml"));
-            else if (response instanceof AsistentEntity)
+            }
+            else if (response instanceof AsistentEntity) {
+                System.out.println("Log in asistent");
                 aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Asistent.fxml"));
-            else if (response instanceof MedicEntity)
+            }
+            else if (response instanceof MedicEntity) {
+                System.out.println("Log in medic");
                 aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Medic.fxml"));
+            }
             Parent aroot = aloader.load();
 
             IUserController controller = aloader.getController();
-            controller.setService(service);
             controller.setClient(client);
 
             //controller.setUser(response);
@@ -105,7 +107,6 @@ public class LoginController {
             Parent aroot=aloader.load();
             SignupController controller = aloader.getController();
             controller.setClient(client);
-            controller.setService(service);
             Stage stage=new Stage();
             stage.setTitle("Creare Cont");
             stage.setScene(new Scene(aroot));
