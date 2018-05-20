@@ -203,6 +203,14 @@ public class DonatieEntity implements java.io.Serializable {
         this.donatorByDonator = donatorByDonator;
     }
 
+    public String getDonatorName() {
+        return getDonatorByDonator().getNume();
+    }
+
+    public void setDonatorName(String name) {
+        // nope
+    }
+
     @ManyToOne
     @JoinColumn(name = "centruTransfuzii", referencedColumnName = "id", nullable = false)
     public CentruTransfuziiEntity getCentruTransfuziiByCentruTransfuzii() {

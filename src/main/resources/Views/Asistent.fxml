@@ -158,7 +158,7 @@
                   </TableColumn>
                   <TableColumn prefWidth="75.0" text="Donator">
                   <cellValueFactory>
-                     <PropertyValueFactory property="donator" />
+                     <PropertyValueFactory property="donatorName" />
                   </cellValueFactory>
                </TableColumn>
                   <TableColumn prefWidth="75.0" text="Tip sânge">

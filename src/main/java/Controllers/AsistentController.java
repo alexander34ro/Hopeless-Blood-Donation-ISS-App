@@ -24,19 +24,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
     ObservableList<DetaliiCerereEntity> modelDetaliiCerere = FXCollections.observableArrayList();
     @FXML
     public void initialize() {
-        /*try {
-            System.out.println("luam donatiile de la server");
-            List<DonatieEntity> donatieEntities = client.getAll(DonatieEntity.class);
-            System.out.println(donatieEntities.get(0).getId());
-            System.out.println("punem donatiile");
-            modelDonatie.setAll(donatieEntities);
-            modelDetaliiCerere.setAll(client.getAll(DetaliiCerereEntity.class));
-            tableViewDonatie.setItems(modelDonatie);
-            tableViewCerere.setItems(modelDetaliiCerere);
-            setLabels();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }*/
+
     }
 
     public void setUser(AsistentEntity user){
@@ -56,7 +44,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
             System.out.println("luam donatiile de la server");
             List<DonatieEntity> donatieEntities = client.getAll(DonatieEntity.class);
-            System.out.println(donatieEntities.get(0).getId());
+            System.out.println(donatieEntities.get(0).getDonatorByDonator().getNume());
             System.out.println("punem donatiile");
             modelDonatie.setAll(donatieEntities);
             modelDetaliiCerere.setAll(client.getAll(DetaliiCerereEntity.class));
@@ -104,7 +92,6 @@ public class AsistentController implements IUserController<AsistentEntity>{
                     else if (entity.getCategorie().equals("Trombocite"))
                         valori[11]++;
                 }
-
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
