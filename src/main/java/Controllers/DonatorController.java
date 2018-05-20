@@ -82,7 +82,7 @@ public class DonatorController implements IUserController<DonatorEntity> {
         }
     }
 
-    private void updateTable() throws NetworkException, RemoteException {
+    public void updateTable() throws NetworkException, RemoteException {
         tableView.getItems().clear();
         tableView.setItems(
                 FXCollections.observableArrayList(

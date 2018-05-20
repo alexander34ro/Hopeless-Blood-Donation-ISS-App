@@ -69,6 +69,9 @@ public class LoginController {
             if(controller instanceof AsistentController) {
                 client.setAsistentController((AsistentController) controller);
             }
+            else if(controller instanceof DonatorController) {
+                client.setDonatorController((DonatorController) controller);
+            }
 
             controller.setUser(response);
             controller.setClient(client);

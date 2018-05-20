@@ -1,6 +1,7 @@
 package Networking;
 
 import Controllers.AsistentController;
+import Controllers.DonatorController;
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
 import Persistence.IUser;
@@ -14,6 +15,7 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     private ServerInterface server;
 
     private AsistentController asistentController = null;
+    private DonatorController donatorController = null;
 
     public ClientController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -54,18 +56,25 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     }
 
     @Override
-    public void donationAdded() {
-        if(this.asistentController != null) {
-            try {
+    public void donationAddedOrUpdated() {
+        try {
+            if(this.asistentController != null) {
                 this.asistentController.updateDonatii();
             }
-            catch(Exception e) {
-                e.printStackTrace();
+            else if(this.donatorController != null) {
+                donatorController.updateTable();
             }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void setAsistentController(AsistentController asistentController) {
         this.asistentController = asistentController;
+    }
+
+    public void setDonatorController(DonatorController donatorController) {
+        this.donatorController = donatorController;
     }
 }

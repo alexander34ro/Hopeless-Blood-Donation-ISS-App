@@ -73,7 +73,7 @@ public class ServerImplementation implements ServerInterface {
 
         if(o instanceof DonatieEntity) {
             for(ClientInterface clientInterface : loggedInClients.values()) {
-                clientInterface.donationAdded();
+                clientInterface.donationAddedOrUpdated();
             }
         }
     }
