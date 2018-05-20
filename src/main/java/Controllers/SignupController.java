@@ -4,7 +4,6 @@ import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Networking.NetworkException;
 import Persistence.DonatorEntity;
-import Services.DumbService;
 import Utils.GenericStuff;
 import Utils.MessageAllert;
 import javafx.collections.FXCollections;
@@ -22,10 +21,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class SignupController {
-    DumbService service;
     private ClientInterface client;
 
-    public void  setService(DumbService service){this.service=service;}
     public void setClient(ClientInterface client){
         this.client = client;
     }
@@ -191,8 +188,8 @@ public class SignupController {
 
                 short id;
 
-                synchronized (service) {
-                    List<DonatorEntity> donatorsList = service.getAll(DonatorEntity.class);
+                synchronized (client) {
+                    List<DonatorEntity> donatorsList = client.getAll(DonatorEntity.class);
 
                     // check if username, email unique
                     if(donatorsList.stream().anyMatch(_donator -> _donator.getEmail().equals(email))) {

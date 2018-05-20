@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 public class DonatorController implements IUserController<DonatorEntity> {
 
@@ -106,9 +107,24 @@ public class DonatorController implements IUserController<DonatorEntity> {
             donatieEntity.setRespins((short) 0);
             donatieEntity.setSubTratament((short) 0);
             donatieEntity.setTensiune((short) 0);
-            donatieEntity.setStadiu("dunno");
+            donatieEntity.setStadiu("Cerere trimisa");
 
             donatieEntity.setCentruTransfuziiByCentruTransfuzii( transfusionCentersList.get( transfusionCentersComboBox.getSelectionModel().getSelectedIndex() ) );
+
+            short id;
+
+            synchronized (client) {
+                List<DonatieEntity> donations = client.getAll(DonatieEntity.class);
+                id = 1;
+
+                Optional<DonatieEntity> result = donations.stream()
+                        .reduce((A, B) -> A.getId() > B.getId() ? A : B);
+                if (result.isPresent()) {
+                    id = (short) (result.get().getId() + 1);
+                }
+            }
+
+            donatieEntity.setId(id);
 
             client.saveOrUpdate(donatieEntity);
 
@@ -118,6 +134,8 @@ public class DonatorController implements IUserController<DonatorEntity> {
             //String date= LocalDate.parse(donatieEntity.getData()).plusDays(1).toString();
             dataLabel.setText(donatieEntity.getData());
             tableView.setItems(model);
+
+            new Alert(Alert.AlertType.INFORMATION, "Cererea a fost creat cu succes", ButtonType.CLOSE).showAndWait();
         }
         catch (Exception e){
             e.printStackTrace();
