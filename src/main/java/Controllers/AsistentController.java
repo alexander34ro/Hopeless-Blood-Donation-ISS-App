@@ -6,12 +6,10 @@ import Networking.NetworkException;
 import Persistence.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -29,8 +27,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
     private AsistentEntity user;
     private ClientInterface client;
-    ObservableList<DonatieEntity> modelDonatie = FXCollections.observableArrayList();
-    ObservableList<DetaliiCerereEntity> modelDetaliiCerere = FXCollections.observableArrayList();
+    private ObservableList<DetaliiCerereEntity> modelDetaliiCerere = FXCollections.observableArrayList();
 
 
     @FXML public void initialize() {
@@ -107,64 +104,33 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 gridPane.add(doneButton, 0, 6);
                 gridPane.add(cancelButton, 1, 6);
 
-                doneButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        try {
-                            /*String customerName = clientTextField.getText().trim();
-                            String customerAddress = clientAddress.getText().trim();
+                doneButton.setOnMouseClicked(event12 -> {
+                    try {
+                        selectedDonation.setGreutate(Short.parseShort(greutateTextField.getText()));
+                        selectedDonation.setPuls(Short.parseShort(pulsTextField.getText()));
+                        selectedDonation.setTensiune(Short.parseShort(tensiuneTextField.getText()));
 
-                            if(customerName.equals("") || customerAddress.equals(""))
-                                throw new Exception("Nume client / adresa client invalide");
+                        if( ! bloodTypeChoiceBox.isDisabled())
+                        {
+                            DonatorEntity donatorEntity = selectedDonation.getDonatorByDonator();
+                            donatorEntity.setTipSange(bloodTypeChoiceBox.getSelectionModel().getSelectedItem());
 
-                            ArrayList<String> touristsStringName = new ArrayList<>();
-
-                            for(TextField touristTextField : touristsName)
-                                if(touristTextField.getText().trim().equals(""))
-                                    throw new Exception("Nume turist invalid");
-                                else
-                                    touristsStringName.add(touristTextField.getText().trim());
-
-
-                            clientController.buyTicket(new Ticket(flight.getID(), clientController.getCurrentlyLoggedInEmployee().getID(), customerName, customerAddress, numberOfSeats, touristsStringName  ));
-                            // update flight number of tourists
-                            flight.setAvailable_seats(flight.getAvailable_seats() - numberOfSeats);
-                            dialog.close();
-                            pageBorderPane.setStyle("-fx-opacity: 1;");
-
-                            handleSearchFlights(null);*/
-
-                            selectedDonation.setGreutate(Short.parseShort(greutateTextField.getText()));
-                            selectedDonation.setPuls(Short.parseShort(pulsTextField.getText()));
-                            selectedDonation.setTensiune(Short.parseShort(tensiuneTextField.getText()));
-
-                            if( ! bloodTypeChoiceBox.isDisabled())
-                            {
-                                DonatorEntity donatorEntity = selectedDonation.getDonatorByDonator();
-                                donatorEntity.setTipSange(bloodTypeChoiceBox.getSelectionModel().getSelectedItem());
-
-                                client.saveOrUpdate(donatorEntity);
-                            }
-
-                            selectedDonation.setStadiu("Pregatire");
-
-                            client.saveOrUpdate(selectedDonation);
+                            client.saveOrUpdate(donatorEntity);
                         }
-                        catch(Exception exception) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setContentText(exception.getMessage());
-                            alert.setHeaderText("Eroare");
-                            alert.showAndWait();
-                        }
+
+                        selectedDonation.setStadiu("Pregatire");
+
+                        client.saveOrUpdate(selectedDonation);
+                    }
+                    catch(Exception exception) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText(exception.getMessage());
+                        alert.setHeaderText("Eroare");
+                        alert.showAndWait();
                     }
                 });
 
-                cancelButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        dialog.close();
-                    }
-                });
+                cancelButton.setOnMouseClicked(event1 -> dialog.close());
 
                 Scene dialogScene = new Scene(hBox, 400, 400);
                 dialog.setScene(dialogScene);
@@ -223,40 +189,69 @@ public class AsistentController implements IUserController<AsistentEntity>{
         );
     }
 
-    public void setLabels(){
+    private void setLabels(){
         int[] valori = new int[12];
         try {
             List<UnitateSanguinaEntity> lista = client.getAll(UnitateSanguinaEntity.class);
 
             for (UnitateSanguinaEntity entity : lista) {
-                if (entity.getTipSange().equals("OPozitiv") || entity.getTipSange().equals("ONegativ")) {
-                    if (entity.getCategorie().equals("Plasma"))
-                        valori[0]++;
-                    else if (entity.getCategorie().equals("GlobuleRosii"))
-                        valori[1]++;
-                    else if (entity.getCategorie().equals("Trombocite"))
-                        valori[2]++;
-                } else if (entity.getTipSange().equals("APozitiv") || entity.getTipSange().equals("ANegativ")) {
-                    if (entity.getCategorie().equals("Plasma"))
-                        valori[3]++;
-                    else if (entity.getCategorie().equals("GlobuleRosii"))
-                        valori[4]++;
-                    else if (entity.getCategorie().equals("Trombocite"))
-                        valori[5]++;
-                } else if (entity.getTipSange().equals("BPozitiv") || entity.getTipSange().equals("BNegativ")) {
-                    if (entity.getCategorie().equals("Plasma"))
-                        valori[6]++;
-                    else if (entity.getCategorie().equals("GlobuleRosii"))
-                        valori[7]++;
-                    else if (entity.getCategorie().equals("Trombocite"))
-                        valori[8]++;
-                } else if (entity.getTipSange().equals("ABPozitiv") || entity.getTipSange().equals("ABNegativ")) {
-                    if (entity.getCategorie().equals("Plasma"))
-                        valori[9]++;
-                    else if (entity.getCategorie().equals("GlobuleRosii"))
-                        valori[10]++;
-                    else if (entity.getCategorie().equals("Trombocite"))
-                        valori[11]++;
+                switch (entity.getTipSange()) {
+                    case "OPozitiv":
+                    case "ONegativ":
+                        switch (entity.getCategorie()) {
+                            case "Plasma":
+                                valori[0]++;
+                                break;
+                            case "GlobuleRosii":
+                                valori[1]++;
+                                break;
+                            case "Trombocite":
+                                valori[2]++;
+                                break;
+                        }
+                        break;
+                    case "APozitiv":
+                    case "ANegativ":
+                        switch (entity.getCategorie()) {
+                            case "Plasma":
+                                valori[3]++;
+                                break;
+                            case "GlobuleRosii":
+                                valori[4]++;
+                                break;
+                            case "Trombocite":
+                                valori[5]++;
+                                break;
+                        }
+                        break;
+                    case "BPozitiv":
+                    case "BNegativ":
+                        switch (entity.getCategorie()) {
+                            case "Plasma":
+                                valori[6]++;
+                                break;
+                            case "GlobuleRosii":
+                                valori[7]++;
+                                break;
+                            case "Trombocite":
+                                valori[8]++;
+                                break;
+                        }
+                        break;
+                    case "ABPozitiv":
+                    case "ABNegativ":
+                        switch (entity.getCategorie()) {
+                            case "Plasma":
+                                valori[9]++;
+                                break;
+                            case "GlobuleRosii":
+                                valori[10]++;
+                                break;
+                            case "Trombocite":
+                                valori[11]++;
+                                break;
+                        }
+                        break;
                 }
             }
         } catch (Exception e) {
