@@ -1,6 +1,6 @@
 package Controllers;
 
-import Networking.Interfaces.ClientInterface;
+import Networking.ClientController;
 import Networking.NetworkException;
 import Persistence.AsistentEntity;
 import Persistence.DonatorEntity;
@@ -25,9 +25,9 @@ public class LoginController {
     @FXML private TextField userText;
     @FXML private PasswordField passwordField;
 
-    private ClientInterface client;
+    private ClientController client;
 
-    public void setClient(ClientInterface client){
+    public void setClient(ClientController client){
         this.client = client;
     }
 
@@ -65,6 +65,11 @@ public class LoginController {
             Parent aroot = aloader.load();
 
             IUserController controller = aloader.getController();
+
+            if(controller instanceof AsistentController) {
+                client.setAsistentController((AsistentController) controller);
+            }
+
             controller.setUser(response);
             controller.setClient(client);
 

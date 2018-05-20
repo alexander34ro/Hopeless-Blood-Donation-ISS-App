@@ -14,4 +14,6 @@ public interface ClientInterface extends Remote {
 
     <T> List<T> getAll(Class className) throws NetworkException, RemoteException;
     <T> void saveOrUpdate(final T o) throws NetworkException, RemoteException;
+
+    void donationAdded() throws NetworkException, RemoteException;
 }

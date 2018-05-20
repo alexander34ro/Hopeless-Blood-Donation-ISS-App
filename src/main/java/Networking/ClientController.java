@@ -1,5 +1,6 @@
 package Networking;
 
+import Controllers.AsistentController;
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
 import Persistence.IUser;
@@ -11,6 +12,8 @@ import java.util.List;
 public class ClientController extends UnicastRemoteObject implements ClientInterface, java.io.Serializable {
 
     private ServerInterface server;
+
+    private AsistentController asistentController = null;
 
     public ClientController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -48,5 +51,21 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     @Override
     public <T> void saveOrUpdate(final T o) throws NetworkException, RemoteException {
         server.saveOrUpdate(o);
+    }
+
+    @Override
+    public void donationAdded() {
+        if(this.asistentController != null) {
+            try {
+                this.asistentController.updateDonatii();
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setAsistentController(AsistentController asistentController) {
+        this.asistentController = asistentController;
     }
 }

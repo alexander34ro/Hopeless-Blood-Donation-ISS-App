@@ -31,7 +31,7 @@
                             </TableColumn>
                               <TableColumn fx:id="centruColumn" prefWidth="201.0" text="Centru de transfuzii">
                                  <cellValueFactory>
-                                    <PropertyValueFactory property="centruTransfuzii" />
+                                    <PropertyValueFactory property="centruTransfuziiString" />
                                  </cellValueFactory>
                               </TableColumn>
                           </columns>

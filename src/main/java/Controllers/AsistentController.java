@@ -1,6 +1,7 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
+import Networking.NetworkException;
 import Persistence.AsistentEntity;
 import Persistence.DetaliiCerereEntity;
 import Persistence.DonatieEntity;
@@ -11,7 +12,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AsistentController implements IUserController<AsistentEntity>{
     @FXML private TableView<DonatieEntity> tableViewDonatie;
@@ -42,19 +45,32 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 }
             });*/
 
-            System.out.println("luam donatiile de la server");
+            /*System.out.println("luam donatiile de la server");
             List<DonatieEntity> donatieEntities = client.getAll(DonatieEntity.class);
             System.out.println(donatieEntities.get(0).getDonatorByDonator().getNume());
             System.out.println("punem donatiile");
             modelDonatie.setAll(donatieEntities);
+            */
+
+            this.updateDonatii();
+
             modelDetaliiCerere.setAll(client.getAll(DetaliiCerereEntity.class));
-            tableViewDonatie.setItems(modelDonatie);
             tableViewCerere.setItems(modelDetaliiCerere);
             setLabels();
         }
         catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateDonatii() throws NetworkException, RemoteException {
+        tableViewDonatie.getItems().clear();
+        tableViewDonatie.setItems(FXCollections.observableArrayList(
+        client.getAll(DonatieEntity.class)
+        .stream()
+        .map(obj -> (DonatieEntity) obj)
+        .filter(donatieEntity -> donatieEntity.getCentruTransfuziiByCentruTransfuzii().getId() == this.user.getCentruTransfuziiByCentruTransfuzii().getId())
+        .collect(Collectors.toList())));
     }
 
     public void setLabels(){

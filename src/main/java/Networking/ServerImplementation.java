@@ -2,12 +2,10 @@ package Networking;
 
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
-import Persistence.AsistentEntity;
-import Persistence.DonatorEntity;
-import Persistence.IUser;
-import Persistence.MedicEntity;
+import Persistence.*;
 import Services.DumbService;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -70,8 +68,14 @@ public class ServerImplementation implements ServerInterface {
     }
 
     @Override
-    public <T> void saveOrUpdate(final T o) throws NetworkException {
+    public <T> void saveOrUpdate(final T o) throws NetworkException, RemoteException {
         dumbService.saveOrUpdate(o);
+
+        if(o instanceof DonatieEntity) {
+            for(ClientInterface clientInterface : loggedInClients.values()) {
+                clientInterface.donationAdded();
+            }
+        }
     }
 
     /*

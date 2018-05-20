@@ -74,4 +74,10 @@ public class CentruTransfuziiEntity implements Serializable {
         result = 31 * result + (oras != null ? oras.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getNume() + ", " + this.getRegiune() + ", " + this.getOras();
+    }
 }

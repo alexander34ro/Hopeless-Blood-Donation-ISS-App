@@ -1,6 +1,7 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
+import Networking.NetworkException;
 import Persistence.CentruTransfuziiEntity;
 import Persistence.DonatieEntity;
 import Persistence.DonatorEntity;
@@ -11,10 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DonatorController implements IUserController<DonatorEntity> {
 
@@ -33,6 +36,7 @@ public class DonatorController implements IUserController<DonatorEntity> {
     @FXML private Button sendButton;
 
     @FXML private TableView<DonatieEntity> tableView;
+
     ObservableList<DonatieEntity> model = FXCollections.observableArrayList();
 
     @FXML
@@ -70,10 +74,25 @@ public class DonatorController implements IUserController<DonatorEntity> {
 
             transfusionCentersComboBox.getSelectionModel().selectFirst();
 
+            updateTable();
+
         }
         catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateTable() throws NetworkException, RemoteException {
+        tableView.getItems().clear();
+        tableView.setItems(
+                FXCollections.observableArrayList(
+                        client.getAll(DonatieEntity.class)
+                                .stream()
+                                .map(obj -> (DonatieEntity) obj)
+                                .filter(object -> object.getDonatorByDonator().getId() == user.getId())
+                                .collect(Collectors.toList())
+                )
+        );
     }
 
     public void setDataLabel(){
@@ -132,6 +151,8 @@ public class DonatorController implements IUserController<DonatorEntity> {
             //String date= LocalDate.parse(donatieEntity.getData()).plusDays(1).toString();
             dataLabel.setText(donatieEntity.getData());
             tableView.setItems(model);
+
+            this.updateTable();
 
             new Alert(Alert.AlertType.INFORMATION, "Cererea a fost creat cu succes", ButtonType.CLOSE).showAndWait();
         }
