@@ -1,102 +1,127 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
-import Networking.NetworkException;
+import Persistence.CentruTransfuziiEntity;
 import Persistence.DonatieEntity;
 import Persistence.DonatorEntity;
-import Services.DumbService;
 import Utils.MessageAllert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 public class DonatorController implements IUserController<DonatorEntity> {
-    DumbService service;
+
     private DonatorEntity user;
     private ClientInterface client;
-    public DonatorController(){}
-    public void setUser(DonatorEntity user){
-        this.user = user;
-    }
 
-    public void setService(DumbService service){ this.service=service;}
-    public void setClient(ClientInterface client){
-        this.client = client;
-    }
+    @FXML private Label dataLabel;
 
+    @FXML private CheckBox acceptedRulesAndConditionsCheckBox;
+    @FXML private CheckBox customPersonCheckBox;
+    @FXML private TextField customPersonNameTextField;
+    @FXML private ComboBox<String> transfusionCentersComboBox;
 
-    @FXML
-    private TextField textFieldGreutate;
-    @FXML
-    private TextField textFieldPuls;
-    @FXML
-    private TextField textFieldTensiune;
-    @FXML
-    private TextField textFieldGrS;
-    @FXML
-    private TextField textFieldRh;
-    @FXML
-    private ToggleGroup interventii;
-    @FXML
-    private ToggleGroup consum;
-    @FXML
-    private ToggleGroup tratament;
-    @FXML
-    private ToggleGroup boli;
-    @FXML
-    private ToggleGroup femei;
-    @FXML
-    private Label dataLabel;
-    @FXML
-    private TableView<DonatieEntity> tableView;
+    private List<CentruTransfuziiEntity> transfusionCentersList;
+
+    @FXML private Button sendButton;
+
+    @FXML private TableView<DonatieEntity> tableView;
     ObservableList<DonatieEntity> model = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        model.setAll(service.getAll(DonatieEntity.class));
+        /*model.setAll(service.getAll(DonatieEntity.class));
         tableView.setItems(model);
-        setDataLabel();
+        setDataLabel();*/
+
+        sendButton.setDisable(true);
+
+        acceptedRulesAndConditionsCheckBox.setOnAction(event -> {
+            sendButton.setDisable( ! acceptedRulesAndConditionsCheckBox.isSelected());
+        });
+
+        customPersonCheckBox.setOnAction(event -> {
+            customPersonNameTextField.setDisable( ! customPersonCheckBox.isSelected());
+        });
     }
+
+    public DonatorController(){}
+
+    public void setUser(DonatorEntity user) {
+        this.user = user;
+    }
+
+    public void setClient(ClientInterface client){
+        this.client = client;
+
+        try {
+            transfusionCentersList = client.getAll(CentruTransfuziiEntity.class);
+
+            transfusionCentersList.forEach(center -> {
+                transfusionCentersComboBox.getItems().add(center.getId() + ". " + center.getNume() + ", " + center.getRegiune() + ", " + center.getOras());
+            });
+
+            transfusionCentersComboBox.getSelectionModel().selectFirst();
+
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setDataLabel(){
-        LocalDate date=LocalDate.parse(model.get(0).getData());
+        /*LocalDate date=LocalDate.parse(model.get(0).getData());
         for(DonatieEntity donatieEntity:model){
                 if(LocalDate.parse(donatieEntity.getData()).isAfter(date) )
                     date=LocalDate.parse(donatieEntity.getData());
         }
-        dataLabel.setText(date.toString());
-
+        dataLabel.setText(date.toString());*/
     }
 
-    public void handleTrimitere() throws NetworkException {
+    public void handleTrimitere(ActionEvent event) {
         try{
-        DonatieEntity donatieEntity=new DonatieEntity();
-        donatieEntity.setPuls(Short.parseShort(textFieldPuls.getText()));
-        donatieEntity.setGreutate(Short.parseShort(textFieldGreutate.getText()));
-        donatieEntity.setTensiune(Short.parseShort(textFieldTensiune.getText()));
-        donatieEntity.setaSuferitInterventii(Short.parseShort(interventii.getSelectedToggle().getUserData().toString()));
-        donatieEntity.setaConsumatAlcool(Short.parseShort(consum.getSelectedToggle().getUserData().toString()));
-        donatieEntity.setInsarcinataLauzieMenstruatie(Short.parseShort(femei.getSelectedToggle().getUserData().toString()));
-        donatieEntity.setData("22.03.2018");
-        donatieEntity.setaSuferitBoli(Short.parseShort(boli.getSelectedToggle().getUserData().toString()));
-        donatieEntity.setSubTratament(Short.parseShort(tratament.getSelectedToggle().getUserData().toString()));
-        donatieEntity.setNumePacient(user.getNume());
-        //donatieEntity.setDonator(user.getId());
-        service.saveOrUpdate(donatieEntity);
-        model.setAll(service.getAll(DonatieEntity.class));
-        String date= LocalDate.parse(donatieEntity.getData()).plusDays(1).toString();
-        dataLabel.setText(date);
-        tableView.setItems(model);}
-        catch (NumberFormatException e){
-            MessageAllert.showErrorMessage(null,"Date gresite");
+            DonatieEntity donatieEntity=new DonatieEntity();
+            donatieEntity.setData(new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime()));
+            donatieEntity.setDonatorByDonator(user);
+
+            if(customPersonCheckBox.isSelected()) {
+                donatieEntity.setNumePacient(customPersonNameTextField.getText());
+            }
+            else {
+                donatieEntity.setNumePacient("");
+            }
+
+            donatieEntity.setaConsumatAlcool((short) 0);
+            donatieEntity.setaSuferitBoli((short) 0);
+            donatieEntity.setaSuferitInterventii((short) 0);
+            donatieEntity.setGreutate((short) 0);
+            donatieEntity.setInsarcinataLauzieMenstruatie((short) 0);
+            donatieEntity.setPuls((short) 0);
+            donatieEntity.setRespins((short) 0);
+            donatieEntity.setSubTratament((short) 0);
+            donatieEntity.setTensiune((short) 0);
+            donatieEntity.setStadiu("dunno");
+
+            donatieEntity.setCentruTransfuziiByCentruTransfuzii( transfusionCentersList.get( transfusionCentersComboBox.getSelectionModel().getSelectedIndex() ) );
+
+            client.saveOrUpdate(donatieEntity);
+
+            //donatieEntity.setDonator(user.getId());
+            //service.saveOrUpdate(donatieEntity);
+            //model.setAll(service.getAll(DonatieEntity.class));
+            //String date= LocalDate.parse(donatieEntity.getData()).plusDays(1).toString();
+            dataLabel.setText(donatieEntity.getData());
+            tableView.setItems(model);
         }
-
-
+        catch (Exception e){
+            e.printStackTrace();
+            MessageAllert.showErrorMessage(null,e.getMessage());
+        }
     }
-
 }

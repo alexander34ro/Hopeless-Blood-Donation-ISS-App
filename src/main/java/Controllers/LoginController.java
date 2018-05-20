@@ -65,6 +65,7 @@ public class LoginController {
             Parent aroot = aloader.load();
 
             IUserController controller = aloader.getController();
+            controller.setUser(response);
             controller.setClient(client);
 
             //controller.setUser(response);

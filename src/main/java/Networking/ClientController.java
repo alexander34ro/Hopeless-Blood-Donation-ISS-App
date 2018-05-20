@@ -44,4 +44,9 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     public <T> List<T> getAll(Class className) throws NetworkException, RemoteException {
         return server.getAll(className);
     }
+
+    @Override
+    public <T> void saveOrUpdate(final T o) throws NetworkException, RemoteException {
+        server.saveOrUpdate(o);
+    }
 }

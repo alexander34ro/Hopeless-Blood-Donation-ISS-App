@@ -3,8 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DonatorController">
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DonatorController">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
    <center>
       <TabPane prefHeight="753.0" prefWidth="777.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -43,119 +47,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="633.0" prefWidth="705.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="726.0" prefWidth="711.0">
+                        <Pane layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="671.0">
                            <children>
-                              <Label layoutX="25.0" layoutY="14.0" text="Condiții de donare" textFill="#b50c0c">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="25.0" layoutY="71.0" prefHeight="31.0" prefWidth="65.0" text="Greutate">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldGreutate" layoutX="261.0" layoutY="74.0" promptText="kg" />
-                              <Label layoutX="25.0" layoutY="109.0" text="Puls">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldPuls" layoutX="261.0" layoutY="107.0" promptText="bătăi/minut" />
-                              <Label layoutX="24.0" layoutY="139.0" text="Tensiune arterială sistolică">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldTensiune" layoutX="261.0" layoutY="137.0" promptText="mmHg " />
-                              <Label layoutX="24.0" layoutY="231.0" text="• Au existat intervenţii chirurgicale in ultimele 6 luni?">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <RadioButton fx:id="radioBtnInterventiiDa" layoutX="32.0" layoutY="247.0" mnemonicParsing="false" text="Da">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="interventii" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="radioBtnInterventiiNu" layoutX="84.0" layoutY="247.0" mnemonicParsing="false" text="Nu" toggleGroup="$interventii" />
-                              <Label layoutX="25.0" layoutY="277.0" text="• Aţi consumat de grăsimi sau băuturi alcoolice cu cel putin 48 h înaintea donării?">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <RadioButton fx:id="radioBtnTratamentDa" layoutX="24.0" layoutY="357.0" mnemonicParsing="false" text="Da">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="tratament" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="radioBtnTratamentNu" layoutX="78.0" layoutY="357.0" mnemonicParsing="false" text="Nu" toggleGroup="$tratament" />
-                              <Label layoutX="25.0" layoutY="325.0" prefWidth="737.0" text="• Primiţi tratament pentru diferite afecţiuni: hipertensiune,boli ">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="24.0" layoutY="341.0" text="de inimă,boli renale,boli psihice,boli hepatice,boli endocrine?">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <RadioButton fx:id="radioBtnConsumDa" layoutX="32.0" layoutY="295.0" mnemonicParsing="false" text="Da">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="consum" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="radioBtnConsumNu" layoutX="84.0" layoutY="295.0" mnemonicParsing="false" text="Nu" toggleGroup="$consum" />
-                              <Label layoutX="29.0" layoutY="387.0" text="• Ati suferit de una dintre următoarele boli: hepatită (de orice tip), TBC, sifilis, malarie,  ">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="24.0" layoutY="403.0" text="epilepsie si alte boli neurologice, boli psihice, boli psihice,bruceloza, ulcer,">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="24.0" layoutY="419.0" text="boli de inimă, boli de piele: psoriazis, vitiligo, miopie forte peste (-) 6 dioptrii, cancer?">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <RadioButton fx:id="radioBtnBoliDa" layoutX="24.0" layoutY="435.0" mnemonicParsing="false" text="Da">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="boli" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="radioBtnBoliNu" layoutX="78.0" layoutY="435.0" mnemonicParsing="false" text="Nu" toggleGroup="$boli" />
-                              <Label layoutX="24.0" layoutY="465.0" text="• Sunteţi însărcinată, în perioada de lăuzie, în perioada menstruală?">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <RadioButton fx:id="radioBtnFemeiDa" layoutX="24.0" layoutY="481.0" mnemonicParsing="false" text="Da">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="femei" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="radioBtnFemeiNu" layoutX="78.0" layoutY="481.0" mnemonicParsing="false" text="Nu" toggleGroup="$femei" />
-                              <Label layoutX="24.0" layoutY="170.0" text="Grupa de sânge">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldGrS" layoutX="261.0" layoutY="165.0" promptText="grupa de sânge" />
-                              <Label layoutX="29.0" layoutY="199.0" text="Rh">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldRh" layoutX="261.0" layoutY="194.0" promptText="Rh" />
-                              <Button layoutX="276.0" layoutY="666.0" mnemonicParsing="false" onAction="#handleTrimitere" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
-                              <CheckBox fx:id="checkBox" layoutX="24.0" layoutY="515.0" mnemonicParsing="false" />
-                              <Hyperlink layoutX="48.0" layoutY="512.0" text="Sunt de acord" />
-                              <Label layoutX="483.0" layoutY="645.0" text="Data curentă: 22.03.2018" />
-                              <TextField fx:id="textFieldNumeSiPrenume" layoutX="24.0" layoutY="581.0" promptText="Nume si prenume" />
-                              <Label layoutX="24.0" layoutY="549.0" prefHeight="21.0" prefWidth="488.0" text="Vreți să donați pentru o anumită persoană? Dacă da completați numele" />
+                              <Button fx:id="sendButton" layoutX="288.0" layoutY="690.0" mnemonicParsing="false" onAction="#handleTrimitere" prefHeight="25.0" prefWidth="95.0" text="Trimite" />
+                              <CheckBox fx:id="acceptedRulesAndConditionsCheckBox" layoutX="14.0" layoutY="648.0" mnemonicParsing="false" text="Am citit şi sunt de acord cu termenii şi condiţiile prezentate mai sus" />
+                              <CheckBox fx:id="customPersonCheckBox" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Doresc să donez sânge pentru o persoană anume" />
+                              <TextField fx:id="customPersonNameTextField" layoutX="33.0" layoutY="81.0" promptText="Nume, prenume..." />
+                              <Label layoutX="14.0" layoutY="18.0" text="Centrul unde voi dona sânge:" />
+                              <ComboBox fx:id="transfusionCentersComboBox" layoutX="179.0" layoutY="14.0" prefWidth="335.0" />
+                              <TextArea editable="false" layoutX="13.0" layoutY="123.0" prefHeight="515.0" prefWidth="645.0" style="-fx-background-color: white;" text="CE TREBUIE SA STIE DONATORII DE SANGE&#10;&#10;a) Importanta  sangelui,  procesul  de  donare  de  sange  si  principalele  beneficii  ale  pacientului transfuzat;&#10;&#10;b)Protectia si confidentialitatea datelor personale ale donatorului, respectiv identitatea si starea de sanatate a acestuia, &#10;rezultatele testelor efectuate, care nu vor fi furnizate fara autorizare;&#10;&#10;c) Natura procedurilor implicate in donarea de sange sau de componentele sanguine destinate a fi transfuzate unor &#10;alte persoane si riscurile asociate fiecareia in parte;&#10;&#10;d) Optiunea  donatorilor  de  a  se  razgandi  in  ceea  ce  priveste  actul  donarii,  inainte  de  a  merge mai departe &#10;sau despre eventualitatea de a se autoexclude in orice moment in cursul procesului de donare, fara nici un  fel de jena sau discomfort;&#10;&#10;e).  Donatorii sa informeze centrul de transfuzie sanguina despre orice eventual eveniment ulterior transfuziei ce poate face &#10;donarea anterioara improprie pentru terapia transfuzionala;&#10;&#10;f).   Responsabilitatea centrului de transfuzie sanguina de a informa donatorul printr-un mecanism adecvat  care  sa  asigure  pastrarea  &#10;confidentialitatii ,  daca  rezultatele  testelor  arata  vreo  anomalitate cu  semnificatie  asupra  starii  de  sanatate  a  donatorului;  &#10;crearea  de  mecanisme  de  informare  a donatorului,  ulterior  donarii,  motivelor  pentru  care  unitatile  de  sange  si  componente  &#10;sanguine nefolosite provenite din donarea autologa, vor fi rebutate si nu transfuzate altor pacienti;&#10;&#10;h). Rezultatele testelor ce detecteaza markeri pentru virusuri sau agenti microbieni cu transmitere &#10;transfuzionala vor duce la excluderea donatorilor si distrugerea unitatilor de sange colectate;&#10;&#10;i).   Donatorii sa puna intrebari in orice moment;&#10;&#10;j).  La selectia potentialilor donatori, donarea se realizeaza exclusiv la sedul unde se efectueaza recoltarea  numai  de  catre  &#10;personalul  instruit  al  centrelor  de  transfuzie  sanguina  teritoriale  (CTS),  precum si la sediul celui mai apropiat centru &#10;de transfuzie sanguina;&#10;&#10;k). Donarea de sange, in Romania este voluntara si neremunerata; persoanele care au donat sau doneaza  sange  nu  pot  primi  &#10;recompense  de  natura  materiala,  cum  ar  fi  premii  in  bani,  gratificatii salariale, pensie de stat sau ajutor social, pentru faptul&#10;ca au donat sange sau componente sanguine;&#10;&#10;l).    Beneficiile si riscurile pentru sanatate ale donarii de sange;&#10;&#10;m).   Explicarea criteriilor de excludere pentru donatorii de sange;&#10;&#10;n).   Existenta si semnificatia “consimtamantului informat&quot;;&#10;&#10;o).  Importanta  efectuarii  examinarii  medicale  si  a  testelor  obligatorii,  solicitatea  antecedentelor fiziologice si patologice &#10;si motivarea acestora;&#10;&#10;p).    Nedeclararea  intentionata  de  catre  donator  a  bolilor  transmisibile  sau  a  factorilor  de  risc cunoscuti, constituie infractiune &#10;ce se pedepseste conform art.39 si 40  din Legea nr.282/2005;&#10;&#10;q).  Pot dona sange la centrul de transfuzie  sanguina dintr-un anumit teritoriu cetatenii altor tari, care  locuiesc  in  Romania  de  &#10;cel  putin  un  an  si  care  pot  prezenta  acte  doveditoare  in  acest  sens, originale sau copii legalizate la notariat;&#10;&#10;r).   Cetatenii romani care au domiciliul stabil, serviciul sau studiaza in teritoriul arondat centrului de  transfuzie  sanguina,  &#10;respectiv  cetatenii  romani  care  au  donat  sange  sau  componente  sanguine intr-un  alt  centru  de transfuzie  sanguina,  dar  si-au  &#10;schimbat  domiciliul  de  cel  putin  6  luni  in  teritoriul respectiv si care pot prezenta acte doveditoare, sunt eligibili pentru &#10;donarea de sange; &#10;&#10;s).   Militarii din unitatile situate in raza teritoriala a centrului de transfuzie sanguina teritorial, pot dona sange la acest centru;&#10;&#10;t).  Conditiile pe care trebuie sa le indeplineasca potentialul donator in vederea donarii de sange, respectiv   sa  aiba   o stare   buna &#10;de   sanatate  fizica  si   mentala,   o  stare   de   igiena  personala corespunzatoare si sa prezinte documentele medicale doveditoare &#10;ca a efectuat examenele medicale recomandate de medicul responsabil cu selectia donatorilor;&#10;&#10;u).  Potentialul donator de sange este eligibil numaiin conditiile in care nu apartine grupului care prin  comportamentul  sexual  &#10;sau/si  habitual  il  plaseaza  in  zona  cu  risc  de  a  contacta  sau/si  de  a  raspandi afectiuni severe ce se pot transmite prin sange." />
                            </children>
                         </Pane>
                      </children>

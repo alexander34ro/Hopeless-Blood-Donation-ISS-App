@@ -88,6 +88,11 @@ public class ServerImplementation implements ServerInterface {
         return dumbService.getAll(className);
     }
 
+    @Override
+    public <T> void saveOrUpdate(final T o) throws NetworkException {
+        dumbService.saveOrUpdate(o);
+    }
+
     /*
     @Override
     public void logout(IUser user) throws LogException {
