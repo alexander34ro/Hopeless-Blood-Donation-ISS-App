@@ -44,10 +44,10 @@ public class MedicController implements IUserController<MedicEntity>{
     @FXML
     public void initialize() {
 
-        labelNume.setText(user.getNume());
+/*        labelNume.setText(user.getNume());
         labelSpital.setText(user.getSpitalBySpital().getNume());
         modelM.setAll(service.getAll(PacientEntity.class));
-        tableView.setItems(modelM);
+        tableView.setItems(modelM);*/
 
     }
 

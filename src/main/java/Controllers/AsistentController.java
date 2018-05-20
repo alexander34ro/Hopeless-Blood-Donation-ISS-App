@@ -22,17 +22,9 @@ public class AsistentController implements IUserController<AsistentEntity>{
     private ClientInterface client;
     ObservableList<DonatieEntity> modelDonatie = FXCollections.observableArrayList();
     ObservableList<DetaliiCerereEntity> modelDetaliiCerere = FXCollections.observableArrayList();
-
-    public void setUser(AsistentEntity user){
-        this.user = user;
-    }
-
-    public void setClient(ClientInterface client){
-        this.client = client;
-    }
     @FXML
     public void initialize() {
-        try {
+        /*try {
             System.out.println("luam donatiile de la server");
             List<DonatieEntity> donatieEntities = client.getAll(DonatieEntity.class);
             System.out.println(donatieEntities.get(0).getId());
@@ -44,8 +36,39 @@ public class AsistentController implements IUserController<AsistentEntity>{
             setLabels();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }*/
+    }
+
+    public void setUser(AsistentEntity user){
+        this.user = user;
+    }
+
+    public void setClient(ClientInterface client){
+        this.client = client;
+        tableViewDonatie.getItems().clear();
+        try {
+            /*client.getAll(DonatieEntity.class).forEach(object -> {
+                DonatieEntity donatie = (DonatieEntity) object;
+                if(donatie.getCentruTransfuziiByCentruTransfuzii().getId() == user.getId()) {
+                    tableViewDonatie.getItems().add(donatie);
+                }
+            });*/
+
+            System.out.println("luam donatiile de la server");
+            List<DonatieEntity> donatieEntities = client.getAll(DonatieEntity.class);
+            System.out.println(donatieEntities.get(0).getId());
+            System.out.println("punem donatiile");
+            modelDonatie.setAll(donatieEntities);
+            modelDetaliiCerere.setAll(client.getAll(DetaliiCerereEntity.class));
+            tableViewDonatie.setItems(modelDonatie);
+            tableViewCerere.setItems(modelDetaliiCerere);
+            setLabels();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
         }
     }
+
     public void setLabels(){
         int[] valori = new int[12];
         try {

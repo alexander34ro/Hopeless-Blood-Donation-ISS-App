@@ -24,29 +24,10 @@ public class ServerImplementation implements ServerInterface {
 
     @Override
     public IUser login(String username, String password, ClientInterface client) {
-
-        // user / password ok
-        //AsistentEntity user = new AsistentEntity(); // result
-
-        /*if( this.loggedInClients.containsKey( user.getId() ) ) {
-            throw new LogException("User deja autentificat");
-        }*/
-
-        // this.loggedInClients.put(user.getId(), client);
-
-        //return user;
-
-        Class[] classes = new Class[]{DonatorEntity.class, AsistentEntity.class, MedicEntity.class};
-
-        System.out.println(dumbService.getAll(DonatorEntity.class).size());
-        System.out.println(dumbService.getAll(AsistentEntity.class).size());
-        System.out.println(dumbService.getAll(MedicEntity.class).size());
-
-        for(Class c : classes) {
+        for(Class c : new Class[]{DonatorEntity.class, AsistentEntity.class, MedicEntity.class}) {
             for(Object obj : dumbService.getAll(c)) {
                 if(obj instanceof IUser) {
                     IUser user = (IUser) obj;
-                    System.out.println("~~" + user.getUsername() + " - " + user.getParola());
                     if(username.equals(user.getUsername()) && password.equals(user.getParola())) {
                         System.out.println("Logged in");
                         if( ! this.loggedInClients.containsKey(user.getId())) {

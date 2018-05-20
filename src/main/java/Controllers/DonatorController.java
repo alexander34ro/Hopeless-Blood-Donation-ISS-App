@@ -113,15 +113,13 @@ public class DonatorController implements IUserController<DonatorEntity> {
 
             short id;
 
-            synchronized (client) {
-                List<DonatieEntity> donations = client.getAll(DonatieEntity.class);
-                id = 1;
+            List<DonatieEntity> donations = client.getAll(DonatieEntity.class);
+            id = 1;
 
-                Optional<DonatieEntity> result = donations.stream()
-                        .reduce((A, B) -> A.getId() > B.getId() ? A : B);
-                if (result.isPresent()) {
-                    id = (short) (result.get().getId() + 1);
-                }
+            Optional<DonatieEntity> result = donations.stream()
+                    .reduce((A, B) -> A.getId() > B.getId() ? A : B);
+            if (result.isPresent()) {
+                id = (short) (result.get().getId() + 1);
             }
 
             donatieEntity.setId(id);
