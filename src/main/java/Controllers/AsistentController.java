@@ -4,6 +4,8 @@ import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Networking.NetworkException;
 import Persistence.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -23,6 +26,8 @@ import java.util.stream.Collectors;
 public class AsistentController implements IUserController<AsistentEntity>{
     @FXML private TableView<DonatieEntity> tableViewDonatie;
     @FXML private  TableView<DetaliiCerereEntity> tableViewCerere;
+
+    @FXML private TableColumn<DonatieEntity, String> tipSangeTableColumn;
     @FXML private Label labelPlasmaO,labelPlasmaA,labelPlasmaB,labelPlasmaAB,labelGlobuleO,labelGlobuleA,labelGlobuleB,labelGlobuleAB,labelTrombociteA,labelTrombociteB,labelTrombociteAB,labelTrombociteO;
 
     private AsistentEntity user;
@@ -31,6 +36,17 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
 
     @FXML public void initialize() {
+
+        tipSangeTableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<DonatieEntity, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<DonatieEntity, String> p) {
+                if (p.getValue() != null) {
+                    return new SimpleStringProperty(p.getValue().getDonatorByDonator().getTipSange());
+                } else {
+                    return new SimpleStringProperty("N/A");
+                }
+            }
+        });
 
         tableViewDonatie.setOnMouseClicked( event -> {
             if( event.getClickCount() == 2 ) {

@@ -161,10 +161,7 @@
                      <PropertyValueFactory property="donatorName" />
                   </cellValueFactory>
                </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Tip sânge">
-                  <cellValueFactory>
-                     <PropertyValueFactory property="getTipSange" />
-                  </cellValueFactory>
+                  <TableColumn fx:id="tipSangeTableColumn" prefWidth="75.0" text="Tip sânge">
                </TableColumn>
                   <TableColumn prefWidth="75.0" text="Pacient">
                   <cellValueFactory>
