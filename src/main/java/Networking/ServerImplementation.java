@@ -78,6 +78,11 @@ public class ServerImplementation implements ServerInterface {
         }
     }
 
+    @Override
+    public <T> void delete(final T o) throws NetworkException,RemoteException{
+        dumbService.delete(o);
+    }
+
     /*
     @Override
     public void logout(IUser user) throws LogException {

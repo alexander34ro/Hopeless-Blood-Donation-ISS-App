@@ -236,7 +236,7 @@
                   </TableColumn>
                   <TableColumn prefWidth="107.0" text="Spital">
                       <cellValueFactory>
-                          <PropertyValueFactory property="getNumeSpital" />
+                          <PropertyValueFactory property="cantitate" />
                       </cellValueFactory>
                   </TableColumn>
               </columns>

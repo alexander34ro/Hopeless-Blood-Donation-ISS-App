@@ -56,6 +56,11 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     }
 
     @Override
+    public <T> void delete(final T o) throws NetworkException, RemoteException {
+        server.delete(o);
+    }
+
+    @Override
     public void donationAddedOrUpdated() {
         try {
             if(this.asistentController != null) {

@@ -13,5 +13,6 @@ public interface ServerInterface {
     void signuUp(IUser user) throws NetworkException;
     <T> List<T> getAll(Class className) throws NetworkException;
     <T> void saveOrUpdate(final T o) throws NetworkException, RemoteException;
+    <T> void delete(final T o) throws NetworkException,RemoteException;
     //void logout(IUser user) throws LogException;
 }
