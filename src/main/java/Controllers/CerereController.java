@@ -46,6 +46,7 @@ public class CerereController {
     MedicEntity medic = null;
 
     CerereEntity cerereEntityG;
+
     public void setMedic(MedicEntity medic) {
         this.medic = medic;
     }
@@ -106,7 +107,7 @@ public class CerereController {
 
                 cerereEntity.setCerereByCerere(cerereEntityy);
                 client.saveOrUpdate(cerereEntity);
-                cerereEntityG=cerereEntityy;
+                cerereEntityG = cerereEntityy;
                 JOptionPane.showMessageDialog(null, "Cerere salvata.");
                 try {
                     modelM.setAll(client.getAll(DetaliiCerereEntity.class));
@@ -173,19 +174,19 @@ public class CerereController {
             cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
             cerereEntity.setCerereByCerere(cerereEntityG);
 
-                try {
-                    client.saveOrUpdate(cerereEntity);
-                    JOptionPane.showMessageDialog(null, "Cerere salvata.");
-                } catch (NetworkException e) {
-                    e.printStackTrace();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
+            try {
+                client.saveOrUpdate(cerereEntity);
+                JOptionPane.showMessageDialog(null, "Cerere salvata.");
+            } catch (NetworkException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
 
-                try {
-                    modelM.setAll(client.getAll(DetaliiCerereEntity.class));
+            try {
+                modelM.setAll(client.getAll(DetaliiCerereEntity.class));
 
-                    tableView.setItems(modelM);
+                tableView.setItems(modelM);
             } catch (NetworkException e) {
                 e.printStackTrace();
             } catch (RemoteException e) {
