@@ -140,6 +140,12 @@ public class CerereController {
                         client.delete(cerereEntity);
                         client.delete(d);
                         JOptionPane.showMessageDialog(null, "Cerere eliminata.");
+                        try {
+                            modelM.setAll(client.getAll(DetaliiCerereEntity.class));
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                        tableView.setItems(modelM);
                         break;
                     }
 
