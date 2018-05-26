@@ -67,6 +67,7 @@ public class MedicController implements IUserController<MedicEntity> {
 
         CerereController ctrl = loader.getController();
         ctrl.setClient(client);
+        ctrl.setMedic(user);
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();

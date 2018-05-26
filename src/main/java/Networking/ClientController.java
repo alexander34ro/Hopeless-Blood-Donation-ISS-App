@@ -2,6 +2,7 @@ package Networking;
 
 import Controllers.AsistentController;
 import Controllers.DonatorController;
+import Controllers.MedicController;
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
 import Persistence.IUser;
@@ -16,6 +17,7 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
 
     private AsistentController asistentController = null;
     private DonatorController donatorController = null;
+    private MedicController medicController = null;
 
     public ClientController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -25,8 +27,7 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     public IUser login(String username, String password) throws NetworkException, RemoteException {
         try {
             return this.server.login(username, password, this);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -36,8 +37,7 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     public void logout() throws RemoteException {
         try {
             this.server.logout(this);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -63,14 +63,12 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
     @Override
     public void donationAddedOrUpdated() {
         try {
-            if(this.asistentController != null) {
+            if (this.asistentController != null) {
                 this.asistentController.updateDonatii();
-            }
-            else if(this.donatorController != null) {
+            } else if (this.donatorController != null) {
                 donatorController.updateTable();
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -81,5 +79,9 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
 
     public void setDonatorController(DonatorController donatorController) {
         this.donatorController = donatorController;
+    }
+
+    public void setMedicController(MedicController medicController) {
+        this.medicController = medicController;
     }
 }

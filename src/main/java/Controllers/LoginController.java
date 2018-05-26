@@ -72,6 +72,9 @@ public class LoginController {
             else if(controller instanceof DonatorController) {
                 client.setDonatorController((DonatorController) controller);
             }
+            else if(controller instanceof  MedicController){
+                client.setMedicController((MedicController) controller);
+            }
 
             controller.setUser(response);
             controller.setClient(client);
