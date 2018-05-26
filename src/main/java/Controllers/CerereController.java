@@ -127,11 +127,12 @@ public class CerereController {
         if (tableView.getSelectionModel().getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "Date neselectate.");
         } else {
-            DetaliiCerereEntity cerereEntity = new DetaliiCerereEntity();
-            cerereEntity.setPrioritate(String.valueOf(comboBox3.getSelectionModel().getSelectedItem()));
-            cerereEntity.setCantitate(Short.parseShort(String.valueOf(textFieldUnitati.getText())));
-            cerereEntity.setProdusSange(String.valueOf(comboBox2.getSelectionModel().getSelectedItem()));
-            cerereEntity.setTipSange(String.valueOf(comboBox1.getSelectionModel().getSelectedItem()));
+            CerereEntity cerereEntity=new CerereEntity();
+            DetaliiCerereEntity detaliiCerereEntity=new DetaliiCerereEntity();
+            detaliiCerereEntity.setTipSange((String) tableView.getSelectionModel().getSelectedCells().get(0));
+
+
+
             try {
                 client.delete(cerereEntity);
                 JOptionPane.showMessageDialog(null, "Cerere eliminata.");
