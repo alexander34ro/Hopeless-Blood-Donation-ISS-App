@@ -128,13 +128,10 @@ public class CerereController {
             JOptionPane.showMessageDialog(null, "Date neselectate.");
         } else {
             CerereEntity cerereEntity=new CerereEntity();
-            DetaliiCerereEntity detaliiCerereEntity=new DetaliiCerereEntity();
-            detaliiCerereEntity.setTipSange((String) tableView.getSelectionModel().getSelectedCells().get(0));
-
-
+            DetaliiCerereEntity detaliiCerereEntity= (DetaliiCerereEntity) tableView.getSelectionModel().getSelectedItem();
 
             try {
-                client.delete(cerereEntity);
+                client.delete(detaliiCerereEntity);
                 JOptionPane.showMessageDialog(null, "Cerere eliminata.");
                 try {
                     modelM.setAll(client.getAll(DetaliiCerereEntity.class));
