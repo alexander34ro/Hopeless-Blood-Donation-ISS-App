@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.List;
 
 public class CerereController {
 
@@ -41,7 +42,7 @@ public class CerereController {
     ObservableList<TipSange> tipSange = FXCollections.observableArrayList();
     ObservableList<CategorieSanguina> categorieSanguina = FXCollections.observableArrayList();
     ObservableList<Prioritate> prioritate = FXCollections.observableArrayList();
-    ObservableList<CentruTransfuziiEntity> centruTransfuziiEntities =FXCollections.observableArrayList();
+    ObservableList<CentruTransfuziiEntity> centruTransfuziiEntities = FXCollections.observableArrayList();
 
     MedicEntity medic = null;
 
@@ -100,7 +101,7 @@ public class CerereController {
                 cerereEntity.setCantitate(Short.parseShort(String.valueOf(textFieldUnitati.getText())));
                 cerereEntity.setProdusSange(String.valueOf(comboBox2.getSelectionModel().getSelectedItem()));
                 cerereEntity.setTipSange(String.valueOf(comboBox1.getSelectionModel().getSelectedItem()));
-                cerereEntity.setDataCompletare(String.valueOf(new Date() ));
+                cerereEntity.setDataCompletare(String.valueOf(new Date()));
                 cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
 
                 cerereEntity.setCerereByCerere(cerereEntityy);
@@ -127,18 +128,22 @@ public class CerereController {
         if (tableView.getSelectionModel().getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "Date neselectate.");
         } else {
-            CerereEntity cerereEntity=new CerereEntity();
-            DetaliiCerereEntity detaliiCerereEntity= (DetaliiCerereEntity) tableView.getSelectionModel().getSelectedItem();
-
             try {
-                client.delete(detaliiCerereEntity);
-                JOptionPane.showMessageDialog(null, "Cerere eliminata.");
-                try {
-                    modelM.setAll(client.getAll(DetaliiCerereEntity.class));
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
+                CerereEntity cerereEntity = new CerereEntity();
+                DetaliiCerereEntity detaliiCerereEntity = (DetaliiCerereEntity) tableView.getSelectionModel().getSelectedItem();
+
+                for (DetaliiCerereEntity d : detaliiCerereEntityList
+                        ) {
+                    if (d.getTipSange().equals(detaliiCerereEntity.getTipSange()) && d.getCantitate() == detaliiCerereEntity.getCantitate() && d.getPrioritate().equals(detaliiCerereEntity.getPrioritate()) && d.getProdusSange().equals(detaliiCerereEntity.getProdusSange())) {
+                        cerereEntity = d.getCerereByCerere();
+                        client.delete(cerereEntity);
+                        client.delete(d);
+                        JOptionPane.showMessageDialog(null, "Cerere eliminata.");
+                        break;
+                    }
+
                 }
-                tableView.setItems(modelM);
             } catch (NetworkException e) {
                 e.printStackTrace();
             } catch (RemoteException e) {
