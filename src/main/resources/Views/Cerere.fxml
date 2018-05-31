@@ -55,5 +55,6 @@
         <ComboBox fx:id="comboBox4" layoutX="21.0" layoutY="381.0" prefHeight="31.0" prefWidth="117.0" />
         <Button layoutX="432.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleTrimitere" prefWidth="97.0" text="Trimite" />
         <Label layoutX="23.0" layoutY="351.0" prefHeight="21.0" prefWidth="97.0" text="CentruTransfuzii" />
+        <Button layoutX="230.0" layoutY="396.0" onAction="#handleAdauga" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Adauga" />
     </children>
 </Pane>

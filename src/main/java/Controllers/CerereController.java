@@ -34,7 +34,6 @@ public class CerereController {
     @FXML
     private ComboBox comboBox4;
 
-
     ObservableList<PacientEntity> modelM = FXCollections.observableArrayList();
 
     private ClientInterface client;
@@ -45,6 +44,8 @@ public class CerereController {
     ObservableList<CentruTransfuziiEntity> centruTransfuziiEntities = FXCollections.observableArrayList();
 
     MedicEntity medic = null;
+
+    CerereEntity cerereEntityG;
 
     public void setMedic(MedicEntity medic) {
         this.medic = medic;
@@ -106,6 +107,7 @@ public class CerereController {
 
                 cerereEntity.setCerereByCerere(cerereEntityy);
                 client.saveOrUpdate(cerereEntity);
+                cerereEntityG = cerereEntityy;
                 JOptionPane.showMessageDialog(null, "Cerere salvata.");
                 try {
                     modelM.setAll(client.getAll(DetaliiCerereEntity.class));
@@ -140,6 +142,12 @@ public class CerereController {
                         client.delete(cerereEntity);
                         client.delete(d);
                         JOptionPane.showMessageDialog(null, "Cerere eliminata.");
+                        try {
+                            modelM.setAll(client.getAll(DetaliiCerereEntity.class));
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                        tableView.setItems(modelM);
                         break;
                     }
 
@@ -149,6 +157,42 @@ public class CerereController {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void handleAdauga() {
+        if (textFieldUnitati.getText() == null || textFieldUnitati.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Date necompletate.");
+        } else {
+            DetaliiCerereEntity cerereEntity = new DetaliiCerereEntity();
+            cerereEntity.setPrioritate(String.valueOf(comboBox3.getSelectionModel().getSelectedItem()));
+            cerereEntity.setCantitate(Short.parseShort(String.valueOf(textFieldUnitati.getText())));
+            cerereEntity.setProdusSange(String.valueOf(comboBox2.getSelectionModel().getSelectedItem()));
+            cerereEntity.setTipSange(String.valueOf(comboBox1.getSelectionModel().getSelectedItem()));
+            cerereEntity.setDataCompletare(String.valueOf(new Date()));
+            cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
+            cerereEntity.setCerereByCerere(cerereEntityG);
+
+            try {
+                client.saveOrUpdate(cerereEntity);
+                JOptionPane.showMessageDialog(null, "Cerere salvata.");
+            } catch (NetworkException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                modelM.setAll(client.getAll(DetaliiCerereEntity.class));
+
+                tableView.setItems(modelM);
+            } catch (NetworkException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }
