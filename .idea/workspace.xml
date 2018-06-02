@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cfbe46-bc11-4214-beef-a2a7024e3b7b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/database/ISSBloodDonation.db" afterPath="$PROJECT_DIR$/database/ISSBloodDonation.db" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/CerereController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/CerereController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MedicController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" afterPath="$PROJECT_DIR$/src/main/resources/Views/Medic.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -56,11 +52,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+              <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1670#1671#0" expanded="true" />
-                <element signature="e#1704#1705#0" expanded="true" />
+                <element signature="e#1625#1626#0" expanded="true" />
+                <element signature="e#1659#1660#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1121,7 +1117,7 @@
       <workItem from="1527344680115" duration="8852000" />
       <workItem from="1527355408616" duration="1248000" />
       <workItem from="1527359079988" duration="1293000" />
-      <workItem from="1527933642341" duration="5383000" />
+      <workItem from="1527933642341" duration="5517000" />
     </task>
     <task id="LOCAL-00001" summary="alex is here">
       <created>1522756875092</created>
@@ -1326,7 +1322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1527360364862</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="cerere">
+      <created>1527939180761</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1527939180761</updated>
+    </task>
+    <task id="LOCAL-00031" summary="cerere">
+      <created>1527939226849</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1527939226849</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1362,7 +1372,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49921000" />
+    <option name="totallyTimeSpent" value="50055000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1461,13 +1471,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java</url>
-          <line>117</line>
+          <line>116</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java</url>
-          <line>100</line>
+          <line>99</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
@@ -1877,11 +1887,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CerereController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <caret line="111" column="1" lean-forward="false" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1670#1671#0" expanded="true" />
-            <element signature="e#1704#1705#0" expanded="true" />
+            <element signature="e#1625#1626#0" expanded="true" />
+            <element signature="e#1659#1660#0" expanded="true" />
           </folding>
         </state>
       </provider>
