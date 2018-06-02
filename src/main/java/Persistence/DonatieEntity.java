@@ -228,4 +228,8 @@ public class DonatieEntity implements java.io.Serializable {
     public void setCentruTransfuziiByCentruTransfuzii(CentruTransfuziiEntity centruTransfuziiByCentruTransfuzii) {
         this.centruTransfuziiByCentruTransfuzii = centruTransfuziiByCentruTransfuzii;
     }
+
+    public String tipSange(){
+        return donatorByDonator.getTipSange();
+    }
 }

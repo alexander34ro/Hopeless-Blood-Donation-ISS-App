@@ -84,9 +84,7 @@ public class DetaliiCerereEntity extends CerereEntity implements java.io.Seriali
         this.cantitate = cantitate;
     }
 
-    public String numeSpital(){
-        return cerereByCerere.getMedicByMedic().getSpitalBySpital().getNume();
-    }
+
 
     @Override
     public boolean equals(Object o) {
