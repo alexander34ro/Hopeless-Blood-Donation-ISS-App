@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.List;
 
 public class TestMedic {
@@ -52,8 +51,6 @@ public class TestMedic {
                 assert sizeFinal < sizeIntermediar;
 
 
-            } catch (RemoteException e) {
-                e.printStackTrace();
             } catch (NetworkException e) {
                 e.printStackTrace();
             } catch (IOException e) {
