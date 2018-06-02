@@ -8,11 +8,12 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class TestCRUD {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSpital() {
         DumbService dumbService = new DumbService();
         List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
