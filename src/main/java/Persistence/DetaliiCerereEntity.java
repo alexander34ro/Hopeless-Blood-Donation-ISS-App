@@ -1,10 +1,11 @@
 package Persistence;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "DetaliiCerere", schema = "main", catalog = "")
-public class DetaliiCerereEntity extends CerereEntity implements java.io.Serializable {
+public class DetaliiCerereEntity extends CerereEntity implements Serializable {
     private short id;
     private String produsSange;
     private String tipSange;
@@ -83,8 +84,6 @@ public class DetaliiCerereEntity extends CerereEntity implements java.io.Seriali
     public void setCantitate(short cantitate) {
         this.cantitate = cantitate;
     }
-
-
 
     @Override
     public boolean equals(Object o) {
