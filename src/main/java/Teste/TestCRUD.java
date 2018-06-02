@@ -4,16 +4,16 @@ import Persistence.DonatorEntity;
 import Persistence.PacientEntity;
 import Persistence.SpitalEntity;
 import Services.DumbService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 public class TestCRUD {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSpital() {
         DumbService dumbService = new DumbService();
         List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
