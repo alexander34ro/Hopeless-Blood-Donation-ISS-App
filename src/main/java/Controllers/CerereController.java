@@ -109,7 +109,7 @@ public class CerereController {
                     id++;
             }}
             cerereEntityG.setId(id);
-            client.saveOrUpdate(cerereEntityG);
+             client.saveOrUpdate(cerereEntityG);
 
             for (DetaliiCerereEntity d : detaliiCerereEntityList
                     ) {
