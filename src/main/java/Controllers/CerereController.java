@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 
 import javax.swing.*;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +48,10 @@ public class CerereController {
 
     CerereEntity cerereEntityG;
 
+    List<DetaliiCerereEntity> detaliiCerereEntityList = new ArrayList<>();
+
+    ObservableList<DetaliiCerereEntity> detaliiCerereEntities = FXCollections.observableArrayList();
+
     public void setMedic(MedicEntity medic) {
         this.medic = medic;
     }
@@ -67,6 +72,11 @@ public class CerereController {
         comboBox1.getSelectionModel().selectFirst();
         comboBox2.getSelectionModel().selectFirst();
         comboBox3.getSelectionModel().selectFirst();
+        cerereEntityG = new CerereEntity();
+        cerereEntityG.setMedicByMedic(medic);
+        cerereEntityG.setData(String.valueOf(new Date()));
+
+
         try {
             centruTransfuziiEntities.setAll(client.getAll(CentruTransfuziiEntity.class));
             comboBox4.setItems(centruTransfuziiEntities);
@@ -86,78 +96,40 @@ public class CerereController {
     }
 
     public void handleTrimitere() {
-        if (textFieldUnitati.getText() == null || textFieldUnitati.getText().equals("")) {
+        try {
+            cerereEntityG.setCentruTransfuziiByCentruTransfuzii((CentruTransfuziiEntity) comboBox4.getSelectionModel().getSelectedItem());
 
-            JOptionPane.showMessageDialog(null, "Date necompletate.");
-        } else {
-            CerereEntity cerereEntityy = new CerereEntity();
-            cerereEntityy.setMedicByMedic(medic);
-            cerereEntityy.setData(String.valueOf(new Date()));
-            cerereEntityy.setCentruTransfuziiByCentruTransfuzii((CentruTransfuziiEntity) comboBox4.getSelectionModel().getSelectedItem());
+            List<CerereEntity> cerereList = client.getAll(CerereEntity.class);
 
-            try {
-                client.saveOrUpdate(cerereEntityy);
-                DetaliiCerereEntity cerereEntity = new DetaliiCerereEntity();
-                cerereEntity.setPrioritate(String.valueOf(comboBox3.getSelectionModel().getSelectedItem()));
-                cerereEntity.setCantitate(Short.parseShort(String.valueOf(textFieldUnitati.getText())));
-                cerereEntity.setProdusSange(String.valueOf(comboBox2.getSelectionModel().getSelectedItem()));
-                cerereEntity.setTipSange(String.valueOf(comboBox1.getSelectionModel().getSelectedItem()));
-                cerereEntity.setDataCompletare(String.valueOf(new Date()));
-                cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
+            short id = 1;
+            if(cerereList!=null){
+            for (CerereEntity c : cerereList
+                    ) {
+                if (c.getId() == id)
+                    id++;
+            }}
+            cerereEntityG.setId(id);
+            client.saveOrUpdate(cerereEntityG);
 
-                cerereEntity.setCerereByCerere(cerereEntityy);
-                client.saveOrUpdate(cerereEntity);
-                cerereEntityG = cerereEntityy;
-                JOptionPane.showMessageDialog(null, "Cerere salvata.");
-                try {
-                    modelM.setAll(client.getAll(DetaliiCerereEntity.class));
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                tableView.setItems(modelM);
-            } catch (NetworkException e) {
-                e.printStackTrace();
-            } catch (RemoteException e) {
-                e.printStackTrace();
+            for (DetaliiCerereEntity d : detaliiCerereEntityList
+                    ) {
+                d.setCerereByCerere(cerereEntityG);
+                client.saveOrUpdate(d);
             }
-
+            modelM.setAll(client.getAll(DetaliiCerereEntity.class));
+            tableView.setItems(modelM);
+        } catch (NetworkException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
+
 
     }
 
     public void handleStergere() {
 
-        if (tableView.getSelectionModel().getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(null, "Date neselectate.");
-        } else {
-            try {
-                List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
-                CerereEntity cerereEntity = new CerereEntity();
-                DetaliiCerereEntity detaliiCerereEntity = (DetaliiCerereEntity) tableView.getSelectionModel().getSelectedItem();
 
-                for (DetaliiCerereEntity d : detaliiCerereEntityList
-                        ) {
-                    if (d.getTipSange().equals(detaliiCerereEntity.getTipSange()) && d.getCantitate() == detaliiCerereEntity.getCantitate() && d.getPrioritate().equals(detaliiCerereEntity.getPrioritate()) && d.getProdusSange().equals(detaliiCerereEntity.getProdusSange())) {
-                        cerereEntity = d.getCerereByCerere();
-                        client.delete(cerereEntity);
-                        client.delete(d);
-                        JOptionPane.showMessageDialog(null, "Cerere eliminata.");
-                        try {
-                            modelM.setAll(client.getAll(DetaliiCerereEntity.class));
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                        tableView.setItems(modelM);
-                        break;
-                    }
-
-                }
-            } catch (NetworkException e) {
-                e.printStackTrace();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public void handleAdauga() {
@@ -172,26 +144,27 @@ public class CerereController {
             cerereEntity.setTipSange(String.valueOf(comboBox1.getSelectionModel().getSelectedItem()));
             cerereEntity.setDataCompletare(String.valueOf(new Date()));
             cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
-            cerereEntity.setCerereByCerere(cerereEntityG);
 
             try {
-                client.saveOrUpdate(cerereEntity);
-                JOptionPane.showMessageDialog(null, "Cerere salvata.");
+                List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
+
+                short id = 1;
+                if (detaliiCerereEntityList != null) {
+                    for (DetaliiCerereEntity d : detaliiCerereEntityList
+                            ) {
+                        if (d.getId() == id)
+                            id++;
+                    }
+                }
+                cerereEntity.setId(id);
+
             } catch (NetworkException e) {
                 e.printStackTrace();
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-
-            try {
-                modelM.setAll(client.getAll(DetaliiCerereEntity.class));
-
-                tableView.setItems(modelM);
-            } catch (NetworkException e) {
-                e.printStackTrace();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            detaliiCerereEntityList.add(cerereEntity);
+            JOptionPane.showMessageDialog(null, "Cerere adaugata.");
 
         }
     }

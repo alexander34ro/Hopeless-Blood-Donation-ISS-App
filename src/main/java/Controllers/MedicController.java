@@ -42,10 +42,11 @@ public class MedicController implements IUserController<MedicEntity> {
         labelSpital.setText(user.getSpitalBySpital().getNume());
         try {
             modelM.setAll(client.getAll(PacientEntity.class));
+            tableView.setItems(modelM);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        tableView.setItems(modelM);
+
     }
 
     public void setClient(ClientInterface client) {
@@ -66,8 +67,9 @@ public class MedicController implements IUserController<MedicEntity> {
         }
 
         CerereController ctrl = loader.getController();
-        ctrl.setClient(client);
         ctrl.setMedic(user);
+        ctrl.setClient(client);
+
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();
