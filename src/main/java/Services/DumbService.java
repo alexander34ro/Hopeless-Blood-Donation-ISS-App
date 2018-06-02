@@ -2,7 +2,6 @@ package Services;
 
 import Networking.NetworkException;
 import Repositories.HibernateUtil;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -101,8 +100,9 @@ public class DumbService {
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
-            final Criteria crit = session.createCriteria(type);
-            return crit.list();
+            return session.createQuery("from " + type.getName()).list();
+            //final Criteria crit = session.createCriteria(type);
+            //return crit.list();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

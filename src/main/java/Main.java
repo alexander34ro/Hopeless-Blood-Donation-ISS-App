@@ -46,6 +46,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         /*
+        List<DetaliiCerereEntity> detaliiCerereEntities = dumbService.getAll(DetaliiCerereEntity.class);
+        System.out.println(detaliiCerereEntities.size());
+        DetaliiCerereEntity lastEntity = detaliiCerereEntities.get(detaliiCerereEntities.size() - 1);
+        short id = (short)(lastEntity.getId() + 1);
+        System.out.println(id);
+        */
+        /*
         List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
         SpitalEntity lastEntity = spitalEntities.get(spitalEntities.size() - 1);
         short id = (short)(lastEntity.getId() + 1);
