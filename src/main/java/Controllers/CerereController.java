@@ -102,17 +102,29 @@ public class CerereController {
             List<CerereEntity> cerereList = client.getAll(CerereEntity.class);
 
             short id = 1;
-            if(cerereList!=null){
-            for (CerereEntity c : cerereList
-                    ) {
-                if (c.getId() == id)
-                    id++;
-            }}
+            if (cerereList != null) {
+                for (CerereEntity c : cerereList
+                        ) {
+                    if (c.getId() == id)
+                        id++;
+                }
+            }
             cerereEntityG.setId(id);
-             client.saveOrUpdate(cerereEntityG);
+            client.saveOrUpdate(cerereEntityG);
 
+            List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
             for (DetaliiCerereEntity d : detaliiCerereEntityList
                     ) {
+
+                short iid = 1;
+                if (detaliiCerereEntityList != null) {
+                    for (DetaliiCerereEntity dd : detaliiCerereEntityList
+                            ) {
+                        if (dd.getId() == iid)
+                            iid++;
+                    }
+                }
+                d.setId(iid);
                 d.setCerereByCerere(cerereEntityG);
                 client.saveOrUpdate(d);
             }
@@ -145,24 +157,7 @@ public class CerereController {
             cerereEntity.setDataCompletare(String.valueOf(new Date()));
             cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
 
-            try {
-                List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
 
-                short id = 1;
-                if (detaliiCerereEntityList != null) {
-                    for (DetaliiCerereEntity d : detaliiCerereEntityList
-                            ) {
-                        if (d.getId() == id)
-                            id++;
-                    }
-                }
-                cerereEntity.setId(id);
-
-            } catch (NetworkException e) {
-                e.printStackTrace();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
             detaliiCerereEntityList.add(cerereEntity);
             JOptionPane.showMessageDialog(null, "Cerere adaugata.");
 
