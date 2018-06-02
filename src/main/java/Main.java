@@ -45,18 +45,24 @@ public class Main extends Application {
     static DumbService dumbService = new DumbService();
 
     public static void main(String[] args) {
-        /*SpitalEntity spitalEntity = new SpitalEntity();
-        spitalEntity.setId((short)9);
-        spitalEntity.setNume("Yo6");
-        spitalEntity.setOras("Yo6");
-        spitalEntity.setRegiune("Yo6");
+        /*
+        List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
+        SpitalEntity lastEntity = spitalEntities.get(spitalEntities.size() - 1);
+        short id = (short)(lastEntity.getId() + 1);
+        System.out.println(id);
 
-        dumbService.save(spitalEntity);*/
-        ///List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
-        //System.out.println(spitalEntities.size());
+        SpitalEntity spitalEntity = new SpitalEntity();
+        spitalEntity.setId(id);
+        spitalEntity.setNume("Spital");
+        spitalEntity.setOras("Cluj-Napoca");
+        spitalEntity.setRegiune("Cluj");
 
-        //List<SpitalEntity> spitalEntities = dumbService.getAll(SpitalEntity.class);
-        //System.out.println(spitalEntities.size());
+        dumbService.save(spitalEntity);
+
+        System.out.println(spitalEntity.getId());
+        spitalEntities = dumbService.getAll(SpitalEntity.class);
+        System.out.println(spitalEntities.size());
+        */
 
         launch(args);
     }

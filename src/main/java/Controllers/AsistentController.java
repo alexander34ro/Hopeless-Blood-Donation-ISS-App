@@ -26,13 +26,14 @@ public class AsistentController implements IUserController<AsistentEntity>{
     @FXML private  TableView<DetaliiCerereEntity> tableViewCerere;
 
     @FXML private TableColumn<DonatieEntity, String> tipSangeTableColumn;
+    @FXML private TableColumn<DetaliiCerereEntity,String> spitalTableColumn;
     @FXML private Label labelPlasmaO,labelPlasmaA,labelPlasmaB,labelPlasmaAB,labelGlobuleO,labelGlobuleA,labelGlobuleB,labelGlobuleAB,labelTrombociteA,labelTrombociteB,labelTrombociteAB,labelTrombociteO;
 
     private AsistentEntity user;
     private ClientInterface client;
     private ObservableList<DetaliiCerereEntity> modelDetaliiCerere = FXCollections.observableArrayList();
 
-
+    @FXML private Button cerereUrgentaButton;
     @FXML public void initialize() {
 
         tipSangeTableColumn.setCellValueFactory(p -> {
@@ -42,7 +43,13 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 return new SimpleStringProperty("N/A");
             }
         });
-
+        spitalTableColumn.setCellValueFactory(p->{
+            if(p.getValue()!=null){
+                return new SimpleStringProperty(p.getValue().getCerereByCerere().getMedicByMedic().getSpitalBySpital().getNume());
+            }
+            else
+                return new SimpleStringProperty("N/A");
+        });
         tableViewDonatie.setOnMouseClicked( event -> {
             if( event.getClickCount() == 2 ) {
                 DonatieEntity selectedDonation = this.tableViewDonatie.getSelectionModel().getSelectedItem();
@@ -152,6 +159,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
     }
 
+
+
     public void setUser(AsistentEntity user){
         this.user = user;
     }
@@ -175,11 +184,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
             */
 
             this.updateDonatii();
-
-
-
-            modelDetaliiCerere.setAll(client.getAll(DetaliiCerereEntity.class));
-            tableViewCerere.setItems(modelDetaliiCerere);
+            tableViewCerere.getItems().clear();
+            this.updateCereri();
             setLabels();
         }
         catch(Exception e) {
@@ -197,6 +203,17 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 .filter(donatieEntity -> donatieEntity.getCentruTransfuziiByCentruTransfuzii().getId() == this.user.getCentruTransfuziiByCentruTransfuzii().getId())
                 .collect(Collectors.toList())
             )
+        );
+    }
+    public void updateCereri() throws NetworkException, RemoteException {
+        tableViewCerere.getItems().clear();
+        tableViewCerere.setItems(
+                FXCollections.observableArrayList(
+                        client.getAll(DetaliiCerereEntity.class)
+                                .stream()
+                                .map(obj -> (DetaliiCerereEntity) obj)
+                                .collect(Collectors.toList())
+                )
         );
     }
 
@@ -268,6 +285,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        for(int i=0;i<valori.length;i++)
+            System.out.println(valori[i]);
         labelPlasmaO.setText(String.valueOf(valori[0]));
         labelGlobuleO.setText(String.valueOf(valori[1]));
         labelTrombociteO.setText(String.valueOf(valori[2]));
