@@ -231,10 +231,8 @@
                           <PropertyValueFactory property="cantitate" />
                       </cellValueFactory>
                   </TableColumn>
-                  <TableColumn prefWidth="107.0" text="Spital">
-                      <cellValueFactory>
-                          <PropertyValueFactory property="cantitate" />
-                      </cellValueFactory>
+                  <TableColumn fx:id="spitalTableColumn" prefWidth="107.0" text="Spital">
+
                   </TableColumn>
               </columns>
                <VBox.margin>
