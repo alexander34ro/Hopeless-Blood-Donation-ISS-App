@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cfbe46-bc11-4214-beef-a2a7024e3b7b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Teste/TestPacient.java" afterPath="$PROJECT_DIR$/src/main/java/Teste/TestPacient.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -63,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Teste/TestPacient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="36" column="12" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1078,7 +1077,7 @@
       <workItem from="1527355408616" duration="1248000" />
       <workItem from="1527359079988" duration="1265000" />
       <workItem from="1527926697581" duration="2361000" />
-      <workItem from="1527939327447" duration="4336000" />
+      <workItem from="1527939327447" duration="4363000" />
     </task>
     <task id="LOCAL-00001" summary="alex is here">
       <created>1522756875092</created>
@@ -1311,7 +1310,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527941991724</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="u">
+      <created>1527945915132</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1527945915132</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1347,7 +1353,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51342000" />
+    <option name="totallyTimeSpent" value="51369000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1416,7 +1422,8 @@
     <MESSAGE value="Asistent stuff" />
     <MESSAGE value="cerere" />
     <MESSAGE value="update diagrame" />
-    <option name="LAST_COMMIT_MESSAGE" value="update diagrame" />
+    <MESSAGE value="u" />
+    <option name="LAST_COMMIT_MESSAGE" value="u" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1436,7 +1443,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Teste/TestPacient.java</url>
-          <line>21</line>
+          <line>19</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
@@ -1773,7 +1780,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Teste/TestPacient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="36" column="12" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
