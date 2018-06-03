@@ -1,7 +1,6 @@
 package Teste;
 
 import Controllers.CerereController;
-import Controllers.IUserController;
 import Controllers.MedicController;
 import Networking.ClientController;
 import Networking.Interfaces.ServerInterface;
@@ -34,7 +33,7 @@ public class TestMedic {
                 FXMLLoader aloader = null;
                 aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Medic.fxml"));
                 int sizeInitial = clientController.getAll(DetaliiCerereEntity.class).size();
-                IUserController controller = aloader.getController();
+                MedicController controller = aloader.getController();
                 clientController.setMedicController((MedicController) controller);
 
                 medicController.setClient(clientController);

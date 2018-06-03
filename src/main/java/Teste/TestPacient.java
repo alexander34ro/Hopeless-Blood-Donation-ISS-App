@@ -7,7 +7,7 @@ import Networking.Interfaces.ServerInterface;
 import Networking.NetworkException;
 import Persistence.MedicEntity;
 import Services.DumbService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.rmi.RemoteException;
