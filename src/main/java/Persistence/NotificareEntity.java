@@ -4,10 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Notificare", schema = "main", catalog = "")
-public class NotificareEntity implements java.io.Serializable {
+public class NotificareEntity {
     private short id;
     private String mesaj;
-    private AsistentEntity asistentByAsistent;
     private DonatorEntity donatorByDonator;
 
     @Id
@@ -48,16 +47,6 @@ public class NotificareEntity implements java.io.Serializable {
         int result = (int) id;
         result = 31 * result + (mesaj != null ? mesaj.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "asistent", referencedColumnName = "id", nullable = false)
-    public AsistentEntity getAsistentByAsistent() {
-        return asistentByAsistent;
-    }
-
-    public void setAsistentByAsistent(AsistentEntity asistentByAsistent) {
-        this.asistentByAsistent = asistentByAsistent;
     }
 
     @ManyToOne
