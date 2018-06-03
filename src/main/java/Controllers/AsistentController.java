@@ -4,6 +4,8 @@ import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Networking.NetworkException;
 import Persistence.*;
+import Utils.DumbGeocoder;
+import Utils.MessageAllert;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,6 +93,11 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 gridPane.add(new Label("Tensiune:"), 0, 4);
                 gridPane.add(tensiuneTextField, 1, 4);
 
+                ComboBox<String> stadiuChoiceBox = new ComboBox<>();
+                stadiuChoiceBox.getItems().addAll("Recoltare", "Pregatirea","Prelevare","Calificare","Distribuire", "Finalizat");
+                gridPane.add(new Label("Stadiu:"), 0, 5);
+                gridPane.add(stadiuChoiceBox, 1, 5);
+
                 ComboBox<String> bloodTypeChoiceBox = new ComboBox<>();
                 String bloodType = "";
 
@@ -115,18 +122,19 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
                 bloodTypeChoiceBox.getSelectionModel().select(0);
 
-                gridPane.add(new Label("Grupa sanguniă:"), 0, 5);
-                gridPane.add(bloodTypeChoiceBox, 1, 5);
+                gridPane.add(new Label("Grupa sanguniă:"), 0, 6);
+                gridPane.add(bloodTypeChoiceBox, 1, 6);
 
 
-                gridPane.add(doneButton, 0, 6);
-                gridPane.add(cancelButton, 1, 6);
+                gridPane.add(doneButton, 0, 7);
+                gridPane.add(cancelButton, 1, 7);
 
                 doneButton.setOnMouseClicked(event12 -> {
                     try {
                         selectedDonation.setGreutate(Short.parseShort(greutateTextField.getText()));
                         selectedDonation.setPuls(Short.parseShort(pulsTextField.getText()));
                         selectedDonation.setTensiune(Short.parseShort(tensiuneTextField.getText()));
+                        selectedDonation.setStadiu(stadiuChoiceBox.getSelectionModel().getSelectedItem());
 
                         if( ! bloodTypeChoiceBox.isDisabled())
                         {
@@ -136,7 +144,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
                             client.saveOrUpdate(donatorEntity);
                         }
 
-                        selectedDonation.setStadiu("Pregatire");
+
 
                         client.saveOrUpdate(selectedDonation);
                     }
@@ -182,11 +190,11 @@ public class AsistentController implements IUserController<AsistentEntity>{
             System.out.println("punem donatiile");
             modelDonatie.setAll(donatieEntities);
             */
-
+            setLabels();
             this.updateDonatii();
             tableViewCerere.getItems().clear();
             this.updateCereri();
-            setLabels();
+
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -216,12 +224,74 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 )
         );
     }
+    @FXML
+    public void handleTrimiteSange(){
+        DetaliiCerereEntity cerereEntity = tableViewCerere.getSelectionModel().getSelectedItem();
+        if(cerereEntity!=null){
+            try{int cantitate=0;
+                List<UnitateSanguinaEntity> unitateSanguinaEntities=client.getAll(UnitateSanguinaEntity.class);
+                for(UnitateSanguinaEntity unitateSanguinaEntity:unitateSanguinaEntities)
+                    if(unitateSanguinaEntity.getTipSange().equals(cerereEntity.getTipSange()) && unitateSanguinaEntity.getCategorie().equals(cerereEntity.getProdusSange()))
+                         {
+                        cantitate++;
+                        if(cantitate<=cerereEntity.getCantitate()){
+                        client.delete(unitateSanguinaEntity);}
+                        else
+                            break;
+                    }
+                     if(cantitate-cerereEntity.getCantitate()>=0) {
+                         client.delete(cerereEntity);
+                         MessageAllert.showMessage(null, Alert.AlertType.CONFIRMATION, "Confirmare", "Sangele a fost trimis");
+                         setLabels();
+                         updateCereri();
+                     }
+                     else MessageAllert.showErrorMessage(null,"Nu exista suficient sange");
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else{
+            MessageAllert.showErrorMessage(null,"Trebuie selectata o cerere");
+        }
+    }
+    @FXML
+    public void handleCerereUrgenta(){
+        DetaliiCerereEntity cerereEntity = tableViewCerere.getSelectionModel().getSelectedItem();
+        if(cerereEntity!=null) {
 
+            try {
+
+                List<DonatorEntity> donatori = client.getAll(DonatorEntity.class);
+                List<CentruTransfuziiEntity> centru = client.getAll(CentruTransfuziiEntity.class);
+                String oras = centru.get(0).getOras();
+                double distanta=-1;
+                DonatorEntity donatorPerfect = donatori.get(0);
+                for (DonatorEntity donator : donatori) {
+                    if (donator.getTipSange().equals(cerereEntity.getTipSange()))
+                        if (distanta == -1 || distanta > DumbGeocoder.getDistanceBetween(donator.getOras(), oras)) {
+                            distanta = DumbGeocoder.getDistanceBetween(donator.getOras(), oras);
+                            donatorPerfect = donator;
+
+                        }
+                }
+
+
+                MessageAllert.showMessage(null, Alert.AlertType.CONFIRMATION, "Cerere Urgenta", "Cererea a fost trimisa lui:" + donatorPerfect.getNume());
+                //aici trebuie trimisa notificarea
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else MessageAllert.showErrorMessage(null,"NU s-a selectat cerere");
+    }
     private void setLabels(){
         int[] valori = new int[12];
         try {
             List<UnitateSanguinaEntity> lista = client.getAll(UnitateSanguinaEntity.class);
 
+            labelTrombociteO.setText("size"+lista.size());
             for (UnitateSanguinaEntity entity : lista) {
                 switch (entity.getTipSange()) {
                     case "OPozitiv":
@@ -285,8 +355,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        for(int i=0;i<valori.length;i++)
-            System.out.println(valori[i]);
+
         labelPlasmaO.setText(String.valueOf(valori[0]));
         labelGlobuleO.setText(String.valueOf(valori[1]));
         labelTrombociteO.setText(String.valueOf(valori[2]));
@@ -299,5 +368,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
         labelPlasmaAB.setText(String.valueOf(valori[9]));
         labelGlobuleAB.setText(String.valueOf(valori[10]));
         labelTrombociteAB.setText(String.valueOf(valori[11]));
+
+
     }
 }
