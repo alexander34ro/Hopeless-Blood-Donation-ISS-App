@@ -25,7 +25,7 @@
     <show-object-properties value="false" />
     <loaded-nodes>
       <connection connection-id="cca3d79c-2a1c-45ef-ab19-36910f51bef3">
-        <schema name="main" object-types="column, constraint, index, table, dataset trigger, view" />
+        <schema name="main" object-types="column, table, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,7 +35,15 @@
       <console name="ISSBloodDonation" type="STANDARD"><![CDATA[select * from "UnitateSanguina"
 select * from Asistent
 select * from Cerere
-select * from "DetaliiCerere"]]></console>
+select * from "DetaliiCerere"
+select * from "CentruTransfuzii"
+select * from "Medic"
+insert into "UnitateSanguina" ("centruTransfuzii",categorie,"tipSange","expiraLa") values(1,'Trombocite','APozitiv','12-11-2018')
+insert into "Cerere" ("centruTransfuzii",medic,"data",cantitate,"centruTransfuzii","dataCompletare",prioritate,"produsSange","tipSange")
+values(1,1,'12-11-2018',2,1,'12-11-2018','ridicata','OPozitiv','Trombocite')
+select * from "DetaliiCerere"
+insert into "DetaliiCerere" ("cerere","produsSange","tipSange","prioritate",completata,"dataCompletare",cantitate)
+values(1,'Trombocite','ABPozitiv','Mica',1,'12-11-2018',1)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
