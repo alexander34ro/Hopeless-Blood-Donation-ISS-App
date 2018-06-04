@@ -446,5 +446,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
         stage.setHeight(700);*/
         stage.showAndWait();
 
+
+
     }
 }
