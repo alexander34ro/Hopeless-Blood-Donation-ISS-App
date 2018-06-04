@@ -20,6 +20,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -95,13 +98,16 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
                 ComboBox<String> stadiuChoiceBox = new ComboBox<>();
                 stadiuChoiceBox.getItems().addAll("Recoltare", "Pregatirea","Prelevare","Calificare","Distribuire", "Finalizat");
+                stadiuChoiceBox.getSelectionModel().select(selectedDonation.getStadiu());
                 gridPane.add(new Label("Stadiu:"), 0, 5);
                 gridPane.add(stadiuChoiceBox, 1, 5);
 
                 ComboBox<String> bloodTypeChoiceBox = new ComboBox<>();
                 String bloodType = "";
+                ComboBox<String> categoryChoiceBox=new ComboBox<>();
+                categoryChoiceBox.getItems().addAll("Trombocite","Plasma","Sange","GlobuleRosii");
 
-                bloodTypeChoiceBox.getItems().add("Necunoscută");
+
                 for(TipSange tipSange : TipSange.values()) {
                     if(selectedDonation.getDonatorByDonator().getTipSange().equals(tipSange.name())) {
                         bloodType = tipSange.name();
@@ -113,7 +119,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
                     bloodTypeChoiceBox.setDisable(true);
                 }
                 else {
-                    bloodTypeChoiceBox.getItems().add("Necunoscută");
+
                     for(TipSange tipSange : TipSange.values()) {
                         bloodTypeChoiceBox.getItems().add(tipSange.toString());
                     }
@@ -122,12 +128,14 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
                 bloodTypeChoiceBox.getSelectionModel().select(0);
 
-                gridPane.add(new Label("Grupa sanguniă:"), 0, 6);
+                gridPane.add(new Label("Grupa sanguină:"), 0, 6);
                 gridPane.add(bloodTypeChoiceBox, 1, 6);
 
+                gridPane.add(new Label("Transformă in:"), 0, 7);
+                gridPane.add(categoryChoiceBox, 1, 7);
 
-                gridPane.add(doneButton, 0, 7);
-                gridPane.add(cancelButton, 1, 7);
+                gridPane.add(doneButton, 0, 8);
+                gridPane.add(cancelButton, 1, 8);
 
                 doneButton.setOnMouseClicked(event12 -> {
                     try {
@@ -136,6 +144,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
                         selectedDonation.setTensiune(Short.parseShort(tensiuneTextField.getText()));
                         selectedDonation.setStadiu(stadiuChoiceBox.getSelectionModel().getSelectedItem());
 
+
                         if( ! bloodTypeChoiceBox.isDisabled())
                         {
                             DonatorEntity donatorEntity = selectedDonation.getDonatorByDonator();
@@ -143,12 +152,48 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
                             client.saveOrUpdate(donatorEntity);
                         }
+                        if(selectedDonation.getStadiu().equals("Finalizat")) {
+                            UnitateSanguinaEntity unitate=new UnitateSanguinaEntity();
+                            short id=1;
+                            List<UnitateSanguinaEntity> unitateEntities = client.getAll(UnitateSanguinaEntity.class);
+                            if(unitateEntities.size()>0){
+                                UnitateSanguinaEntity lastEntity = unitateEntities.get(unitateEntities.size() - 1);
+                                id = (short)(lastEntity.getId() + 1);
+                            }
+                            unitate.setId(id);
+                            unitate.setCategorie(categoryChoiceBox.getSelectionModel().getSelectedItem());
+                            unitate.setTipSange(selectedDonation.getDonatorByDonator().getTipSange());
+                            //trombocite 5 globule 42 plasma 100 sangele 7zile
+                            Date data = (new SimpleDateFormat("dd.mm.yyyy")).parse(selectedDonation.getData());
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTime(data);
+                            cal.add(Calendar.DATE, 10); // add 10 days
 
+
+                            if(unitate.getCategorie().equals("Trombocite"))
+                                cal.add(Calendar.DATE,5);
+                            else if(unitate.getCategorie().equals("GlobuleRosii"))
+                                cal.add(Calendar.DATE,42);
+                            else if(unitate.getCategorie().equals("Plasma"))
+                                cal.add(Calendar.DATE,100);
+                            else if(unitate.getCategorie().equals("Sange"))
+                                cal.add(Calendar.DATE,7);
+
+                            unitate.setExpiraLa((new SimpleDateFormat("dd.mm.yyyy")).format(cal.getTime()));
+                            unitate.setCentruTransfuziiByCentruTransfuzii(selectedDonation.getCentruTransfuziiByCentruTransfuzii());
+
+
+
+                            client.saveOrUpdate(unitate);
+                            setLabels();
+                        }
 
 
                         client.saveOrUpdate(selectedDonation);
+                        updateDonatii();
                     }
                     catch(Exception exception) {
+                        exception.printStackTrace();
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setContentText(exception.getMessage());
                         alert.setHeaderText("Eroare");
@@ -203,12 +248,10 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
     public void updateDonatii() throws NetworkException, RemoteException {
         tableViewDonatie.getItems().clear();
+        List<DonatieEntity> lista=client.getAll(DonatieEntity.class).stream().map(obj->(DonatieEntity)obj).filter(obj->(!(obj.getStadiu().equals("Finalizat")))).collect(Collectors.toList());
         tableViewDonatie.setItems(
             FXCollections.observableArrayList(
-                client.getAll(DonatieEntity.class)
-                .stream()
-                .map(obj -> (DonatieEntity) obj)
-                .filter(donatieEntity -> donatieEntity.getCentruTransfuziiByCentruTransfuzii().getId() == this.user.getCentruTransfuziiByCentruTransfuzii().getId())
+                    lista.stream().filter(donatieEntity -> donatieEntity.getCentruTransfuziiByCentruTransfuzii().getId() == this.user.getCentruTransfuziiByCentruTransfuzii().getId())
                 .collect(Collectors.toList())
             )
         );

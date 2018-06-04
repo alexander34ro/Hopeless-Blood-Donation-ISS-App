@@ -1,11 +1,9 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
-import Networking.NetworkException;
-import Persistence.*;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
+import Persistence.DetaliiCerereEntity;
+import Persistence.MedicEntity;
+import Persistence.SpitalEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,8 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.stream.Collectors;
 
 public class MedicController implements IUserController<MedicEntity> {
 
@@ -46,7 +42,7 @@ public class MedicController implements IUserController<MedicEntity> {
     public void initialize() {
     }
 
-    public void init() {
+    public void init() {/*
         labelNume.setText(user.getNume());
         labelSpital.setText(user.getSpitalBySpital().getNume());
         try {
@@ -96,7 +92,7 @@ public class MedicController implements IUserController<MedicEntity> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
+    */
     }
 
     public void setClient(ClientInterface client) {
