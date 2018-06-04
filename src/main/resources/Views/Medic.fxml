@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MedicController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MedicController">
 
-    <Pane layoutX="7.0" layoutY="7.0" prefHeight="659.0" prefWidth="600.0" style="-fx-background-color: white;">
+    <Pane layoutY="3.0" prefHeight="682.0" prefWidth="600.0" style="-fx-background-color: white;">
       <children>
-        <Label layoutX="32.0" layoutY="25.0" text="Medic" textFill="#b50c0c">
+        <Label layoutX="41.0" layoutY="16.0" text="Medic" textFill="#b50c0c">
           <font>
             <Font name="System Bold" size="24.0" />
           </font>
         </Label>
-        <TableView fx:id="tableView" layoutX="38.0" layoutY="110.0" prefHeight="207.0" prefWidth="525.0">
+        <TableView fx:id="tableView" layoutX="38.0" layoutY="94.0" prefHeight="207.0" prefWidth="525.0">
           <columns>
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Nume">
               <cellValueFactory>
@@ -32,6 +32,11 @@
                     <PropertyValueFactory property="prioritate" />
                 </cellValueFactory>
             </TableColumn>
+              <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Grupă Sânge">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="tipSange" />
+                  </cellValueFactory>
+              </TableColumn>
               <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="105.0" text="Trombocite">
                   <cellValueFactory>
                       <PropertyValueFactory property="trombociteNecesare" />
@@ -55,37 +60,37 @@
 
           </columns>
         </TableView>
-        <Button layoutX="474.0" layoutY="620.0" mnemonicParsing="false" onAction="#handleTrimitere" text="Trimite cerere" />
-        <Label layoutX="38.0" layoutY="84.0" text="Date pacienți:">
+        <Button layoutX="474.0" layoutY="646.0" mnemonicParsing="false" onAction="#handleTrimitere" text="Trimite cerere" />
+        <Label layoutX="38.0" layoutY="68.0" text="Date pacienți:">
           <font>
             <Font name="Arial" size="14.0" />
           </font>
         </Label>
-            <Label layoutX="339.0" layoutY="25.0" text="Spital" textFill="#b51717">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelNume" layoutX="130.0" layoutY="34.0" text="Nume medic" />
-            <Label fx:id="labelSpital" layoutX="434.0" layoutY="34.0" text="Nume spital" />
-         <TableView fx:id="tableVieww" layoutX="38.0" layoutY="377.0" prefHeight="200.0" prefWidth="525.0">
+            <Label fx:id="labelNume" layoutX="153.0" layoutY="25.0" text="Nume medic" />
+            <Label fx:id="labelSpital" layoutX="420.0" layoutY="25.0" text="Nume spital" />
+         <TableView fx:id="tableVieww" layoutX="38.0" layoutY="425.0" prefHeight="200.0" prefWidth="525.0">
            <columns>
-             <TableColumn prefWidth="284.0" text="Spital" fx:id="tableColumnSpital" >
-           </TableColumn>
-             <TableColumn minWidth="0.0" prefWidth="110.0" text="Cantitate" fx:id="tableColumnCantitate">
+
+             <TableColumn fx:id="tableColumnCantitate" minWidth="0.0" prefWidth="110.0" text="Cantitate">
              </TableColumn>
-               <TableColumn minWidth="0.0" prefWidth="130.0" text="Data" >
+               <TableColumn minWidth="0.0" prefWidth="130.0" text="Data">
                    <cellValueFactory>
                        <PropertyValueFactory property="data" />
                    </cellValueFactory>
                </TableColumn>
            </columns>
          </TableView>
-         <Label layoutX="48.0" layoutY="343.0" text="Cereri:">
+         <Label layoutX="38.0" layoutY="393.0" text="Cereri:">
             <font>
                <Font name="Arial" size="14.0" />
             </font>
          </Label>
+            <Label layoutX="339.0" layoutY="16.0" text="Spital" textFill="#b51717">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         <Button layoutX="452.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleAdaugaPacient" prefHeight="25.0" prefWidth="108.0" text="Adauga Pacient" />
       </children>
     </Pane>
 

@@ -15,6 +15,7 @@ public class PacientEntity implements Serializable {
     private Short globuleRosiiNecesare;
     private Short plasmaNecesara;
     private Short sangeNecesar;
+    private String tipSange;
 
     @Id
     @Column(name = "id")
@@ -128,5 +129,15 @@ public class PacientEntity implements Serializable {
 
     public void setSangeNecesar(Short sangeNecesar) {
         this.sangeNecesar = sangeNecesar;
+    }
+
+    @Basic
+    @Column(name = "tipSange")
+    public String getTipSange() {
+        return tipSange;
+    }
+
+    public void setTipSange(String tipSange) {
+        this.tipSange = tipSange;
     }
 }

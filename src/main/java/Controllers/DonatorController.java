@@ -5,13 +5,17 @@ import Networking.NetworkException;
 import Persistence.CentruTransfuziiEntity;
 import Persistence.DonatieEntity;
 import Persistence.DonatorEntity;
+import Persistence.NotificareEntity;
 import Utils.MessageAllert;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,7 +41,12 @@ public class DonatorController implements IUserController<DonatorEntity> {
 
     @FXML private TableView<DonatieEntity> tableView;
 
+    @FXML private TableView<NotificareEntity> notificareEntityTableView;
+
     ObservableList<DonatieEntity> model = FXCollections.observableArrayList();
+
+    @FXML TableColumn<NotificareEntity, Short> notificationIdTableColumn;
+    @FXML TableColumn<NotificareEntity, String> notificationTextTableColumn;
 
     @FXML
     public void initialize() {
@@ -54,6 +63,10 @@ public class DonatorController implements IUserController<DonatorEntity> {
         customPersonCheckBox.setOnAction(event -> {
             customPersonNameTextField.setDisable( ! customPersonCheckBox.isSelected());
         });
+
+        notificationIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        notificationTextTableColumn.setCellValueFactory(new PropertyValueFactory<>("mesaj"));
+
     }
 
     public DonatorController(){}
@@ -75,6 +88,7 @@ public class DonatorController implements IUserController<DonatorEntity> {
             transfusionCentersComboBox.getSelectionModel().selectFirst();
 
             updateTable();
+            updateNotificationsList();
 
         }
         catch(Exception e) {
@@ -93,6 +107,27 @@ public class DonatorController implements IUserController<DonatorEntity> {
                                 .collect(Collectors.toList())
                 )
         );
+    }
+
+    public void updateNotificationsList() throws NetworkException, RemoteException {
+        Platform.runLater(() -> {
+            this.notificareEntityTableView.getItems().clear();
+            try {
+                this.notificareEntityTableView.setItems(
+                        FXCollections.observableArrayList(
+                                this.client.getAll(NotificareEntity.class)
+                                        .stream()
+                                        .map(obj -> (NotificareEntity) obj)
+                                        .filter(notificareEntity -> notificareEntity.getDonatorByDonator().getId() == user.getId())
+                                        .collect(Collectors.toList())
+                        )
+                );
+            } catch (NetworkException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void setDataLabel(){

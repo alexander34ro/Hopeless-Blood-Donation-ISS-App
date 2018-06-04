@@ -5,7 +5,6 @@ import Models.Prioritate;
 import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Networking.NetworkException;
-import Persistence.CentruTransfuziiEntity;
 import Persistence.CerereEntity;
 import Persistence.DetaliiCerereEntity;
 import Persistence.MedicEntity;
@@ -36,14 +35,17 @@ public class CerereController {
     @FXML
     private TableView tableView;
 
+
     ObservableList<DetaliiCerereEntity> modelM = FXCollections.observableArrayList();
 
     private ClientInterface client;
 
+    MedicController medicCtrl = null;
+
     ObservableList<TipSange> tipSange = FXCollections.observableArrayList();
     ObservableList<CategorieSanguina> categorieSanguina = FXCollections.observableArrayList();
     ObservableList<Prioritate> prioritate = FXCollections.observableArrayList();
-    ObservableList<CentruTransfuziiEntity> centruTransfuziiEntities = FXCollections.observableArrayList();
+
 
     MedicEntity medic = null;
 
@@ -77,7 +79,7 @@ public class CerereController {
     }
 
     public void handleTrimitere() {
-        CerereEntity cerereEntity=new CerereEntity();
+        CerereEntity cerereEntity = new CerereEntity();
         try {
             List<CerereEntity> cerereList = client.getAll(CerereEntity.class);
             short id = 1;
@@ -105,7 +107,7 @@ public class CerereController {
                             iid++;
                     }
                 }
-                System.out.println("id="+iid);
+                System.out.println("id=" + iid);
                 d.setId(iid);
                 d.setCerereByCerere(cerereEntity);
                 client.saveOrUpdate(d);
@@ -114,6 +116,7 @@ public class CerereController {
             detaliiCerereEntityList.clear();
             modelM.setAll(detaliiCerereEntityList);
             tableView.setItems(modelM);
+            medicCtrl.actualizareTabel();
         } catch (NetworkException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
@@ -141,6 +144,11 @@ public class CerereController {
 
         }
 
+
+    }
+
+    public void setFereastraMedic(MedicController controller) {
+        this.medicCtrl = controller;
 
     }
 

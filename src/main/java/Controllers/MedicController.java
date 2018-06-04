@@ -1,9 +1,15 @@
 package Controllers;
 
+import Models.Prioritate;
+import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
+import Persistence.CerereEntity;
 import Persistence.DetaliiCerereEntity;
 import Persistence.MedicEntity;
-import Persistence.SpitalEntity;
+import Persistence.PacientEntity;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +20,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MedicController implements IUserController<MedicEntity> {
 
@@ -24,6 +32,8 @@ public class MedicController implements IUserController<MedicEntity> {
         this.user = user;
     }
 
+    ObservableList<TipSange> tipSange = FXCollections.observableArrayList();
+    ObservableList<Prioritate> prioritate = FXCollections.observableArrayList();
     @FXML
     private Label labelNume;
     @FXML
@@ -33,18 +43,22 @@ public class MedicController implements IUserController<MedicEntity> {
     @FXML
     private TableView tableVieww;
 
+
     @FXML
-    private TableColumn<SpitalEntity, String> tableColumnSpital;
-    @FXML
-    private TableColumn<DetaliiCerereEntity, Integer> tableColumnCantitate;
+    private TableColumn<CerereEntity, String> tableColumnCantitate;
 
     @FXML
     public void initialize() {
     }
 
-    public void init() {/*
+    public void init() {
         labelNume.setText(user.getNume());
         labelSpital.setText(user.getSpitalBySpital().getNume());
+        actualizareTabel();
+
+    }
+
+    public void actualizareTabel() {
         try {
             tableView.setItems(
                     FXCollections.observableArrayList(
@@ -55,29 +69,18 @@ public class MedicController implements IUserController<MedicEntity> {
                                     .collect(Collectors.toList())
                     )
             );
-            tableColumnSpital.setCellValueFactory(p -> {
-                if (p.getValue() != null) {
-                    return new SimpleStringProperty(p.getValue().getNume());
-                } else
-                    return new SimpleStringProperty("N/A");
-            });
+
+            List<DetaliiCerereEntity> detaliiCerereEntity = client.getAll(DetaliiCerereEntity.class);
             tableColumnCantitate.setCellValueFactory(p -> {
                 if (p.getValue() != null) {
-                    try {
-                        return new SimpleIntegerProperty(
-                                client.getAll(DetaliiCerereEntity.class)
-                                        .stream()
-                                        .map(obj -> (DetaliiCerereEntity) obj)
-                                        .filter(object -> object.getCerereByCerere().getSpitalBySpital().getId() == user.getSpitalBySpital().getId())
-                                        .map(obj->obj.getCantitate())
-                                        (Collectors.toList()));
-                    } catch (NetworkException e) {
-                        e.printStackTrace();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
+                    return new SimpleStringProperty("" + detaliiCerereEntity
+                            .stream()
+                            .filter(object -> object.getCerereByCerere().getId() == p.getValue().getId())
+                            .mapToInt(cerere -> (int) ((DetaliiCerereEntity) cerere).getCantitate())
+                            .sum());
+
                 } else
-                    return new SimpleStringProperty("N/A");
+                    return new SimpleStringProperty("");
             });
             tableVieww.setItems(
                     FXCollections.observableArrayList(
@@ -92,12 +95,36 @@ public class MedicController implements IUserController<MedicEntity> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    */
     }
 
     public void setClient(ClientInterface client) {
         this.client = client;
         init();
+    }
+
+    public void handleAdaugaPacient() {
+        Stage stage = new Stage();
+        stage.setTitle("Adauga Pacient");
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/AdaugaPacient.fxml"));
+
+        Pane pane = null;
+        try {
+            pane = (Pane) loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AdaugaPacientController ctrl = loader.getController();
+        ctrl.setMedic(user);
+        ctrl.setClient(client);
+        ctrl.setStage(stage);
+        ctrl.setFereastraMedic(this);
+
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 
     public void handleTrimitere() {
@@ -114,10 +141,12 @@ public class MedicController implements IUserController<MedicEntity> {
 
         CerereController ctrl = loader.getController();
         ctrl.setMedic(user);
+        ctrl.setFereastraMedic(this);
         ctrl.setClient(client);
 
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();
+
     }
 }

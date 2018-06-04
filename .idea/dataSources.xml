@@ -1,11 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ISSBloodDonation.db" uuid="ed727a41-2bd6-4fe9-ab15-ec713d3b7191">
+    <data-source source="LOCAL" name="identifier.sqlite" uuid="a86c4fd5-e328-4c38-af5d-7a32cc3a4991">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/database/ISSBloodDonation.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="ISSBloodDonation" uuid="a1e2ba50-4b02-4be2-9601-ea9032072ce3">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>SQLite</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Alexandru\IdeaProjects\Hopeless-Blood-Donation-ISS-App\database\ISSBloodDonation.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/sqlite-jdbc-3.20.1.1.jar</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/xerial-sqlite-license.txt</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="org.hibernate.tutorial.jpa/Hibernate" uuid="7e571b1a-ea68-4ced-846e-845b32b48e7f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resources/persistence.xml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="org.hibernate.tutorial.jpa/Hibernate" uuid="6e461603-1a9f-48ee-9a64-d504b0ec6b9e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resources/persistence.xml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

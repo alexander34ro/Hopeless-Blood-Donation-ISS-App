@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class ServerImplementation implements ServerInterface {
 
@@ -76,11 +77,34 @@ public class ServerImplementation implements ServerInterface {
                 clientInterface.donationAddedOrUpdated();
             }
         }
+        else if(o instanceof NotificareEntity) {
+            for(ClientInterface clientInterface : loggedInClients.values()) {
+                clientInterface.notificationsUpdated();
+            }
+        }
     }
 
     @Override
     public <T> void delete(final T o) throws NetworkException,RemoteException{
         dumbService.delete(o);
+    }
+
+    @Override
+    public void sendNotification(DonatorEntity donatorEntity, String notificationContent) throws NetworkException, RemoteException {
+        NotificareEntity notificareEntity = new NotificareEntity();
+
+        short id = 1;
+
+        List<NotificareEntity> notificareEntityList = this.getAll(NotificareEntity.class);
+
+        if(notificareEntityList.size() > 0) {
+            id = (short) (this.getAll( NotificareEntity.class ).stream().mapToInt( notificare -> (int) ((NotificareEntity) notificare).getId() ).reduce((A,B) -> A > B ? A : B).getAsInt() + 1);
+        }
+
+        notificareEntity.setId( id );
+        notificareEntity.setDonatorByDonator(donatorEntity);
+        notificareEntity.setMesaj(notificationContent);
+        this.saveOrUpdate(notificareEntity);
     }
 
     /*
