@@ -5,7 +5,10 @@ import Models.Prioritate;
 import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Networking.NetworkException;
-import Persistence.*;
+import Persistence.CentruTransfuziiEntity;
+import Persistence.CerereEntity;
+import Persistence.DetaliiCerereEntity;
+import Persistence.MedicEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,10 +35,8 @@ public class CerereController {
     private ComboBox comboBox1;
     @FXML
     private TableView tableView;
-    @FXML
-    private ComboBox comboBox4;
 
-    ObservableList<PacientEntity> modelM = FXCollections.observableArrayList();
+    ObservableList<DetaliiCerereEntity> modelM = FXCollections.observableArrayList();
 
     private ClientInterface client;
 
@@ -47,7 +48,6 @@ public class CerereController {
     MedicEntity medic = null;
 
     short idTest;
-    CerereEntity cerereEntityG;
 
     List<DetaliiCerereEntity> detaliiCerereEntityList = new ArrayList<>();
     List<DetaliiCerereEntity> detaliiCerereEntityListTest = new ArrayList<>();
@@ -74,33 +74,12 @@ public class CerereController {
         comboBox1.getSelectionModel().selectFirst();
         comboBox2.getSelectionModel().selectFirst();
         comboBox3.getSelectionModel().selectFirst();
-        cerereEntityG = new CerereEntity();
-        cerereEntityG.setSpitalBySpital(medic.getSpitalBySpital());
-        cerereEntityG.setData(String.valueOf(new Date()));
-
-
-        try {
-            centruTransfuziiEntities.setAll(client.getAll(CentruTransfuziiEntity.class));
-            comboBox4.setItems(centruTransfuziiEntities);
-            comboBox4.getSelectionModel().selectFirst();
-        } catch (NetworkException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        try {
-            modelM.setAll(client.getAll(DetaliiCerereEntity.class));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        tableView.setItems(modelM);
-
     }
 
     public void handleTrimitere() {
+        CerereEntity cerereEntity=new CerereEntity();
         try {
             List<CerereEntity> cerereList = client.getAll(CerereEntity.class);
-
             short id = 1;
             if (cerereList != null) {
                 for (CerereEntity c : cerereList
@@ -109,26 +88,31 @@ public class CerereController {
                         id++;
                 }
             }
-            cerereEntityG.setId(id);
-            client.saveOrUpdate(cerereEntityG);
 
-            List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
-            for (DetaliiCerereEntity d : detaliiCerereEntityList
-                    ) {
+            cerereEntity.setId(id);
+            cerereEntity.setSpitalBySpital(medic.getSpitalBySpital());
+            cerereEntity.setData(String.valueOf(new Date()));
 
+            client.saveOrUpdate(cerereEntity);
+
+            List<DetaliiCerereEntity> detaliiCerereEntityListAll = client.getAll(DetaliiCerereEntity.class);
+            for (DetaliiCerereEntity d : detaliiCerereEntityList) {
+                System.out.println(detaliiCerereEntityList.size());
                 short iid = 1;
-                if (detaliiCerereEntityList != null) {
-                    for (DetaliiCerereEntity dd : detaliiCerereEntityList
-                            ) {
+                if (detaliiCerereEntityListAll != null) {
+                    for (DetaliiCerereEntity dd : detaliiCerereEntityListAll) {
                         if (dd.getId() == iid)
                             iid++;
                     }
                 }
+                System.out.println("id="+iid);
                 d.setId(iid);
-                d.setCerereByCerere(cerereEntityG);
+                d.setCerereByCerere(cerereEntity);
                 client.saveOrUpdate(d);
+                detaliiCerereEntityListAll = client.getAll(DetaliiCerereEntity.class);
             }
-            modelM.setAll(client.getAll(DetaliiCerereEntity.class));
+            detaliiCerereEntityList.clear();
+            modelM.setAll(detaliiCerereEntityList);
             tableView.setItems(modelM);
         } catch (NetworkException e) {
             e.printStackTrace();
@@ -141,19 +125,20 @@ public class CerereController {
 
     public void handleStergere() {
 
-        if(tableView.getSelectionModel().getSelectedItem()==null){
-            JOptionPane.showMessageDialog(null,"Cerere neselectata");
-        }
-        else{
-            DetaliiCerereEntity detaliiCerereEntity= (DetaliiCerereEntity) tableView.getSelectionModel().getSelectedItem();
+        if (tableView.getSelectionModel().getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Cerere neselectata");
+        } else {
+            DetaliiCerereEntity detaliiCerereEntity = (DetaliiCerereEntity) tableView.getSelectionModel().getSelectedItem();
+
+            detaliiCerereEntityList.remove(detaliiCerereEntity);
             try {
-                client.delete(detaliiCerereEntity);
-                JOptionPane.showMessageDialog(null,"Cerere stearsa");
-            } catch (NetworkException e) {
-                e.printStackTrace();
-            } catch (RemoteException e) {
-                e.printStackTrace();
+                modelM.setAll(detaliiCerereEntityList);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
+            tableView.setItems(modelM);
+            JOptionPane.showMessageDialog(null, "Cerere stearsa");
+
         }
 
 
@@ -172,14 +157,19 @@ public class CerereController {
             cerereEntity.setDataCompletare(String.valueOf(new Date()));
             cerereEntity.setCompletata(Short.parseShort(String.valueOf(1)));
 
-
             detaliiCerereEntityList.add(cerereEntity);
+            try {
+                modelM.setAll(detaliiCerereEntityList);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            tableView.setItems(modelM);
             JOptionPane.showMessageDialog(null, "Cerere adaugata.");
 
         }
     }
 
-    public void adaugaCerere(String prioritate, short cantitate, String produsSange, String tipSange){
+    public void adaugaCerere(String prioritate, short cantitate, String produsSange, String tipSange) {
         DetaliiCerereEntity cerereEntity = new DetaliiCerereEntity();
         cerereEntity.setPrioritate(prioritate);
         cerereEntity.setCantitate(cantitate);
@@ -190,10 +180,9 @@ public class CerereController {
         detaliiCerereEntityListTest.add(cerereEntity);
     }
 
-    public void trimiteCerere(){
-        CerereEntity cerereEntity=new CerereEntity();
+    public void trimiteCerere() {
+        CerereEntity cerereEntity = new CerereEntity();
         try {
-            cerereEntity.setCentruTransfuziiByCentruTransfuzii((CentruTransfuziiEntity) client.getAll(CentruTransfuziiEntity.class).get(0));
             List<CerereEntity> cerereList = client.getAll(CerereEntity.class);
 
             short id = 1;
@@ -204,9 +193,9 @@ public class CerereController {
                         id++;
                 }
             }
-            cerereEntity.setMedicByMedic(medic);
+            cerereEntity.setSpitalBySpital(medic.getSpitalBySpital());
             cerereEntity.setData(String.valueOf(new Date()));
-            idTest=id;
+            idTest = id;
             cerereEntity.setId(id);
             client.saveOrUpdate(cerereEntity);
             List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
@@ -232,13 +221,14 @@ public class CerereController {
         }
 
     }
-    public void stergeCerere(){
+
+    public void stergeCerere() {
         try {
-            List<DetaliiCerereEntity> detaliiCerereEntityList=client.getAll(DetaliiCerereEntity.class);
-            DetaliiCerereEntity detaliiCerereEntity=new DetaliiCerereEntity();
-            for (DetaliiCerereEntity d:detaliiCerereEntityList
+            List<DetaliiCerereEntity> detaliiCerereEntityList = client.getAll(DetaliiCerereEntity.class);
+            DetaliiCerereEntity detaliiCerereEntity = new DetaliiCerereEntity();
+            for (DetaliiCerereEntity d : detaliiCerereEntityList
                     ) {
-                if(d.getId()==idTest) {
+                if (d.getId() == idTest) {
                     detaliiCerereEntity = d;
                 }
             }
