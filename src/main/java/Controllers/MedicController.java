@@ -1,9 +1,7 @@
 package Controllers;
 
 import Networking.Interfaces.ClientInterface;
-import Networking.NetworkException;
 import Persistence.*;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -16,7 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class MedicController implements IUserController<MedicEntity> {
@@ -40,7 +38,7 @@ public class MedicController implements IUserController<MedicEntity> {
     @FXML
     private TableColumn<SpitalEntity, String> tableColumnSpital;
     @FXML
-    private TableColumn<DetaliiCerereEntity, Integer> tableColumnCantitate;
+    private TableColumn<DetaliiCerereEntity, String> tableColumnCantitate;
 
     @FXML
     public void initialize() {
@@ -65,23 +63,16 @@ public class MedicController implements IUserController<MedicEntity> {
                 } else
                     return new SimpleStringProperty("N/A");
             });
+            List<DetaliiCerereEntity> detaliiCerereEntity=client.getAll(DetaliiCerereEntity.class);
             tableColumnCantitate.setCellValueFactory(p -> {
                 if (p.getValue() != null) {
-                    try {
-                        return new SimpleIntegerProperty(
-                                client.getAll(DetaliiCerereEntity.class)
-                                        .stream()
-                                        .map(obj -> (DetaliiCerereEntity) obj)
-                                        .filter(object -> object.getCerereByCerere().getSpitalBySpital().getId() == user.getSpitalBySpital().getId())
-                                        .map(obj->obj.getCantitate())
-                                        (Collectors.toList()));
-                    } catch (NetworkException e) {
-                        e.printStackTrace();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
+                    return new SimpleStringProperty(""+detaliiCerereEntity
+                            .stream()
+                            .mapToInt(cerere -> (int) ((DetaliiCerereEntity)cerere).getCantitate())
+                            .sum());
+
                 } else
-                    return new SimpleStringProperty("N/A");
+                    return new SimpleStringProperty("");
             });
             tableVieww.setItems(
                     FXCollections.observableArrayList(
