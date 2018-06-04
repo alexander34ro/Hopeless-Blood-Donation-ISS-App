@@ -8,10 +8,7 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output-test url="file://$MODULE_DIR$/../../out/test/classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../src/test">
-      <sourceFolder url="file://$MODULE_DIR$/../../src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../src/test/resources" type="java-test-resource" />
-    </content>
+    <content url="file://$MODULE_DIR$/../../src/test" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Blood_Donation_ISS_App_main" />
@@ -25,8 +22,8 @@
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-nop:1.7.25" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.11" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-commons-core:1.1.0.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-orm:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.xerial:sqlite-jdbc:3.16.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-orm:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-core:3.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.6.1" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjrt:1.6.8" level="project" />

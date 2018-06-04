@@ -11,6 +11,7 @@ import javafx.stage.WindowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 public class Main extends Application {
 
     private static ClientController clientController;
@@ -18,8 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        clientController = new ClientController( (ServerInterface) (new ClassPathXmlApplicationContext("classpath:clientSpring.xml")).getBean("bloodDonationService") );
-
+        clientController = new ClientController( (ServerInterface) new ClassPathXmlApplicationContext("classpath:clientSpring.xml").getBean("bloodDonationService") );
 
         primaryStage.setTitle("Hopeless");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/login.fxml"));

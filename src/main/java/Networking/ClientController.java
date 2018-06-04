@@ -5,6 +5,7 @@ import Controllers.DonatorController;
 import Controllers.MedicController;
 import Networking.Interfaces.ClientInterface;
 import Networking.Interfaces.ServerInterface;
+import Persistence.DonatorEntity;
 import Persistence.IUser;
 
 import java.rmi.RemoteException;
@@ -71,6 +72,18 @@ public class ClientController extends UnicastRemoteObject implements ClientInter
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void notificationsUpdated() throws NetworkException, RemoteException {
+        if(this.donatorController != null) {
+            this.donatorController.updateNotificationsList();
+        }
+    }
+
+    @Override
+    public void sendNotification(DonatorEntity donatorEntity, String notificationContent) throws NetworkException, RemoteException {
+        this.server.sendNotification(donatorEntity, notificationContent);
     }
 
     public void setAsistentController(AsistentController asistentController) {
