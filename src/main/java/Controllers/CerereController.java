@@ -75,7 +75,7 @@ public class CerereController {
         comboBox2.getSelectionModel().selectFirst();
         comboBox3.getSelectionModel().selectFirst();
         cerereEntityG = new CerereEntity();
-        cerereEntityG.setMedicByMedic(medic);
+        cerereEntityG.setSpitalBySpital(medic.getSpitalBySpital());
         cerereEntityG.setData(String.valueOf(new Date()));
 
 
@@ -99,8 +99,6 @@ public class CerereController {
 
     public void handleTrimitere() {
         try {
-            cerereEntityG.setCentruTransfuziiByCentruTransfuzii((CentruTransfuziiEntity) comboBox4.getSelectionModel().getSelectedItem());
-
             List<CerereEntity> cerereList = client.getAll(CerereEntity.class);
 
             short id = 1;

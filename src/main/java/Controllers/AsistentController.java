@@ -47,7 +47,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
         });
         spitalTableColumn.setCellValueFactory(p->{
             if(p.getValue()!=null){
-                return new SimpleStringProperty(p.getValue().getCerereByCerere().getMedicByMedic().getSpitalBySpital().getNume());
+                return new SimpleStringProperty(p.getValue().getCerereByCerere().getSpitalBySpital().getNume());
             }
             else
                 return new SimpleStringProperty("N/A");
