@@ -18,8 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        clientController = new ClientController( (ServerInterface) (new ClassPathXmlApplicationContext("classpath:clientSpring.xml")).getBean("bloodDonationService") );
-
+        clientController = new ClientController( (ServerInterface) new ClassPathXmlApplicationContext("classpath:clientSpring.xml").getBean("bloodDonationService") );
 
         primaryStage.setTitle("Hopeless");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/login.fxml"));

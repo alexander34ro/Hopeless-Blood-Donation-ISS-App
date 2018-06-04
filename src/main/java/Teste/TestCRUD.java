@@ -4,7 +4,7 @@ import Persistence.DonatorEntity;
 import Persistence.PacientEntity;
 import Persistence.SpitalEntity;
 import Services.DumbService;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import java.util.List;
 

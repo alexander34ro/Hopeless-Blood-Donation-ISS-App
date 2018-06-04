@@ -9,17 +9,23 @@ import Utils.MessageAllert;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -369,6 +375,76 @@ public class AsistentController implements IUserController<AsistentEntity>{
         labelGlobuleAB.setText(String.valueOf(valori[10]));
         labelTrombociteAB.setText(String.valueOf(valori[11]));
 
+
+    }
+
+    @FXML public void handleNotificareDonatori(ActionEvent event) throws NetworkException, RemoteException {
+        GridPane gridPane = new GridPane();
+
+        List<DonatorEntity> donatorEntities = this.client.getAll(DonatorEntity.class);
+
+        HashMap<Short, CheckBox> checkBoxHashMap = new HashMap<>();
+
+        gridPane.add(new Label("ID"), 0, 0);
+        gridPane.add(new Label("Nume"), 1, 0);
+        gridPane.add(new Label("Trimite"), 2, 0);
+
+        int currentLine = 1;
+
+        for(DonatorEntity donatorEntity : donatorEntities) {
+
+            CheckBox checkBox = new CheckBox();
+
+            checkBoxHashMap.put(donatorEntity.getId(), checkBox);
+
+            gridPane.add(new Label("" + donatorEntity.getId()), 0, currentLine);
+            gridPane.add(new Label("" + donatorEntity.getNume()), 1, currentLine);
+            gridPane.add(checkBox, 2, currentLine);
+            currentLine++;
+        }
+
+        TextArea textArea = new TextArea();
+        textArea.setPrefColumnCount(20);
+        textArea.setPrefRowCount(3);
+
+        Button trimiteNotificariButton = new Button("Trimite notificari");
+
+        gridPane.add(textArea, 0, currentLine, 2, 1);
+        gridPane.add(trimiteNotificariButton, 2, currentLine);
+
+        trimiteNotificariButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                for(DonatorEntity donatorEntity : donatorEntities) {
+                    if( checkBoxHashMap.get( donatorEntity.getId() ).isSelected() ) {
+                        System.out.println("Trimit notificare la donatorul " + donatorEntity.getId());
+
+                        try {
+                            client.sendNotification( donatorEntity, textArea.getText() );
+                        } catch (NetworkException | RemoteException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            }
+        });
+
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+
+        ScrollPane scrollPane = new ScrollPane(gridPane);
+
+        scrollPane.setMinWidth(400);
+        scrollPane.setMinHeight(400);
+
+        scrollPane.setStyle("-fx-padding: 10px;");
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(scrollPane));
+        /*stage.setWidth(500);
+        stage.setHeight(700);*/
+        stage.showAndWait();
 
     }
 }
