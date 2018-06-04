@@ -3,6 +3,7 @@ package Controllers;
 import Models.Prioritate;
 import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
+import Networking.NetworkException;
 import Persistence.CerereEntity;
 import Persistence.DetaliiCerereEntity;
 import Persistence.MedicEntity;
@@ -19,7 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -127,6 +130,25 @@ public class MedicController implements IUserController<MedicEntity> {
 
     }
 
+    public void handleStergePacient()
+    {
+        if(tableView.getSelectionModel().getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null,"Nu ati selectat pacient.");
+        }
+        else
+        {
+            PacientEntity pacientEntity= (PacientEntity) tableView.getSelectionModel().getSelectedItem();
+            try {
+                client.delete(pacientEntity);
+                JOptionPane.showMessageDialog(null,"Pacient sters.");
+                actualizareTabel();
+            } catch (NetworkException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public void handleTrimitere() {
         Stage stage = new Stage();
         stage.setTitle("Cerere");

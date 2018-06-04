@@ -91,6 +91,7 @@
                </font>
             </Label>
          <Button layoutX="452.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleAdaugaPacient" prefHeight="25.0" prefWidth="108.0" text="Adauga Pacient" />
+         <Button layoutX="41.0" onAction="#handleStergePacient" layoutY="329.0" mnemonicParsing="false" text="Sterge Pacient" />
       </children>
     </Pane>
 
