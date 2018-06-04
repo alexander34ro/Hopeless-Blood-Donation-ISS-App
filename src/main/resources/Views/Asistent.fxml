@@ -248,12 +248,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Trimite Sange">
+                  <Button mnemonicParsing="false" onAction="#handleTrimiteSange" text="Trimite Sange">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Cerere Urgenta" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#handleCerereUrgenta" text="Cerere Urgenta" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
