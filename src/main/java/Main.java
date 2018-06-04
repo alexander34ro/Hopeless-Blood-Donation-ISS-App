@@ -11,6 +11,7 @@ import javafx.stage.WindowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 public class Main extends Application {
 
     private static ClientController clientController;

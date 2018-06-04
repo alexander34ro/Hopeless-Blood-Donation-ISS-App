@@ -235,18 +235,23 @@
                           <PropertyValueFactory property="tipSange" />
                       </cellValueFactory>
                   </TableColumn>
-                  <TableColumn prefWidth="105.0" text="Prioritate">
+                  <TableColumn prefWidth="78.0" text="Prioritate">
                       <cellValueFactory>
                           <PropertyValueFactory property="prioritate" />
                       </cellValueFactory>
                   </TableColumn>
-                  <TableColumn prefWidth="105.0" text="Cantitate">
+                  <TableColumn prefWidth="81.0" text="Cantitate">
                       <cellValueFactory>
                           <PropertyValueFactory property="cantitate" />
                       </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="spitalTableColumn" prefWidth="107.0" text="Spital">
+                  <TableColumn fx:id="spitalTableColumn" minWidth="3.0" prefWidth="77.0" text="Spital">
 
+                  </TableColumn>
+                  <TableColumn fx:id="distantaTableColumn" prefWidth="81.0" text="Distanta">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="prioritate" />
+                     </cellValueFactory>
                   </TableColumn>
               </columns>
                <VBox.margin>

@@ -6,27 +6,25 @@ import Networking.NetworkException;
 import Persistence.*;
 import Utils.DumbGeocoder;
 import Utils.MessageAllert;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.rmi.RemoteException;
-import java.util.HashMap;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AsistentController implements IUserController<AsistentEntity>{
@@ -41,6 +39,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
     private ClientInterface client;
     private ObservableList<DetaliiCerereEntity> modelDetaliiCerere = FXCollections.observableArrayList();
 
+    @FXML private TableColumn<DetaliiCerereEntity, Double> distantaTableColumn;
+
     @FXML private Button cerereUrgentaButton;
     @FXML public void initialize() {
 
@@ -51,6 +51,20 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 return new SimpleStringProperty("N/A");
             }
         });
+
+        distantaTableColumn.setCellValueFactory(p -> {
+            if (p.getValue() != null) {
+                return new SimpleDoubleProperty(
+                        Double.parseDouble(String.format("%.2f", DumbGeocoder.getDistanceBetween(
+                                    this.user.getCentruTransfuziiByCentruTransfuzii().getOras(),
+                                    p.getValue().getCerereByCerere().getSpitalBySpital().getOras()
+                                )))
+                ).asObject();
+            } else {
+                return new SimpleDoubleProperty(-1).asObject();
+            }
+        });
+
         spitalTableColumn.setCellValueFactory(p->{
             if(p.getValue()!=null){
                 return new SimpleStringProperty(p.getValue().getCerereByCerere().getSpitalBySpital().getNume());
@@ -378,30 +392,89 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
     }
 
-    @FXML public void handleNotificareDonatori(ActionEvent event) throws NetworkException, RemoteException {
+    @FXML public void handleNotificareDonatori(ActionEvent event) throws NetworkException, RemoteException, ParseException {
         GridPane gridPane = new GridPane();
 
         List<DonatorEntity> donatorEntities = this.client.getAll(DonatorEntity.class);
 
         HashMap<Short, CheckBox> checkBoxHashMap = new HashMap<>();
 
-        gridPane.add(new Label("ID"), 0, 0);
-        gridPane.add(new Label("Nume"), 1, 0);
-        gridPane.add(new Label("Trimite"), 2, 0);
+        gridPane.add(new Label("Nume"), 0, 0);
+        gridPane.add(new Label("Grupa de sânge"), 1, 0);
 
         int currentLine = 1;
 
+        class DonatorDistanta {
+            public DonatorEntity donatorEntity;
+            public double distanta;
+        }
+
+        ArrayList<DonatorDistanta> donatorDistantaArrayList = new ArrayList<>();
+
         for(DonatorEntity donatorEntity : donatorEntities) {
 
-            CheckBox checkBox = new CheckBox();
+            /*CheckBox checkBox = new CheckBox();
 
             checkBoxHashMap.put(donatorEntity.getId(), checkBox);
+
+
 
             gridPane.add(new Label("" + donatorEntity.getId()), 0, currentLine);
             gridPane.add(new Label("" + donatorEntity.getNume()), 1, currentLine);
             gridPane.add(checkBox, 2, currentLine);
+            currentLine++;*/
+
+            boolean poateDona = true;
+
+            Optional<DonatieEntity> lastDonation = this.client.getAll(DonatieEntity.class)
+                    .stream()
+                    .map(obj -> (DonatieEntity) obj)
+                    .filter(donatieEntity -> donatieEntity.getDonatorByDonator().getId() == donatorEntity.getId())
+                    .reduce((D1, D2) -> D1.getId() > D2.getId() ? D1 : D2);
+
+            if(lastDonation.isPresent()) {
+
+                DonatieEntity lastDonationEntity = lastDonation.get();
+
+                String format = "dd.MM.yyyy";
+                // 20.05.2018
+                String date1 = lastDonationEntity.getData();
+                String date2 = new SimpleDateFormat(format).format(Calendar.getInstance().getTime());
+                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                Date dateObj1 = sdf.parse(date1);
+                Date dateObj2 = sdf.parse(date2);
+                long diff = dateObj2.getTime() - dateObj1.getTime();
+                int diffDays = (int) (diff / (24* 1000 * 60 * 60));
+                if(diffDays < 100)
+                    poateDona = false;
+            }
+
+            if(poateDona) {
+                DonatorDistanta donatorDistanta = new DonatorDistanta();
+                donatorDistanta.donatorEntity = donatorEntity;
+                donatorDistanta.distanta = DumbGeocoder.getDistanceBetween(donatorEntity.getOras() + " " + donatorEntity.getAdresa(), this.user.getCentruTransfuziiByCentruTransfuzii().getOras());
+                donatorDistantaArrayList.add(donatorDistanta);
+            }
+        }
+
+        List<DonatorDistanta> sortedDonatorDistanta = donatorDistantaArrayList
+                .stream()
+                .sorted(Comparator.comparingDouble(A -> A.distanta))
+                .collect(Collectors.toList());
+
+        for(DonatorDistanta donatorDistanta : sortedDonatorDistanta) {
+            CheckBox checkBox = new CheckBox();
+
+            checkBoxHashMap.put(donatorDistanta.donatorEntity.getId(), checkBox);
+
+            gridPane.add(new Label("" + donatorDistanta.donatorEntity.getNume()), 0, currentLine);
+            gridPane.add(new Label("" + donatorDistanta.donatorEntity.getTipSange()), 1, currentLine);
+
+            gridPane.add(checkBox, 2, currentLine);
+
             currentLine++;
         }
+
 
         TextArea textArea = new TextArea();
         textArea.setPrefColumnCount(20);
@@ -412,20 +485,17 @@ public class AsistentController implements IUserController<AsistentEntity>{
         gridPane.add(textArea, 0, currentLine, 2, 1);
         gridPane.add(trimiteNotificariButton, 2, currentLine);
 
-        trimiteNotificariButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                for(DonatorEntity donatorEntity : donatorEntities) {
-                    if( checkBoxHashMap.get( donatorEntity.getId() ).isSelected() ) {
-                        System.out.println("Trimit notificare la donatorul " + donatorEntity.getId());
+        trimiteNotificariButton.setOnMouseClicked(event1 -> {
+            for(DonatorEntity donatorEntity : donatorEntities) {
+                if( checkBoxHashMap.containsKey(donatorEntity.getId()) && checkBoxHashMap.get( donatorEntity.getId() ).isSelected() ) {
+                    System.out.println("Trimit notificare la donatorul " + donatorEntity.getId());
 
-                        try {
-                            client.sendNotification( donatorEntity, textArea.getText() );
-                        } catch (NetworkException | RemoteException e) {
-                            e.printStackTrace();
-                        }
-
+                    try {
+                        client.sendNotification( donatorEntity, textArea.getText() );
+                    } catch (NetworkException | RemoteException e) {
+                        e.printStackTrace();
                     }
+
                 }
             }
         });
@@ -435,8 +505,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
         ScrollPane scrollPane = new ScrollPane(gridPane);
 
-        scrollPane.setMinWidth(400);
-        scrollPane.setMinHeight(400);
+        /*scrollPane.setMinWidth(400);
+        scrollPane.setMinHeight(400);*/
 
         scrollPane.setStyle("-fx-padding: 10px;");
 
@@ -445,8 +515,6 @@ public class AsistentController implements IUserController<AsistentEntity>{
         /*stage.setWidth(500);
         stage.setHeight(700);*/
         stage.showAndWait();
-
-
 
     }
 }

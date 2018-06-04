@@ -29,5 +29,27 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="org.hibernate.tutorial.jpa/Hibernate" uuid="7e571b1a-ea68-4ced-846e-845b32b48e7f">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resources/persistence.xml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="org.hibernate.tutorial.jpa/Hibernate" uuid="6e461603-1a9f-48ee-9a64-d504b0ec6b9e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/src/main/resources/persistence.xml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>
