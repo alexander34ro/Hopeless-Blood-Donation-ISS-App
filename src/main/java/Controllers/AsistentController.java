@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Stadiu;
 import Models.TipSange;
 import Networking.Interfaces.ClientInterface;
 import Networking.NetworkException;
@@ -22,10 +23,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -94,7 +91,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 gridPane.setVgap(15);
 
                 Button doneButton = new Button("OK");
-                Button cancelButton = new Button("Anuleaza");
+                Button cancelButton = new Button("Exit");
 
                 gridPane.add(new Label("Actualizare donaţie"), 0, 0, 2, 1);
 
@@ -147,7 +144,28 @@ public class AsistentController implements IUserController<AsistentEntity>{
                     bloodTypeChoiceBox.getSelectionModel().select(0);
                 }
 
+                ComboBox<String> respinsChoiceBox=new ComboBox<>();
+                respinsChoiceBox.getItems().addAll("Acceptat","Respins");
+                if(selectedDonation.getRespins()==0)
+                    respinsChoiceBox.getSelectionModel().select("Acceptat");
+                else
+                    respinsChoiceBox.getSelectionModel().select("Respins");
                 bloodTypeChoiceBox.getSelectionModel().select(0);
+                if(categoryChoiceBox.getSelectionModel().isEmpty())
+                    categoryChoiceBox.getSelectionModel().select(0);
+
+                for(Stadiu stadiu:Stadiu.values()){
+                    if(selectedDonation.getStadiu().equals(stadiu.toString())) {
+                        stadiuChoiceBox.getSelectionModel().select(selectedDonation.getStadiu());
+                        break;
+                    }
+                    stadiuChoiceBox.getSelectionModel().select(0);
+                }
+
+                if(selectedDonation.getStadiu().equals("Calificare") || selectedDonation.getStadiu().equals("Distribuire") ||selectedDonation.getStadiu().equals("Finalizat"))
+                    categoryChoiceBox.setDisable(true);
+
+
 
                 gridPane.add(new Label("Grupa sanguină:"), 0, 6);
                 gridPane.add(bloodTypeChoiceBox, 1, 6);
@@ -155,8 +173,15 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 gridPane.add(new Label("Transformă in:"), 0, 7);
                 gridPane.add(categoryChoiceBox, 1, 7);
 
-                gridPane.add(doneButton, 0, 8);
-                gridPane.add(cancelButton, 1, 8);
+                gridPane.add(new Label("Acceptat/Respins") ,0,8);
+                gridPane.add(respinsChoiceBox,1,8);
+
+                gridPane.add(doneButton, 0, 9);
+                gridPane.add(cancelButton, 1, 9);
+
+                pulsTextField.setText(String.valueOf(selectedDonation.getPuls()));
+                greutateTextField.setText(String.valueOf(selectedDonation.getGreutate()));
+                tensiuneTextField.setText(String.valueOf(selectedDonation.getTensiune()));
 
                 doneButton.setOnMouseClicked(event12 -> {
                     try {
@@ -164,7 +189,10 @@ public class AsistentController implements IUserController<AsistentEntity>{
                         selectedDonation.setPuls(Short.parseShort(pulsTextField.getText()));
                         selectedDonation.setTensiune(Short.parseShort(tensiuneTextField.getText()));
                         selectedDonation.setStadiu(stadiuChoiceBox.getSelectionModel().getSelectedItem());
-
+                        if(respinsChoiceBox.getSelectionModel().getSelectedItem().equals("Acceptat"))
+                            selectedDonation.setRespins((short)0);
+                        else
+                            selectedDonation.setRespins((short)1);
                         if( ! bloodTypeChoiceBox.isDisabled())
                         {
                             DonatorEntity donatorEntity = selectedDonation.getDonatorByDonator();
@@ -172,7 +200,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
                             client.saveOrUpdate(donatorEntity);
                         }
-                        if(selectedDonation.getStadiu().equals("Finalizat")) {
+
+                        if(selectedDonation.getStadiu().equals("Finalizat") && selectedDonation.getRespins()==0) {
                             UnitateSanguinaEntity unitate=new UnitateSanguinaEntity();
                             short id=1;
                             List<UnitateSanguinaEntity> unitateEntities = client.getAll(UnitateSanguinaEntity.class);
@@ -182,6 +211,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
                             }
                             unitate.setId(id);
                             unitate.setCategorie(categoryChoiceBox.getSelectionModel().getSelectedItem());
+
                             unitate.setTipSange(selectedDonation.getDonatorByDonator().getTipSange());
                             //trombocite 5 globule 42 plasma 100 sangele 7zile
                             Date data = (new SimpleDateFormat("dd.mm.yyyy")).parse(selectedDonation.getData());
@@ -223,7 +253,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
 
                 cancelButton.setOnMouseClicked(event1 -> dialog.close());
 
-                Scene dialogScene = new Scene(hBox, 400, 400);
+                Scene dialogScene = new Scene(hBox, 400, 480);
                 dialog.setScene(dialogScene);
 
                 dialog.showAndWait();
