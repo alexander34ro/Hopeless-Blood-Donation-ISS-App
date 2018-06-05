@@ -105,6 +105,12 @@ public class MedicController implements IUserController<MedicEntity> {
         init();
     }
 
+    public void setClient(ClientInterface client, boolean loadInit) {
+        this.client = client;
+        if(loadInit)
+            init();
+    }
+
     public void handleAdaugaPacient() {
         Stage stage = new Stage();
         stage.setTitle("Adauga Pacient");
@@ -170,5 +176,55 @@ public class MedicController implements IUserController<MedicEntity> {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public void stergePacient(String nume, String prenume){
+        try {
+            List<PacientEntity> pacientEntityList=client.getAll(PacientEntity.class);
+            for (PacientEntity p:pacientEntityList
+                 ) {
+                if(p.getNume().equals(nume) && p.getPrenume().equals(prenume)){
+                    client.delete(p);
+                    break;
+                }
+            }
+        } catch (NetworkException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void adaugaPacient(String nume, String prenume, short prioritate, short trombociteN, short globuleN, short plasmaN,short sangeN, String tipSange){
+        try {
+            MedicEntity medicEntity= (MedicEntity) client.getAll(MedicEntity.class).get(0);
+            PacientEntity pacientEntity=new PacientEntity();
+            List<PacientEntity> pacientEntityList=client.getAll(PacientEntity.class);
+            short id=1;
+            for (PacientEntity p:pacientEntityList) {
+                if (p.getId() >= id) {
+                    id = p.getId();
+                }
+            }
+            id++;
+                //else {
+                    pacientEntity.setId(id);
+                    pacientEntity.setNume(nume);
+                    pacientEntity.setPrenume(prenume);
+                    pacientEntity.setPrioritate(prioritate);
+                    pacientEntity.setTrombociteNecesare(trombociteN);
+                    pacientEntity.setSangeNecesar(sangeN);
+                    pacientEntity.setGlobuleRosiiNecesare(globuleN);
+                    pacientEntity.setTipSange(tipSange);
+                    pacientEntity.setPlasmaNecesara(plasmaN);
+                    pacientEntity.setMedicByMedic(medicEntity);
+                    client.saveOrUpdate(pacientEntity);
+                //}
+            //}
+        } catch (NetworkException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
