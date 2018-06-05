@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8cfbe46-bc11-4214-beef-a2a7024e3b7b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/ISSBloodDonation.db" afterPath="$PROJECT_DIR$/database/ISSBloodDonation.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Teste/DocumentatieTest.docx" afterPath="$PROJECT_DIR$/src/main/java/Teste/DocumentatieTest.docx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentatie/Hopeless Blood Donation.pptx" afterPath="$PROJECT_DIR$/documentatie/Hopeless Blood Donation.pptx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controllers/AsistentController.java" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AsistentController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -96,7 +93,7 @@
       <file leaf-file-name="MedicController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MedicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-325">
+            <state relative-caret-position="-225">
               <caret line="75" column="30" lean-forward="false" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -2074,7 +2071,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528136811056</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Notificari">
+      <created>1528194096204</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1528194096204</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2110,7 +2114,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76128000" />
+    <option name="totallyTimeSpent" value="77172000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2557,7 +2561,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MedicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-325">
+        <state relative-caret-position="-225">
           <caret line="75" column="30" lean-forward="false" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
