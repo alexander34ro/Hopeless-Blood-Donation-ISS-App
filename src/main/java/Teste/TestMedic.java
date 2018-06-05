@@ -1,14 +1,15 @@
 package Teste;
 
-import Controllers.CerereController;
+import Controllers.AdaugaPacientController;
+import Controllers.IUserController;
 import Controllers.MedicController;
 import Networking.ClientController;
 import Networking.Interfaces.ServerInterface;
 import Networking.NetworkException;
-import Persistence.DetaliiCerereEntity;
+import Persistence.IUser;
 import Persistence.MedicEntity;
+import Persistence.PacientEntity;
 import Services.DumbService;
-import javafx.fxml.FXMLLoader;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -23,33 +24,27 @@ public class TestMedic {
         List<MedicEntity> medicEntityList = dumbService.getAll(MedicEntity.class);
         if (medicEntityList.size() > 0) {
             MedicEntity medicEntity = medicEntityList.get(medicEntityList.size() - 1);
-            MedicController medicController = null;
-            CerereController cerereController = null;
+            MedicController medicController = new MedicController();
+            AdaugaPacientController adaugaPacientController = null;
             try {
-                ClientController clientController = new ClientController((ServerInterface) (new ClassPathXmlApplicationContext("classpath:clientSpring.xml")).getBean("bloodDonationService"));
-                MedicEntity medicEntity1 = (MedicEntity) clientController.login(medicEntity.getUsername(), medicEntity.getParola());
-                assert (medicEntity1.getNume().equals(medicEntity.getNume()));
+                ClientController clientController = new ClientController( (ServerInterface) new ClassPathXmlApplicationContext("classpath:clientSpring.xml").getBean("bloodDonationService") );
+                IUser response =   clientController.login(medicEntity.getUsername(), medicEntity.getParola());
+                //FXMLLoader aloader = new FXMLLoader(getClass().getClassLoader().getResource("/Views/Medic.fxml"));
+                //Parent aroot = aloader.load();
 
-                FXMLLoader aloader = null;
-                aloader = new FXMLLoader(getClass().getClassLoader().getResource("./Views/Medic.fxml"));
-                int sizeInitial = clientController.getAll(DetaliiCerereEntity.class).size();
-                MedicController controller = aloader.getController();
+                IUserController controller = new MedicController();//aloader.getController();
                 clientController.setMedicController((MedicController) controller);
+                controller.setUser(response);
+                //controller.setClient(clientController);
+                medicController.setClient(clientController, false);
 
-                medicController.setClient(clientController);
-                cerereController.setClient(clientController);
-                cerereController.setMedic(medicEntity);
-                cerereController.adaugaCerere("Medie", Short.parseShort("1"), "Trombocite", "OPozitiv");
-                cerereController.trimiteCerere();
-
-                int sizeIntermediar = clientController.getAll(DetaliiCerereEntity.class).size();
-                assert sizeInitial < sizeIntermediar;
-                cerereController.stergeCerere();
-
-                int sizeFinal = clientController.getAll(DetaliiCerereEntity.class).size();
-                assert sizeFinal < sizeIntermediar;
-
-
+                int sizeInitial = clientController.getAll(PacientEntity.class).size();
+                medicController.adaugaPacient("Baraian", "Iulia", Short.parseShort(String.valueOf(1)), Short.parseShort(String.valueOf(2)), Short.parseShort(String.valueOf(4)), Short.parseShort(String.valueOf(2)), Short.parseShort(String.valueOf(4)), "OPozitiv");
+                int sizeIntermediar = clientController.getAll(PacientEntity.class).size();
+                assert sizeIntermediar > sizeInitial;
+                medicController.stergePacient("Baraian", "Iulia");
+                int sizeFinal = clientController.getAll(PacientEntity.class).size();
+                assert sizeFinal == sizeInitial;
             } catch (NetworkException e) {
                 e.printStackTrace();
             } catch (IOException e) {
