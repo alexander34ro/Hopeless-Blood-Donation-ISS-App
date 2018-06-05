@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.rmi.RemoteException;
+import java.util.List;
 
 public class AdaugaPacientController {
     private ClientInterface client;
@@ -54,7 +55,6 @@ public class AdaugaPacientController {
 
     public void setFereastraMedic(MedicController controller) {
         this.medicCtrl = controller;
-
     }
 
     public void setClient(ClientInterface client) {
@@ -72,6 +72,17 @@ public class AdaugaPacientController {
         if (textFieldGlobule.getText().equals("") || textFieldNume.getText().equals("")|| textFieldPlasma.getText().equals("") || textFieldPrenume.getText().equals("")  || textFieldSange.getText().equals("")  || textFieldTrombocite.getText().equals("") ) {
             JOptionPane.showMessageDialog(null, "Date necompletate");
         } else {
+            List<PacientEntity> entityList = null;
+            try {
+                entityList = client.getAll(PacientEntity.class);
+            } catch (NetworkException e) {
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            PacientEntity lastEntity = entityList.get(entityList.size() - 1);
+            short id = (short)(lastEntity.getId() + 1);
+            pacientEntity.setId(id);
             pacientEntity.setNume(textFieldNume.getText());
             pacientEntity.setPrenume(textFieldPrenume.getText());
             pacientEntity.setGlobuleRosiiNecesare(Short.valueOf(textFieldGlobule.getText()));
