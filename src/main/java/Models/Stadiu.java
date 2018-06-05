@@ -4,7 +4,7 @@ public enum Stadiu {
 	Recoltare,
 	Pregatirea,
 	Prelevare,
-	Calificare ,
+	Calificare,
 	Distribuire,
 	Finalizat
 }
