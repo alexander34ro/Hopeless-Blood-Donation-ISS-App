@@ -83,15 +83,17 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 HBox hBox = new HBox();
                 hBox.setAlignment(Pos.CENTER);
 
-                hBox.setStyle("-fx-padding: 10px;");
+                hBox.setStyle("-fx-padding: 12px;");
 
                 GridPane gridPane = new GridPane();
                 hBox.getChildren().add(gridPane);
-                gridPane.setHgap(15);
-                gridPane.setVgap(15);
+                gridPane.setHgap(16);
+                gridPane.setVgap(16);
 
                 Button doneButton = new Button("OK");
+                doneButton.setPrefWidth(100);
                 Button cancelButton = new Button("Exit");
+                cancelButton.setPrefWidth(100);
 
                 gridPane.add(new Label("Actualizare donaţie"), 0, 0, 2, 1);
 
@@ -176,8 +178,8 @@ public class AsistentController implements IUserController<AsistentEntity>{
                 gridPane.add(new Label("Acceptat/Respins") ,0,8);
                 gridPane.add(respinsChoiceBox,1,8);
 
-                gridPane.add(doneButton, 0, 9);
-                gridPane.add(cancelButton, 1, 9);
+                gridPane.add(doneButton, 0, 10);
+                gridPane.add(cancelButton, 1, 10);
 
                 pulsTextField.setText(String.valueOf(selectedDonation.getPuls()));
                 greutateTextField.setText(String.valueOf(selectedDonation.getGreutate()));
@@ -539,7 +541,7 @@ public class AsistentController implements IUserController<AsistentEntity>{
             CheckBox checkBox = new CheckBox();
 
             checkBoxHashMap.put(donatorDistanta.donatorEntity.getId(), checkBox);
-
+            System.out.println(donatorDistanta.donatorEntity.getTipSange());
             gridPane.add(new Label("" + donatorDistanta.donatorEntity.getNume()), 0, currentLine);
             gridPane.add(new Label("" + donatorDistanta.donatorEntity.getTipSange()), 1, currentLine);
 

@@ -35,7 +35,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/main/resources/persistence.xml</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/database/ISSBloodDonation.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
@@ -46,7 +46,16 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/main/resources/persistence.xml</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../Mars/IdeaProjects/Blood Donation ISS App/database/ISSBloodDonation.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/database/ISSBloodDonation.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="ISSBloodDonation.db" uuid="0e88f181-6148-40d5-a171-42cf458d2f27">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Mars\IdeaProjects\Blood Donation ISS App\database\ISSBloodDonation.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
